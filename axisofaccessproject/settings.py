@@ -32,8 +32,15 @@ SECRET_KEY = 'django-insecure-&#aw$zs5&29xklsvd9dio0--xe&emuo_n)vlb(*qf=*((b2)8p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '8000-aslinedvins-axisofacces-wds6t2evct2.ws-eu116.gitpod.io']
+ALLOWED_HOSTS = [
+    ".gitpod.io", 
+    ".herokuapp.com"
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.gitpod.io",
+    "https://*.herokuapp.com"
+]
 
 # Application definition
 
@@ -47,6 +54,10 @@ INSTALLED_APPS = [
     'accounts',
     'communication',
     'notifications',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'axisofaccessproject.urls'
@@ -137,3 +149,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default authentication
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth
+]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
