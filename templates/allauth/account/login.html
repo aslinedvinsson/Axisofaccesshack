@@ -8,8 +8,7 @@
 
 {% if not SOCIALACCOUNT_ONLY %}
 <p>
-    {% blocktranslate %}If you have not created an account yet, please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
+    Don’t have an account? Then please <a href="{% url 'register' %}">sign up</a>.
 </p>
 
 {% url 'account_login' as login_url %}
