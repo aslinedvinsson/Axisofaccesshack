@@ -34,7 +34,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".gitpod.io", 
-    ".herokuapp.com"
+    ".herokuapp.com",
+    "127.0.0.1"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -76,7 +77,7 @@ ROOT_URLCONF = 'axisofaccessproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
