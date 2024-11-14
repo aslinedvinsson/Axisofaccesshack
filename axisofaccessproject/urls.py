@@ -22,6 +22,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('communication.urls'))
+    path('notifications/', include('notifications.urls')), 
 ]
 
 handler404 = 'communication.views.custom_404'
