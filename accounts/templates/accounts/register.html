@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock head_title %}
@@ -14,10 +13,31 @@
           <p class="card-text">Already have an account? Then please <a href="{% url 'account_login' %}">sign in</a>.</p>
           <form class="signup" id="signup_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+            
+            <!-- Loop through user_form fields -->
+            {% for field in user_form %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}{% if field.field.required %} <span style="color: red;">*</span>{% endif %}
+                </label>
+                {{ field }}
+                {{ field.errors }}
+              </div>
+            {% endfor %}
+
+            <!-- Loop through profile_form fields -->
+            {% for field in profile_form %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}{% if field.field.required %} <span style="color: red;">*</span>{% endif %}
+                </label>
+                {{ field }}
+                {{ field.errors }}
+              </div>
+            {% endfor %}
+
             <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
-        </form>
+          </form>
         </div>
       </div>
     </div>
