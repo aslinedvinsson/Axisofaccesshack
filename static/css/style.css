@@ -34,21 +34,21 @@ html, body{
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.5); /* Center and scale */
-    z-index: 1050; /* Ensure it appears above other elements */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for focus */
-    border-radius: 15px; /* Keep a softer look */
-    padding: 20px; /* More padding for the enlarged state */
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 1050;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 20px;
 }
 
 .icon-tile.enlarged img {
-    max-height: 70vh; /* Use 70% of the viewport height for large screens */
-    transform: scale(1.2); /* Slightly larger image */
+    max-height: 70vh;
+    transform: scale(1.2);
 }
 
 .icon-tile.enlarged p {
-    font-size: 1.5rem; /* Larger text for better focus */
-    font-weight: bold; /* Highlight the text */
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-top: 10px;
     text-align: center;
 }
