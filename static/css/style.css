@@ -10,11 +10,13 @@ html, body{
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 10px;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    background-color: white; /* Ensure consistency with enlarged background */
 }
 
 .icon-tile img {
     max-height: 100px;
+    transition: transform 0.3s ease; /* Added smooth scaling for enlarged state */
 }
 
 .icon-tile:hover {
@@ -25,4 +27,28 @@ html, body{
 .icon-clicked {
     transform: scale(1.1);
     background-color: #e0f7fa;
+}
+
+/* Enlarged state */
+.icon-tile.enlarged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5); /* Center and scale */
+    z-index: 1050; /* Ensure it appears above other elements */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for focus */
+    border-radius: 15px; /* Keep a softer look */
+    padding: 20px; /* More padding for the enlarged state */
+}
+
+.icon-tile.enlarged img {
+    max-height: 70vh; /* Use 70% of the viewport height for large screens */
+    transform: scale(1.2); /* Slightly larger image */
+}
+
+.icon-tile.enlarged p {
+    font-size: 1.5rem; /* Larger text for better focus */
+    font-weight: bold; /* Highlight the text */
+    margin-top: 10px;
+    text-align: center;
 }

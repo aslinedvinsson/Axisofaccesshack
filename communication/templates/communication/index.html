@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+
+{% load static %}
 {% block content %}
 <div class="container py-4">
     <!-- Show a message for logged-out users -->
@@ -24,7 +26,8 @@
         <div class="row">
             {% for group in groups %}
             <div class="col-md-3 mb-3">
-                <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#groupModal-{{ group.id }}">
+                <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal"
+                    data-bs-target="#groupModal-{{ group.id }}">
                     {{ group.name }}
                 </button>
             </div>
@@ -53,11 +56,22 @@
 
 <script>
     function iconClicked(button) {
-        button.classList.add('icon-clicked');
-        setTimeout(() => button.classList.remove('icon-clicked'), 300);
+        console.log("Tile clicked:", button);
 
-        const beep = new Audio('/static/beep.mp3');
+        const allCards = document.querySelectorAll('.icon-tile');
+        const isAlreadyEnlarged = button.classList.contains('enlarged');
+
+        // Remove "enlarged" class from all cards
+        allCards.forEach((card) => card.classList.remove('enlarged'));
+
+        // Play sound
+        const beep = new Audio("{% static 'beep.mp3' %}");
         beep.play();
+
+        // Toggle enlargement for the clicked card
+        if (!isAlreadyEnlarged) {
+            button.classList.add('enlarged');
+        }
     }
 </script>
 
