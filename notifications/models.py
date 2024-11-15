@@ -1,24 +1,41 @@
 from django.db import models
 from accounts.models import UserProfile
-from communication.models import Group, Icon
+from communication.models import Icon
 
-# Create your models here.
 class Notification(models.Model):
     """
-    Represents a notification sent by a caregiver to a user, associated with an icon.
+    Represents a notification sent to a caregiver when an event (e.g., icon selection) occurs.
     """
     caregiver = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name="sent_notifications",
-        limit_choices_to={'role': 'CG'}
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name="notifications",
+        limit_choices_to={'role': 'CG'},  # Ensure only caregivers receive notifications
+        help_text="The caregiver receiving the notification."
     )
     user = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name="received_notifications"
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name="user_notifications",
+        limit_choices_to={'role': 'USER'},  # Ensure only end users can trigger notifications
+        help_text="The user who triggered the notification."
     )
     icon = models.ForeignKey(
-        Icon, on_delete=models.CASCADE, related_name="notifications"
+        Icon,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="notifications",
+        help_text="The icon selected by the user."
     )
-    notified_at = models.DateTimeField(auto_now_add=True)
-    is_sent = models.BooleanField(default=False)
+    notified_at = models.DateTimeField(
+        auto_now_add=True,
+        help_text="The time when the notification was created."
+    )
+    is_sent = models.BooleanField(
+        default=False,
+        help_text="Whether the notification has been sent."
+    )
 
     def __str__(self):
-        return f"Notification from {self.caregiver} to {self.user} - {self.icon.name}"
+        return f"Notification to {self.caregiver} about {self.icon.name if self.icon else 'N/A'}"
