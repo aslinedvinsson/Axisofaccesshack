@@ -14,7 +14,7 @@ import os
 import dj_database_url
 import cloudinary
 from pathlib import Path
-import env 
+
 # Load env variables from env.py if it exists
 env_path = Path(__file__).resolve().parent / 'env.py'
 if env_path.exists():
@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&#aw$zs5&29xklsvd9dio0--xe&emuo_n)vlb(*qf=*((b2)8p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =True
 
 ALLOWED_HOSTS = [
     "*"
