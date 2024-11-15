@@ -14,45 +14,54 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'index' %}">Iconic</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_profile' %}">User Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'caregiver_profile' %}">Caregiver Profile</a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Register</a>
-          </li>
-          {% endif %}
-        </ul>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Iconic</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user_profile' %}">User Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'caregiver_profile' %}">Caregiver Profile</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-
-  <h1>Base template</h1>
+    </nav>
+  </header>
+  <main>
+    <h1>Base template</h1>
 
   {% block content %}
   {% endblock %}
+  </main>
+  
+  <footer>
+    <div class="copyright">
+      <p>copyright 2024</p>
+    </div>
+  </footer>
 
   <!-- Bootstrap script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
