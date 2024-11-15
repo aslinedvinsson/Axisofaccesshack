@@ -4,18 +4,25 @@
 
 {% block content %}
 <!-- Code in this block -->
-<h1>User Profile</h1>
+<h1>End-User Profile</h1>
 
-<!-- User Name and Caregiver Section -->
-<div class="profile">
-    <h2>Welcome, {{ user_profile.name }}</h2>
-    <p><strong>Caregiver: </strong>{{ user_profile.caregiver.name if user_profile.caregiver else 'No caregiver assigned' }}</p>
-
-    <!-- Logout Button -->
-    <form method="POST" action="{% url 'account_logout' %}">
+<div class="text-center mt-3">
+    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+    <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
         {% csrf_token %}
-        <button type="submit" id="logout-btn">Log Out</button>
+        <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
     </form>
+    <div class="text-center mt-3">
+        {% if user_profile.caregiver %}
+        <p>Your assigned caregiver is: {{ user_profile.caregiver.name }}</p>
+        {% else %}
+        <p>No caregiver assigned.</p>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{% url 'index' %}" class="btn btn-primary">
+            Return to Home
+        </a>
+    </div>
 </div>
-
 {% endblock content %}
