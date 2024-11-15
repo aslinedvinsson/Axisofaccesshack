@@ -6,7 +6,7 @@ def index(request):
         groups = Group.objects.prefetch_related('icons').all()
         for group in groups:
             group.active_icons = group.icons.filter(is_active=True)  # Add only active icons
-        icons = Icon.objects.filter(group__isnull=True, is_active=True).order_by('name')
+        icons = Icon.objects.filter(is_active=True).order_by('name')  # Removed group__isnull=True
         favorites = Icon.objects.filter(is_favorite=True, is_active=True, caregiver__user=request.user).order_by('name')
     else:
         groups = None
