@@ -52,3 +52,63 @@ html, body{
     margin-top: 10px;
     text-align: center;
 }
+
+/* Accessible Navbar */
+
+/* Skip to main content link */
+.skip-to-main-content-link {
+    position: absolute;
+    left:-9999px;
+    z-index: 9999;
+    padding: 1em;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 2px solid #000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.skip-to-main-content-link:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    top:20px;
+}
+
+/* Focus styles for better visibility */
+
+a:focus,
+button:focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+}
+
+/* High contrast focus for keyboard navigation */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px #4A90E2;
+}
+
+/* Ensure sufficient color contrast */
+
+.navbar-nav .nav-link {
+    color: #2C3E50;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: #1ABC9C;
+    text-decoration: underline;
+}
+
+/* Improved text readability */
+
+body {
+    line-height: 1.6;
+    font-size: 16px;
+}
