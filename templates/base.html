@@ -29,13 +29,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav" role="menubar">
             <li class="nav-item" role="none">
-              <a class="nav-link active" aria-current="page" href="{% url 'index' %}" role="menuitem">Home</a>
+              <a class="nav-link {% if request.path == '/' %}active{% endif %}" {% if request.path == '/' %}aria-current="page"{% endif %} href="{% url 'index' %}" role="menuitem">Home</a>
             </li>
             <li class="nav-item" role="none">
-              <a class="nav-link" href="{% url 'user_profile' %}" role="menuitem">User Profile</a>
+              <a class="nav-link {% if request.path == '/accounts/user_profile' %}active{% endif %}" {% if request.path == '/accounts/user_profile' %}aria-current="page"{% endif %} href="{% url 'user_profile' %}" role="menuitem">User Profile</a>
             </li>
             <li class="nav-item" role="none">
-              <a class="nav-link" href="" role="menuitem">Caregiver Profile</a>
+              <a class="nav-link {% if request.path == '/accounts/caregiver_profile' %}active{% endif %}" {% if request.path == '/accounts/caregiver_profile' %}aria-current="page"{% endif %} href="" role="menuitem">Caregiver Profile</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item" role="none">
