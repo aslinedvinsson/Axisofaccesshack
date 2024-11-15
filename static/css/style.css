@@ -1,11 +1,18 @@
-html, body{
+/* Global Styles */
+html, body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    
+}
+
+/* Typography */
+h3 {
+    margin: 15px;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 h3::before {
@@ -16,27 +23,23 @@ h3::after {
     content: ' » ';
 }
 
-h3 {
-    margin: 15px;
-    text-transform: uppercase;
+/* Homepage Title */
+.title-homepage h1 {
     text-align: center;
+    color: #373e5b;
+    margin: 20px;
 }
 
-
-
+/* Section 1 */
 .section1 {
-    
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr);
-     /* Creates 2 columns of equal width */
-    gap: 20px; /* Adds space between images */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns of equal width */
+    gap: 20px; /* Space between images */
     margin: 25px;
-    
 }
 
-.section1 h3
- {
-    color: #373e5b;;
+.section1 h3 {
+    color: #373e5b;
 }
 
 .section1 a {
@@ -45,28 +48,24 @@ h3 {
 }
 
 .section1 img {
-    
     width: 300px;
     height: 350px;
     border-radius: 10px 10px 0 0;
     margin: 10px;
 }
 
-.title-homepage h1{
-    text-align: center;
-    color: #373e5b;
-    margin: 20px;
-    
-}
+/* Icons and Emojis */
 .icons-emoji {
     background-color: #EDE7E0;
-
     border-radius: 10px;
     border: 1px solid black;
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    box-shadow: 
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
 .icons-emoji:hover {
@@ -74,32 +73,29 @@ h3 {
     transition: 0.3s;
 }
 
-
 .icons-emoji img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    
 }
 
-.square{
+/* Square Container */
+.square {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin:10px;
-    background-color:#EDE7E0;
+    margin: 10px;
+    background-color: #EDE7E0;
 }
 
+/* Footer */
 footer {
-    Background-color: #F8F9FA;
-    padding:16px;
-    
+    background-color: #F8F9FA;
+    padding: 16px;
 }
 
-
-footer a{
-    text-decoration:none; 
+footer a {
+    text-decoration: none;
     color: #575757;
-    
 }
