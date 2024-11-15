@@ -1,0 +1,28 @@
+{% extends "account/allauth_base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load crispy_forms_tags %}
+
+{% block inner_content %}
+
+<h1 class="text-center">{% trans "Sign In" %}</h1>
+
+{% if not SOCIALACCOUNT_ONLY %}
+<p>
+  Don’t have an account? Then please <a href="{% url 'register' %}">sign up</a>.
+</p>
+
+{% url 'account_login' as login_url %}
+<form method="post" action="{{ login_url }}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {{ redirect_field }}
+  <div class="mt-3 text-center">
+    <button type="submit" class="btn btn-primary">
+      {% trans "Sign In" %}
+    </button>
+  </div>
+</form>
+{% endif %}
+
+{% endblock inner_content %}
