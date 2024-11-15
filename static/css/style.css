@@ -4,3 +4,25 @@ html, body{
     box-sizing: border-box;
     
 }
+
+.icon-tile {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.2s ease;
+}
+
+.icon-tile img {
+    max-height: 100px;
+}
+
+.icon-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon-clicked {
+    transform: scale(1.1);
+    background-color: #e0f7fa;
+}
