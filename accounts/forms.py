@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
+from communication.models import Icon, Group
 from .models import UserProfile
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -25,3 +27,22 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         self.fields['role'].choices = [(tag[0], tag[1]) for tag in UserProfile.USER_ROLES if tag[0] in ['CG', 'EU']]
         self.fields['about'].required = False
+
+
+class IconForm(forms.ModelForm):
+    class Meta:
+        model = Icon
+        fields = ['name', 'image', 'is_favorite', 'group']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'group': forms.Select(attrs={'class': 'form-select'}),
+        }
+
+class GroupForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = ['name', 'description']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }

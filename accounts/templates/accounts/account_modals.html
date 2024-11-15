@@ -1,0 +1,138 @@
+<!-- Add Icon Modal -->
+<div class="modal fade" id="addIconModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'add_icon' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Icon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    {{ icon_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Icon</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Icon Modal -->
+{% for icon in caregiver_icons %}
+<div class="modal fade" id="editIconModal-{{ icon.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'edit_icon' icon.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Icon: {{ icon.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    {{ icon_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Add Group Modal -->
+<div class="modal fade" id="addGroupModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'add_group' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    {{ group_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Group Modal -->
+{% for group in groups %}
+<div class="modal fade" id="editGroupModal-{{ group.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'edit_group' group.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Group: {{ group.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    {{ group_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Delete Icon Modal -->
+{% for icon in caregiver_icons %}
+<div class="modal fade" id="deleteIconModal-{{ icon.id }}" tabindex="-1"
+    aria-labelledby="deleteIconModalLabel-{{ icon.id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteIconModalLabel-{{ icon.id }}">Delete Icon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the icon "{{ icon.name }}"?
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="{% url 'delete_icon' icon.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Delete Group Modal -->
+{% for group in groups %}
+<div class="modal fade" id="deleteGroupModal-{{ group.id }}" tabindex="-1"
+    aria-labelledby="deleteGroupModalLabel-{{ group.id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteGroupModalLabel-{{ group.id }}">Delete Group</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the group "{{ group.name }}"? This will also unassign icons from the
+                group.
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="{% url 'delete_group' group.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

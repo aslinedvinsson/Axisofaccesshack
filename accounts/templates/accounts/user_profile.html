@@ -12,7 +12,7 @@
     <p><strong>Caregiver: </strong>{{ user_profile.caregiver.name if user_profile.caregiver else 'No caregiver assigned' }}</p>
 
     <!-- Logout Button -->
-    <form method="POST" action="{% url 'logout' %}">
+    <form method="POST" action="{% url 'account_logout' %}">
         {% csrf_token %}
         <button type="submit" id="logout-btn">Log Out</button>
     </form>
