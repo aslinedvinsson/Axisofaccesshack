@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
     <div class="text-center mb-3">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
-            View Favorites
+            <i class="fas fa-star"></i>
         </button>
     </div>
     {% endif %}
@@ -40,6 +40,7 @@
     <div>
         <div class="row">
             {% for icon in icons %}
+
             <div class="col-md-3 mb-3">
                 <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)" data-icon-id="{{ icon.id }}">
                     <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
@@ -64,12 +65,11 @@
         // Remove "enlarged" class from all cards
         allCards.forEach((card) => card.classList.remove('enlarged'));
 
-        // Play sound
-        const beep = new Audio("{% static 'beep.mp3' %}");
-        beep.play();
-
         // Toggle enlargement for the clicked card
         if (!isAlreadyEnlarged) {
+            const beep = new Audio("{% static 'beep.mp3' %}");
+            beep.play();
+
             button.classList.add('enlarged');
         }
 
@@ -100,5 +100,4 @@
         });
     }
 </script>
-
 {% endblock %}
