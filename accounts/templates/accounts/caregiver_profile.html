@@ -64,7 +64,7 @@
         <h3>Manage Groups</h3>
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addGroupModal">Add Group</button>
         <ul class="list-group">
-            {% for group in groups %}
+            {% for group in caregiver_groups %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>{{ group.name }}</span>
                 <span class="badge bg-secondary">{{ group.icons.count }} icons</span>
@@ -73,10 +73,6 @@
                         data-bs-target="#editGroupModal-{{ group.id }}">Edit</button>
                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                         data-bs-target="#deleteGroupModal-{{ group.id }}">Delete</button>
-                    <form method="POST" action="{% url 'delete_group' group.id %}" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
                 </div>
             </li>
             {% empty %}

@@ -64,7 +64,7 @@
 </div>
 
 <!-- Edit Group Modal -->
-{% for group in groups %}
+{% for group in caregiver_groups %}
 <div class="modal fade" id="editGroupModal-{{ group.id }}" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -112,7 +112,7 @@
 {% endfor %}
 
 <!-- Delete Group Modal -->
-{% for group in groups %}
+{% for group in caregiver_groups %}
 <div class="modal fade" id="deleteGroupModal-{{ group.id }}" tabindex="-1"
     aria-labelledby="deleteGroupModalLabel-{{ group.id }}">
     <div class="modal-dialog">

@@ -61,6 +61,7 @@ def user_profile(request):
     # For caregivers (role == 'CG'), show icons and assigned end users
     if user_profile.role == 'CG':
         caregiver_icons = Icon.objects.filter(caregiver=user_profile)  # Get the caregiver's icons
+        caregiver_groups = Group.objects.filter(caregiver=user_profile)  # Get the caregiver's groups
         assigned_end_users = user_profile.end_users.all()  # Get the end users assigned to this caregiver
 
         # Instantiate forms for adding and editing icons/groups
@@ -71,6 +72,7 @@ def user_profile(request):
         return render(request, 'accounts/caregiver_profile.html', {
             'user_profile': user_profile,
             'caregiver_icons': caregiver_icons,
+            'caregiver_groups': caregiver_groups,
             'assigned_end_users': assigned_end_users,
             'icon_form': icon_form,
             'group_form': group_form,
@@ -129,13 +131,19 @@ def edit_icon(request, icon_id):
 # Adding a new group
 @login_required
 def add_group(request):
+    """
+    Allows a caregiver to add a new group, automatically associating it with their profile.
+    """
     if request.method == 'POST':
         form = GroupForm(request.POST)
         if form.is_valid():
-            form.save()
+            group = form.save(commit=False)
+            group.caregiver = request.user.userprofile  # Assign the logged-in user as the caregiver
+            group.save()
             return redirect('user_profile')
     else:
         form = GroupForm()
+    
     return render(request, 'accounts/caregiver_profile.html', {'group_form': form})
 
 
