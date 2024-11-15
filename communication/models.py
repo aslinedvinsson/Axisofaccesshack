@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from accounts.models import UserProfile
 
 class Group(models.Model):
@@ -18,12 +19,15 @@ class Icon(models.Model):
     """
     caregiver = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name="icons",
-        limit_choices_to={'role': 'CG'}  # Only caregivers can own icons
+        limit_choices_to={'role': 'CG'},  # Only caregivers can own icons
+        null=True,  # Allows this field to be empty for default icons
+        blank=True
     )
     name = models.CharField(max_length=100)  # Name of the icon, e.g., "Hungry", "Thirsty"
-    image = models.ImageField(upload_to="icons/")  # Icon image file upload
+    image = CloudinaryField('image')
     is_default = models.BooleanField(default=False)  # Marks if the icon is a system default
     is_active = models.BooleanField(default=True)    # Allows caregivers to hide/unhide icons
+    is_favorite = models.BooleanField(default=False)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True, related_name="icons") # ForeignKey to group
 
     def __str__(self):
