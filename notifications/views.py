@@ -3,6 +3,26 @@ from django.http import JsonResponse, HttpResponseForbidden
 from .models import Icon, Notification
 from accounts.models import UserProfile
 
+def notification_index(request):
+    """
+    Displays a list of icons for caregivers.
+    """
+    user = request.user
+
+    # Ensure only authenticated users can access
+    if not user.is_authenticated:
+        return redirect('account_login')
+
+    # Ensure only caregivers can access
+    if not hasattr(user, 'userprofile') or user.userprofile.role != 'CG':
+        return HttpResponseForbidden("You do not have permission to view this page.")
+
+    # Fetch active icons
+    icons = Icon.objects.filter(is_active=True)
+
+    return render(request, 'notificationindex.html', {'icons': icons})
+
+
 def send_notification(request, icon_id):
     """
     Sends a notification to the caregiver when an end user selects an icon.

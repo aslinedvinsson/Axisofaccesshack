@@ -38,6 +38,12 @@
               <a class="nav-link" href="" role="menuitem">Caregiver Profile</a>
             </li>
             {% if request.user.is_authenticated %}
+            {% if request.user.userprofile.role == 'CG' %}
+            <!-- Notification link visible only to caregivers -->
+            <li class="nav-item" role="none">
+              <a class="nav-link" href="{% url 'notification_index' %}" role="menuitem">Notifications</a>
+            </li>
+          {% endif %}
             <li class="nav-item" role="none">
               <a class="nav-link" href="{% url 'account_logout' %}" role="menuitem">Log Out</a>
             </li>
