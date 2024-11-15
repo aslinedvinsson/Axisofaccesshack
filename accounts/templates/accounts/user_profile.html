@@ -6,4 +6,16 @@
 <!-- Code in this block -->
 <h1>User Profile</h1>
 
+<!-- User Name and Caregiver Section -->
+<div class="profile">
+    <h2>Welcome, {{ user_profile.name }}</h2>
+    <p><strong>Caregiver: </strong>{{ user_profile.caregiver.name if user_profile.caregiver else 'No caregiver assigned' }}</p>
+
+    <!-- Logout Button -->
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" id="logout-btn">Log Out</button>
+    </form>
+</div>
+
 {% endblock content %}
