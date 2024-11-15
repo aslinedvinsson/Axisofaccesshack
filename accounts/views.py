@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserForm, UserProfileForm
+from communication.models import Icon, Group
+from .forms import UserForm, UserProfileForm, IconForm, GroupForm
 from .models import UserProfile
-from communication.models import Icon
 
 def register(request):
     """
@@ -58,21 +58,32 @@ def user_profile(request):
     """
     user_profile = request.user.userprofile  # Get the current logged-in user's profile
 
-    # For caregivers (role == 'CG'), show icons and assigned end users
     if user_profile.role == 'CG':
         caregiver_icons = Icon.objects.filter(caregiver=user_profile)  # Get the caregiver's icons
+        caregiver_groups = Group.objects.filter(caregiver=user_profile)  # Get the caregiver's groups
         assigned_end_users = user_profile.end_users.all()  # Get the end users assigned to this caregiver
-    else:
-        caregiver_icons = []  # No icons for regular users
-        assigned_end_users = []  # No assigned end users for regular users
 
-    # Render the appropriate template based on the role of the user
-    if user_profile.role == 'CG':
+        # Attach a form to each icon and group
+        for icon in caregiver_icons:
+            icon.form = IconForm(instance=icon)
+
+        for group in caregiver_groups:
+            group.form = GroupForm(instance=group)
+
+        # Instantiate forms for adding new icons/groups (empty forms)
+        icon_form = IconForm()
+        group_form = GroupForm()
+
+        # Render the caregiver profile template with the forms included
         return render(request, 'accounts/caregiver_profile.html', {
             'user_profile': user_profile,
             'caregiver_icons': caregiver_icons,
+            'caregiver_groups': caregiver_groups,
             'assigned_end_users': assigned_end_users,
+            'icon_form': icon_form,  # For adding new icons
+            'group_form': group_form,  # For adding new groups
         })
+
     else:
         return render(request, 'accounts/user_profile.html', {
             'user_profile': user_profile,
@@ -80,39 +91,104 @@ def user_profile(request):
 
 
 @login_required
-def add_or_edit_icon(request):
+def toggle_favorite(request, icon_id):
     """
-    Adds a new icon or edits an existing icon for the caregiver.
+    Toggles the favorite status of an icon.
+    """
+    try:
+        icon = Icon.objects.get(id=icon_id, caregiver=request.user.userprofile)
+        icon.is_favorite = not icon.is_favorite
+        icon.save()
+        return redirect('user_profile')
+    except Icon.DoesNotExist:
+        return redirect('user_profile')
+
+
+# Adding a new icon
+@login_required
+def add_icon(request):
+    if request.method == 'POST':
+        form = IconForm(request.POST, request.FILES)
+        if form.is_valid():
+            icon = form.save(commit=False)
+            icon.caregiver = request.user.userprofile
+            icon.save()
+            return redirect('user_profile')
+    else:
+        form = IconForm()
+    return render(request, 'accounts/caregiver_profile.html', {'icon_form': form})
+
+
+# Editing an existing icon
+@login_required
+def edit_icon(request, icon_id):
+    icon = get_object_or_404(Icon, id=icon_id, caregiver=request.user.userprofile)
+    if request.method == 'POST':
+        form = IconForm(request.POST, request.FILES, instance=icon)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')
+    else:
+        form = IconForm(instance=icon)
+    return render(request, 'accounts/caregiver_profile.html', {'icon_form': form})
+
+
+# Adding a new group
+@login_required
+def add_group(request):
+    """
+    Allows a caregiver to add a new group, automatically associating it with their profile.
     """
     if request.method == 'POST':
-        icon_name = request.POST.get('icon_name')
-        icon_id = request.POST.get('icon_id')
-
-        user_profile = request.user.userprofile
-
-        if icon_id:
-            # Edit existing icon
-            icon = Icon.objects.get(id=icon_id)
-            icon.name = icon_name
-            icon.save()
-        else:
-            # Add new icon
-            Icon.objects.create(caregiver=user_profile, name=icon_name)
-
-        return redirect('caregiver_profile')
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.caregiver = request.user.userprofile  # Assign the logged-in user as the caregiver
+            group.save()
+            return redirect('user_profile')
+    else:
+        form = GroupForm()
+    
+    return render(request, 'accounts/caregiver_profile.html', {'group_form': form})
 
 
+# Editing an existing group
+@login_required
+def edit_group(request, group_id):
+    group = get_object_or_404(Group, id=group_id)
+    if request.method == 'POST':
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')
+    else:
+        form = GroupForm(instance=group)
+    return render(request, 'accounts/caregiver_profile.html', {'group_form': form})
+
+# Deleting an icon
 @login_required
 def delete_icon(request, icon_id):
     """
-    Deletes a specified icon for the caregiver.
+    Deletes a specific icon.
     """
     if request.method == 'POST':
         try:
-            icon = Icon.objects.get(id=icon_id)
+            icon = Icon.objects.get(id=icon_id, caregiver=request.user.userprofile)
             icon.delete()
-            return JsonResponse({'success': True})
+            return redirect('user_profile')
         except Icon.DoesNotExist:
-            return JsonResponse({'success': False}, status=404)
+            return redirect('user_profile')
 
-    return JsonResponse({'success': False}, status=400)
+#Editing a group
+@login_required
+def delete_group(request, group_id):
+    """
+    Deletes a specific group.
+    """
+    if request.method == 'POST':
+        try:
+            group = Group.objects.get(id=group_id)
+            group.delete()
+            return redirect('user_profile')
+        except Group.DoesNotExist:
+            return redirect('user_profile')

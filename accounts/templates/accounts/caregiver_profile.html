@@ -1,110 +1,85 @@
-<!--THIS PAGE SHOULD BE THE PROFILE PAGE FOR THE CAREGIVER, WHERE THEY CAN SEE WHO THEYRE ASSIGNED TO BE CARING FOR, ADD ANY CUSTOM ICONS THEY WISH TO USE-->
-
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
-<h1>Caregiver Profile</h1>
+<div class="container py-4">
+    <h1 class="text-center">Your Caregiver Profile</h1>
 
-<!-- Caregiver Name Section -->
-<div class="profile">
-    <h2>Welcome, {{ user_profile.name }}</h2>
-    <form method="POST" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" id="logout-btn">Log Out</button>
-    </form>
-</div>
-
-{% if user_profile.role == 'CG' %}
-<!-- If the user is a Caregiver, show assigned End Users -->
-<div class="assigned-users">
-    <h3>Assigned End Users</h3>
-    <ul>
-        {% for end_user in assigned_end_users %}
-            <li>{{ end_user.name }} - {{ end_user.email }}</li>
-        {% empty %}
-            <li>No end users assigned.</li>
-        {% endfor %}
-    </ul>
-</div>
-
-<!-- Icons Management Section -->
-<div class="icon-management">
-    <h2>Manage Your Icons</h2>
-
-    <!-- Display list of caregiver's icons -->
-    <div class="icon-list">
-        {% for icon in caregiver_icons %}
-            <div class="icon-item" id="icon-{{ icon.id }}" data-name="{{ icon.name }}">
-                <span>{{ icon.name }}</span>
-                <button type="button" onclick="editIcon('{{ icon.id|escapejs }}')">Edit</button>
-                <button type="button" onclick="deleteIcon('{{ icon.id|escapejs }}')">Delete</button>
-            </div>
-        {% empty %}
-            <p>No icons available. Add one to get started.</p>
-        {% endfor %}
-    </div>
-
-    <button type="button" onclick="addIcon()">Add Icon</button>
-</div>
-
-<!-- Add/Edit Icon Modal -->
-<div id="icon-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modal-title">Add New Icon</h2>
-        <form method="POST" action="{% url 'add_or_edit_icon' %}">
+    <!-- Caregiver Name Section -->
+    <div class="text-center mt-3">
+        <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+        <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
             {% csrf_token %}
-            <input type="text" id="icon-name" name="icon_name" placeholder="Enter icon name" required />
-            <input type="hidden" id="icon-id" name="icon_id" value="" />
-            <button type="submit" id="save-icon-btn">Save Icon</button>
+            <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
         </form>
     </div>
+
+    {% if user_profile.role == 'CG' %}
+    <!-- Assigned End Users Section -->
+    <div class="mt-4">
+        <h3>Assigned End Users</h3>
+        <ul class="list-group">
+            {% for end_user in assigned_end_users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ end_user.name }} ({{ end_user.email }})
+            </li>
+            {% empty %}
+            <li class="list-group-item">No end users assigned.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% include "accounts/account_modals.html" %}
+
+    <!-- Icon Management Section -->
+    <div class="mt-5">
+        <h3>Manage Your Icons</h3>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addIconModal">Add Icon</button>
+        <div class="row">
+            {% for icon in caregiver_icons %}
+            <div class="col-md-3 text-center mb-4">
+                <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-thumbnail">
+                <p class="mt-2">{{ icon.name }}</p>
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#editIconModal-{{ icon.id }}">Edit</button>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteIconModal-{{ icon.id }}">Delete</button>
+                <form method="POST" action="{% url 'toggle_favorite' icon.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="btn btn-sm {% if icon.is_favorite %}btn-success{% else %}btn-outline-secondary{% endif %}">
+                        {% if icon.is_favorite %}Unfavorite{% else %}Favorite{% endif %}
+                    </button>
+                </form>
+            </div>
+            {% empty %}
+            <p>No icons available. Add one to get started.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Groups Management Section -->
+    <div class="mt-5">
+        <h3>Manage Groups</h3>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addGroupModal">Add Group</button>
+        <ul class="list-group">
+            {% for group in caregiver_groups %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ group.name }}</span>
+                <span class="badge bg-secondary">{{ group.icons.count }} icons</span>
+                <div>
+                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                        data-bs-target="#editGroupModal-{{ group.id }}">Edit</button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteGroupModal-{{ group.id }}">Delete</button>
+                </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No groups available. Add one to get started.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 </div>
-
-<script>
-    function addIcon() {
-        document.getElementById('icon-name').value = '';
-        document.getElementById('icon-id').value = '';  // Clear any hidden ID
-        document.getElementById('modal-title').textContent = 'Add New Icon';
-        document.getElementById('icon-modal').style.display = 'block';
-    }
-
-    function editIcon(iconId) {
-        const iconName = document.getElementById('icon-name');
-        const iconInput = document.querySelector(`#icon-${iconId}`);
-        document.getElementById('icon-name').value = iconInput.getAttribute('data-name');
-        document.getElementById('icon-id').value = iconId;
-        document.getElementById('modal-title').textContent = 'Edit Icon';
-        document.getElementById('icon-modal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('icon-modal').style.display = 'none';
-    }
-
-    function deleteIcon(iconId) {
-        if (confirm('Are you sure you want to delete this icon?')) {
-            fetch(`/delete-icon/${iconId}/`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-                body: JSON.stringify({ id: iconId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();  // Reload the page to update the icon list
-                } else {
-                    alert('Failed to delete icon');
-                }
-            });
-        }
-    }
-</script>
-
-{% endif %}
-
 {% endblock content %}
-
-
