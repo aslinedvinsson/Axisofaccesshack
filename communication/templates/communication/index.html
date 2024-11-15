@@ -1,9 +1,78 @@
-<!--THIS TEMPLATE SHOULD CONTAIN THE STRUCTURE OF THE MAIN PAGE THAT DISPLAYS THE ACRDS THAT THE USER CLICKS-->
-
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
-<!-- Code in this block -->
-<h1>Welcome to the Index Page!</h1>
+<div class="container py-4">
+    <!-- Show a message for logged-out users -->
+    {% if not user.is_authenticated %}
+    <div class="alert alert-info text-center">
+        You are viewing default icons only. <a href="{% url 'account_login' %}">Log in</a> to access custom icons.
+    </div>
+    {% endif %}
+
+    <!-- Favorites Button (only for logged-in users) -->
+    {% if user.is_authenticated %}
+    <div class="text-center mb-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+            View Favorites
+        </button>
+    </div>
+    {% endif %}
+
+    <!-- Groups Section (only for logged-in users) -->
+    {% if user.is_authenticated and groups %}
+    <div class="mb-4">
+        <h2>Groups</h2>
+        <div class="row">
+            {% for group in groups %}
+            <div class="col-md-3 mb-3">
+                <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal"
+                    data-bs-target="#groupModal-{{ group.id }}">
+                    {{ group.name }}
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Icons Section -->
+    <div>
+        <div class="row">
+            {% for icon in icons %}
+            <div class="col-md-3 mb-3">
+                <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)">
+                    <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
+                    <p class="mt-2">{{ icon.name }}</p>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Include Modals -->
+{% include "communication/index_modals.html" %}
+
+<script>
+    function iconClicked(button) {
+        console.log("Tile clicked:", button);
+
+        const allCards = document.querySelectorAll('.icon-tile');
+        const isAlreadyEnlarged = button.classList.contains('enlarged');
+
+        // Remove "enlarged" class from all cards
+        allCards.forEach((card) => card.classList.remove('enlarged'));
+
+        // Play sound
+        const beep = new Audio("{% static 'beep.mp3' %}");
+        beep.play();
+
+        // Toggle enlargement for the clicked card
+        if (!isAlreadyEnlarged) {
+            button.classList.add('enlarged');
+        }
+    }
+</script>
 
 {% endblock %}
