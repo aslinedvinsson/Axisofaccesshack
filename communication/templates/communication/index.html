@@ -64,15 +64,13 @@
         // Remove "enlarged" class from all cards
         allCards.forEach((card) => card.classList.remove('enlarged'));
 
-        // Play sound
-        const beep = new Audio("{% static 'beep.mp3' %}");
-        beep.play();
-
         // Toggle enlargement for the clicked card
         if (!isAlreadyEnlarged) {
+            const beep = new Audio("{% static 'beep.mp3' %}");
+            beep.play();
+
             button.classList.add('enlarged');
         }
     }
 </script>
-
 {% endblock %}
