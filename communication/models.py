@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from accounts.models import UserProfile
 
 class Group(models.Model):
@@ -23,7 +24,7 @@ class Icon(models.Model):
         blank=True
     )
     name = models.CharField(max_length=100)  # Name of the icon, e.g., "Hungry", "Thirsty"
-    image = models.ImageField(upload_to="icons/")  # Icon image file upload
+    image = CloudinaryField('image')
     is_default = models.BooleanField(default=False)  # Marks if the icon is a system default
     is_active = models.BooleanField(default=True)    # Allows caregivers to hide/unhide icons
     is_favorite = models.BooleanField(default=False)
