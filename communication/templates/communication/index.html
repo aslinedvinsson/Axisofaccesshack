@@ -41,7 +41,7 @@
         <div class="row">
             {% for icon in icons %}
             <div class="col-md-3 mb-3">
-                <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)">
+                <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)" data-icon-id="{{ icon.id }}">
                     <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
                     <p class="mt-2">{{ icon.name }}</p>
                 </button>
@@ -72,6 +72,32 @@
         if (!isAlreadyEnlarged) {
             button.classList.add('enlarged');
         }
+
+        // Send notification to the server
+        const iconId = button.getAttribute('data-icon-id');
+        sendNotification(iconId);
+    }
+
+    function sendNotification(iconId) {
+        const url = `{% url 'send_notification' 0 %}`.replace('0', iconId);
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);  // Show success message
+            } else {
+                alert('Error: ' + data.error);  // Show error message
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An unexpected error occurred.');
+        });
     }
 </script>
 
