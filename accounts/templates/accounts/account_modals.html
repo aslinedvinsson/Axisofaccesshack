@@ -31,7 +31,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    {{ icon_form.as_p }}
+                    {{ icon.form.as_p }}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -41,6 +41,7 @@
     </div>
 </div>
 {% endfor %}
+
 
 <!-- Add Group Modal -->
 <div class="modal fade" id="addGroupModal" tabindex="-1">
@@ -75,7 +76,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    {{ group_form.as_p }}
+                    {{ group.form.as_p }}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save Changes</button>

@@ -58,13 +58,19 @@ def user_profile(request):
     """
     user_profile = request.user.userprofile  # Get the current logged-in user's profile
 
-    # For caregivers (role == 'CG'), show icons and assigned end users
     if user_profile.role == 'CG':
         caregiver_icons = Icon.objects.filter(caregiver=user_profile)  # Get the caregiver's icons
         caregiver_groups = Group.objects.filter(caregiver=user_profile)  # Get the caregiver's groups
         assigned_end_users = user_profile.end_users.all()  # Get the end users assigned to this caregiver
 
-        # Instantiate forms for adding and editing icons/groups
+        # Attach a form to each icon and group
+        for icon in caregiver_icons:
+            icon.form = IconForm(instance=icon)
+
+        for group in caregiver_groups:
+            group.form = GroupForm(instance=group)
+
+        # Instantiate forms for adding new icons/groups (empty forms)
         icon_form = IconForm()
         group_form = GroupForm()
 
@@ -74,11 +80,10 @@ def user_profile(request):
             'caregiver_icons': caregiver_icons,
             'caregiver_groups': caregiver_groups,
             'assigned_end_users': assigned_end_users,
-            'icon_form': icon_form,
-            'group_form': group_form,
+            'icon_form': icon_form,  # For adding new icons
+            'group_form': group_form,  # For adding new groups
         })
 
-    # For regular users, render a simpler profile page
     else:
         return render(request, 'accounts/user_profile.html', {
             'user_profile': user_profile,
