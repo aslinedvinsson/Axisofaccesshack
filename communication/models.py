@@ -6,6 +6,12 @@ class Group(models.Model):
     """
     Represents a category or grouping of icons, such as "Basic Needs" or "Emotions".
     """
+    caregiver = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name="groups",
+        limit_choices_to={'role': 'CG'}  # Only caregivers can own groups
+    )
     name = models.CharField(max_length=50, unique=True)  # Ensures each group name is unique
     description = models.TextField(blank=True, null=True)  # Optional description of the group
 
