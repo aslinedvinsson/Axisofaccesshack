@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
     <div class="text-center mb-3">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
-            View Favorites
+            <i class="fas fa-star"></i>
         </button>
     </div>
     {% endif %}
@@ -40,7 +40,7 @@
     <div>
         <div class="row">
             {% for icon in icons %}
-            <div class="col-md-3 mb-3">
+            <div class="col-6 col-md-2 mb-2">
                 <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)">
                     <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
                     <p class="mt-2">{{ icon.name }}</p>
