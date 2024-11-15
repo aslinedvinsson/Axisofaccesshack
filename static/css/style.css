@@ -7,5 +7,21 @@ html, body{
 
 main{
     height:100vh;
+    display:flex;
+    justify-content:center;
+    text-align: center;
+    
 }
 
+footer {
+    Background-color: #F8F9FA;
+    padding:16px;
+    
+}
+
+
+footer a{
+    text-decoration:none; 
+    color: #575757;
+    
+}

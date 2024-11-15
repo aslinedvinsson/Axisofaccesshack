@@ -23,7 +23,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
             </li>
@@ -52,15 +52,39 @@
   </header>
   <main>
     <h1>Base template</h1>
+    
 
   {% block content %}
   {% endblock %}
   </main>
   
-  <footer>
-    <div class="copyright">
-      <p>copyright 2024</p>
+  <footer bg-body-tertiary>
+    <div class="container text-center ">
+      <div class="row">
+        <div class="col">
+          <a href="https://github.com/olliesharp5">Oliver</a>
+        </div>
+        <div class="col">
+          <a href="https://github.com/SebZG ">Sebastien</a>
+        </div>
+        <div class="col">
+          <a href="https://github.com/LlewBach">Llew</a>
+        </div>
+        <div class="col">
+          <a href="https://github.com/aslinedvinsson">Ann</a>
+        </div>
+        
+        <div class="col">
+          <a href="https://github.com/BadrAlioui">Badr</a>
+        </div>
+        <div class="col">
+        <a href="https://github.com/farhatamannaislam">Farhatamannaislam</a>
+        </div>
+        <div class="col">
+        <a href="https://github.com/AshLaw96 ">Ashley</a>
+        </div>
     </div>
+    
   </footer>
 
   <!-- Bootstrap script -->
