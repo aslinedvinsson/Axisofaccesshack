@@ -14,7 +14,7 @@ import os
 import dj_database_url
 import cloudinary
 from pathlib import Path
-
+import env 
 # Load env variables from env.py if it exists
 env_path = Path(__file__).resolve().parent / 'env.py'
 if env_path.exists():
