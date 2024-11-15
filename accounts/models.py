@@ -3,10 +3,10 @@ from django.db import models
 
 class UserProfile(models.Model):
     """
-    A unified UserProfile model that handles both CareGiver and EndUser roles, 
+    A unified UserProfile model that handles both CareGiver and EndUser roles,
     with specific fields and relationships based on role.
     """
-    
+
     # Role choices
     USER_ROLES = (
         ('CG', 'CareGiver'),  # Caregivers who manage and assist EndUsers
@@ -29,3 +29,4 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.get_role_display()})"
+
