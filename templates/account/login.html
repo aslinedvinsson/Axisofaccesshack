@@ -1,6 +1,7 @@
 {% extends "account/allauth_base.html" %}
 {% load i18n %}
 {% load account %}
+{% load crispy_forms_tags %}
 
 
 {% block inner_content %}
@@ -15,7 +16,7 @@
 {% url 'account_login' as login_url %}
 <form method="post" action="{{ login_url }}">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form|crispy }}
   {{ redirect_field }}
   <div class="mt-3 text-center">
     <button type="submit" class="btn btn-primary">
