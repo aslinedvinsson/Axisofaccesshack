@@ -1,7 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Code in this block -->
-<h1>Welcome to the Notification Page!</h1>
+<div class="container py-4">
+    <h2>Icons</h2>
+    <div class="row">
+        {% for icon in icons %}
+        <div class="col-md-3 mb-3">
+            <!-- Clicking this link sends a request to the server -->
+            <a href="#" onclick="sendNotification({{ icon.id }})" class="icon-tile btn btn-light w-100">
+                <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
+                <p class="mt-2">{{ icon.name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
+<script>
+    function sendNotification(iconId) {
+        const url = `{% url 'send_notification' 0 %}`.replace('0', iconId);
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);  // Show success message
+                } else {
+                    alert('Error: ' + data.error);  // Show error message
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            });
+    }
+</script>
 {% endblock %}
+
