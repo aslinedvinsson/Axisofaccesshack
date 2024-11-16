@@ -4,7 +4,7 @@ html, body{
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-style: italic;
+    font-style: italic;    
 }
 
 .fave-btn {
@@ -39,7 +39,7 @@ html, body{
 .icon-tile {
     text-align: center;
     padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */ 
     background-color: #EDE7E0; /* Ensure consistency with enlarged background */
     border-radius: 10px;
     border: 1px solid rgb(1, 0, 32);
@@ -188,15 +188,13 @@ footer p {
     display: inline-block; /* Ensure links behave like blocks */
     border: 1px solid #96d41b; /* Add border for visibility */
     border-radius: 4px;
-    background-color: #0e1a01;
+    background-color: #0e1a01; 
 }
 .github-links a:hover {
     opacity: 1;
     color: #152700;
     background-color: #4f6b16;
 }
-
-
 
 /* Media query for small screens */
 @media screen and (min-width: 576px) {
