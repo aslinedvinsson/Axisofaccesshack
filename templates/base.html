@@ -21,14 +21,18 @@
 
 <body class="d-flex flex-column min-vh-100">
   <!-- Skip to main content link -->
-  <a href="#main-content" class="skip-to-main-content-link">Skip to main content</a>
+  <a href="#main-content" class="skip-to-main-content-link" data-bs-toggle="tooltip" title="Skip to the main content">
+    Skip to main content
+  </a>
 
   <header role="banner">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" role="navigation" aria-label="Main navigation">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}" aria-label="Iconic - Return to homepage">Iconic</a>
+        <a class="navbar-brand" href="{% url 'index' %}" aria-label="Iconic - Return to homepage" data-bs-toggle="tooltip" title="Go to the homepage">
+          Iconic
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu" data-bs-toggle="tooltip" title="Toggle navigation menu">
           <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -37,16 +41,18 @@
               <!-- Notifications link visible only to caregivers -->
               {% if request.user.userprofile.role == 'CG' %}
                 <li class="nav-item me-3" role="none"> <!-- Add margin between icons -->
-                  <a class="nav-link" href="{% url 'notification_index' %}" role="menuitem" aria-label="Notifications">
+                  <a class="nav-link" href="{% url 'notification_index' %}" role="menuitem" aria-label="Notifications"
+                     data-bs-toggle="tooltip" title="View your notifications">
                     <i class="fas fa-bell"></i>
                     <span class="sr-only">Notifications</span>
                   </a>
                 </li>
               {% endif %}
-    
+
               <!-- Profile link -->
               <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'user_profile' %}" role="menuitem" aria-label="Profile">
+                <a class="nav-link" href="{% url 'user_profile' %}" role="menuitem" aria-label="Profile"
+                   data-bs-toggle="tooltip" title="Go to your profile">
                   <i class="fas fa-user-circle"></i>
                   <span class="sr-only">Profile</span>
                 </a>
@@ -54,10 +60,10 @@
             {% else %}
               <!-- Log In and Register links -->
               <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'account_login' %}" role="menuitem">Log In</a>
+                <a class="nav-link" href="{% url 'account_login' %}" role="menuitem" data-bs-toggle="tooltip" title="Log in to your account">Log In</a>
               </li>
               <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'register' %}" role="menuitem">Register</a>
+                <a class="nav-link" href="{% url 'register' %}" role="menuitem" data-bs-toggle="tooltip" title="Create a new account">Register</a>
               </li>
             {% endif %}
           </ul>
@@ -72,16 +78,16 @@
   </main>
   <footer role="contentinfo" class="mt-auto py-3">
     <div class="container text-center">
-        <p>{% now "Y" %} Axis of Access. All rights reserved.</p>
+        <p data-bs-toggle="tooltip" title="© Axis of Access, All rights reserved">{% now "Y" %} Axis of Access. All rights reserved.</p>
     </div>
     <div class="github-links">
-        <a href="https://github.com/aslinedvinsson" target="_blank" rel="noopener noreferrer">Ann</a>
-        <a href="https://github.com/olliesharp5" target="_blank" rel="noopener noreferrer">Oliver</a>
-        <a href="https://github.com/LlewBach" target="_blank" rel="noopener noreferrer">Llew</a>
-        <a href="https://github.com/farhatamannaislam" target="_blank" rel="noopener noreferrer">Farhatamannaislam</a>
-        <a href="https://github.com/SebZG" target="_blank" rel="noopener noreferrer">Seb</a>
-        <a href="https://github.com/BadrAlioui" target="_blank" rel="noopener noreferrer">Badr</a>
-        <a href="https://github.com/AshLaw96" target="_blank" rel="noopener noreferrer">Ash</a>
+        <a href="https://github.com/aslinedvinsson" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Ann's GitHub">Ann</a>
+        <a href="https://github.com/olliesharp5" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Oliver's GitHub">Oliver</a>
+        <a href="https://github.com/LlewBach" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Llew's GitHub">Llew</a>
+        <a href="https://github.com/farhatamannaislam" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Farhatamannaislam's GitHub">Farhatamannaislam</a>
+        <a href="https://github.com/SebZG" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Seb's GitHub">Seb</a>
+        <a href="https://github.com/BadrAlioui" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Badr's GitHub">Badr</a>
+        <a href="https://github.com/AshLaw96" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" title="View Ash's GitHub">Ash</a>
     </div>
   </footer>
 
@@ -89,6 +95,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+  <!-- Initialize tooltips -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </body>
 
 </html>
