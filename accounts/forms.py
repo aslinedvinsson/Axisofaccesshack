@@ -29,7 +29,6 @@ class UserProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
-        # self.fields['role'].choices = [(tag[0], tag[1]) for tag in UserProfile.USER_ROLES if tag[0] in ['CG', 'EU']]
         self.fields['role'].choices = UserProfile.USER_ROLES
         self.fields['about'].required = False
 
