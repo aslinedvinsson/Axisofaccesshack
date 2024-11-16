@@ -32,23 +32,25 @@ def register(request):
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save(commit=False)  # Don't save the User instance yet
-            user.set_password(user_form.cleaned_data['password'])  # Set the password
-            user.save()  # Now save the User instance
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
+            
             profile = profile_form.save(commit=False)
             profile.user = user
+            # Set the email and name fields from the user instance
+            profile.email = user.email
+            profile.name = f"{user.first_name} {user.last_name}"
             profile.save()
 
-            # Specify the allauth backend
             user.backend = 'allauth.account.auth_backends.AuthenticationBackend'
-            login(request, user)  # Log in the user
+            login(request, user)
             messages.add_message(request, messages.SUCCESS, 'Congratulations, you have successfully registered!')
             return redirect('index')
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
     return render(request, 'accounts/register.html', {'user_form': user_form, 'profile_form': profile_form})
-
 
 @login_required
 def user_profile(request):
