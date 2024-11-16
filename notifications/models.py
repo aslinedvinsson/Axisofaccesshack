@@ -17,7 +17,7 @@ class Notification(models.Model):
         UserProfile,
         on_delete=models.CASCADE,
         related_name="user_notifications",
-        limit_choices_to={'role': 'USER'},  # Ensure only end users can trigger notifications
+        limit_choices_to={'role': 'EU'},
         help_text="The user who triggered the notification."
     )
     icon = models.ForeignKey(
