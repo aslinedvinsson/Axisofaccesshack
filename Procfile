@@ -1,0 +1,1 @@
+web: gunicorn axis-of-access.wsgi:application
