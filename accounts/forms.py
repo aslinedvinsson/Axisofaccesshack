@@ -22,10 +22,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['role', 'about']
+        widgets = {
+            'role': forms.Select(attrs={'class': 'form-select'}),  # Dropdown for role field
+            'about': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
-        self.fields['role'].choices = [(tag[0], tag[1]) for tag in UserProfile.USER_ROLES if tag[0] in ['CG', 'EU']]
+        self.fields['role'].choices = UserProfile.USER_ROLES
         self.fields['about'].required = False
 
 

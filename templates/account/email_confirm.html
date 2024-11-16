@@ -17,7 +17,7 @@
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
     {% csrf_token %}
     {{ redirect_field }}
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary w-100 py-2 mt-4">
         {% trans 'Confirm' %}
     </button>
 </form>
