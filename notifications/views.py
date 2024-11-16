@@ -5,22 +5,20 @@ from accounts.models import UserProfile
 
 def notification_index(request):
     """
-    Displays a list of icons for caregivers.
+    Displays notifications for the logged-in caregiver.
     """
-    user = request.user
+    # Check if the logged-in user has a UserProfile and is a caregiver
+    try:
+        caregiver_profile = request.user.userprofile
+        if caregiver_profile.role != 'CG':
+            return JsonResponse({'error': 'Only caregivers can view notifications.'}, status=403)
+    except AttributeError:
+        return JsonResponse({'error': 'User profile not found.'}, status=403)
 
-    # Ensure only authenticated users can access
-    if not user.is_authenticated:
-        return redirect('account_login')
+    # Get notifications for this caregiver
+    notifications = Notification.objects.filter(caregiver=caregiver_profile).order_by('-notified_at')
 
-    # Ensure only caregivers can access
-    if not hasattr(user, 'userprofile') or user.userprofile.role != 'CG':
-        return HttpResponseForbidden("You do not have permission to view this page.")
-
-    # Fetch active icons
-    icons = Icon.objects.filter(is_active=True)
-
-    return render(request, 'notificationindex.html', {'icons': icons})
+    return render(request, 'notificationindex.html', {'notifications': notifications})
 
 
 def send_notification(request, icon_id):
