@@ -5,20 +5,20 @@
 
 {% block inner_content %}
 
-<h1 class="text-center">{% trans "Sign In" %}</h1>
+<h1 class="text-center" data-bs-toggle="tooltip" title="Sign in to your account">{% trans "Sign In" %}</h1>
 
 {% if not SOCIALACCOUNT_ONLY %}
-<p class="text-center">
-  Don’t have an account? Then please <a href="{% url 'register' %}">sign up</a>.
+<p class="text-center" data-bs-toggle="tooltip" title="Don’t have an account? Create one by signing up.">
+  Don’t have an account? Then please <a href="{% url 'register' %}" data-bs-toggle="tooltip" title="Go to the sign-up page">sign up</a>.
 </p>
 
 {% url 'account_login' as login_url %}
-<form method="post" action="{{ login_url }}">
+<form method="post" action="{{ login_url }}" data-bs-toggle="tooltip" title="Enter your credentials to log in.">
   {% csrf_token %}
   {{ form|crispy }}
   {{ redirect_field }}
   <div class="mt-3 text-center">
-    <button type="submit" class="btn btn-primary w-100 py-2 mt-4">
+    <button type="submit" class="btn btn-primary w-100 py-2 mt-4" data-bs-toggle="tooltip" title="Click here to sign in">
       {% trans "Sign In" %}
     </button>
   </div>
