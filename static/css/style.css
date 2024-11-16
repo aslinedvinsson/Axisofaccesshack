@@ -26,9 +26,9 @@ body {
     /* Slight zoom on hover */
 }
 
-.row {
+/* .row {
     gap: 10px;
-}
+} */
 
 .group-btn {
     background-color: #EDE7E0;
@@ -43,8 +43,10 @@ body {
 .icon-tile {
     text-align: center;
     padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
-    background-color: #EDE7E0; /* Ensure consistency with enlarged background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition for transform and shadow */
+    background-color: #EDE7E0;
+    /* Ensure consistency with enlarged background */
     border-radius: 10px;
     border: 1px solid rgb(1, 0, 32);
     text-transform: uppercase;
@@ -217,8 +219,6 @@ footer p {
 
 .unread-indicator {
     position: absolute;
-    /* top: 17px;
-    right: 57px; */
     top: 67px;
     left: 21px;
     width: 15px;
