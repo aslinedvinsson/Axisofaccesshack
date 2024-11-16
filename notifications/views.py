@@ -58,3 +58,12 @@ def unread_notification_count(request):
         unread_count = Notification.objects.filter(caregiver=request.user.userprofile, is_viewed=False).count()
         return JsonResponse({'unread_count': unread_count})
     return JsonResponse({'error': 'Unauthorized'}, status=403)
+
+
+def delete_notification(request, notification_id):
+    if request.method == "POST" and request.user.is_authenticated:
+        # Get the notification and ensure it belongs to the user
+        notification = get_object_or_404(Notification, id=notification_id, caregiver=request.user.userprofile)
+        notification.delete()
+        return JsonResponse({"success": True, "message": "Notification deleted successfully."})
+    return JsonResponse({"success": False, "message": "Invalid request."}, status=400)
