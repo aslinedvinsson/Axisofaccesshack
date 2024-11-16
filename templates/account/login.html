@@ -13,7 +13,7 @@
 </p>
 
 {% url 'account_login' as login_url %}
-<form method="post" action="{{ login_url }}" data-bs-toggle="tooltip" title="Enter your credentials to log in.">
+<form class="" method="post" action="{{ login_url }}" data-bs-toggle="tooltip" title="Enter your credentials to log in.">
   {% csrf_token %}
   {{ form|crispy }}
   {{ redirect_field }}
