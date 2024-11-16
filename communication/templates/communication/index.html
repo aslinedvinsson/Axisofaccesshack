@@ -62,16 +62,26 @@
         const allCards = document.querySelectorAll('.icon-tile');
         const isAlreadyEnlarged = button.classList.contains('enlarged');
 
-        // Remove "enlarged" class from all cards
-        allCards.forEach((card) => card.classList.remove('enlarged'));
+        // Remove "enlarged" class from all cards except the clicked one
+        allCards.forEach((card) => {
+            if (card !== button) {
+                card.classList.remove('enlarged');
+            }
+        });
 
-        // Toggle enlargement for the clicked card
-        if (!isAlreadyEnlarged) {
-            const beep = new Audio("{% static 'beep.mp3' %}");
-            beep.play();
-
-            button.classList.add('enlarged');
+        // If the card is already enlarged, minimize it (no notification)
+        if (isAlreadyEnlarged) {
+            button.classList.remove('enlarged');
+            console.log("Tile minimized: no notification sent.");
+            return;
         }
+
+        // Enlarge the clicked card and send a notification
+        const beep = new Audio("{% static 'beep.mp3' %}");
+        beep.play();
+
+        button.classList.add('enlarged');
+        console.log("Tile expanded: sending notification.");
 
         // Send notification to the server
         const iconId = button.getAttribute('data-icon-id');
@@ -79,27 +89,26 @@
     }
 
     function sendNotification(iconId) {
-    const url = `{% url 'send_notification' 0 %}`.replace('0', iconId);
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message) {
-            console.log('Success:', data.message); // Log success message
-            // Handle success (e.g., update UI)
-        } else {
-            console.error('Error:', data.error); // Log error message
-            // Handle error (e.g., show error in UI)
-        }
-    })
-    .catch(error => {
-        console.error('Unexpected error:', error); // Log unexpected error
-        // Handle unexpected error (e.g., show error in UI)
-    });
-}
+        const url = `{% url 'send_notification' 0 %}`.replace('0', iconId);
+        console.log("Sending notification to URL:", url);
+
+        fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    console.log('Success:', data.message);
+                } else {
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Unexpected error:', error);
+            });
+    }
 </script>
 {% endblock %}
