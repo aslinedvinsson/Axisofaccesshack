@@ -104,34 +104,31 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-  <!-- Initialize tooltips -->
+  <!-- Initialize tooltips and unread notification counter -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Tooltips
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
       tooltipTriggerList.forEach(function (tooltipTriggerEl) {
         new bootstrap.Tooltip(tooltipTriggerEl);
       });
-    });
-  </script>
 
-  <script>
-    function checkUnreadNotifications() {
-      fetch("{% url 'unread_notifications' %}")
-        .then(response => response.json())
-        .then(data => {
-          const notificationIcon = document.querySelector('.notification-icon .unread-indicator');
-          if (data.unread_count > 0) {
-            notificationIcon.style.display = 'inline-block';
-            notificationIcon.textContent = data.unread_count;
-          } else {
-            notificationIcon.style.display = 'none';
-          }
-        })
-        .catch(error => console.error('Error checking notifications:', error));
-    }
+      // Unread notification counter
+      function checkUnreadNotifications() {
+        fetch("{% url 'unread_notifications' %}")
+          .then(response => response.json())
+          .then(data => {
+            const notificationIcon = document.querySelector('.notification-icon .unread-indicator');
+            if (data.unread_count > 0) {
+              notificationIcon.style.display = 'inline-block';
+              notificationIcon.textContent = data.unread_count;
+            } else {
+              notificationIcon.style.display = 'none';
+            }
+          })
+          .catch(error => console.error('Error checking notifications:', error));
+      }
 
-    // Check for unread notifications periodically
-    document.addEventListener('DOMContentLoaded', function () {
       checkUnreadNotifications(); // Check immediately on load
       setInterval(checkUnreadNotifications, 30000); // Check every 30 seconds
     });
