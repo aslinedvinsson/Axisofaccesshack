@@ -2,7 +2,9 @@ html, body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;    
 }
 
 .icon-tile {
@@ -111,4 +113,123 @@ button:focus-visible {
 body {
     line-height: 1.6;
     font-size: 16px;
+}
+
+/* CSS to be added to index */
+
+header .bg-body-tertiary {
+    background-color: #EDE7E0 !important;
+}
+
+/* Typography */
+h3 {
+    margin: 15px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Homepage Title */
+.title-homepage h1 {
+    text-align: center;
+    color: #000d3f;
+    margin: 20px;
+}
+/* Section 1 */
+.section1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 2 columns of equal width */
+    gap: 50px; /* Space between images */
+    margin: 25px;
+}
+.section1 h3 {
+    color: #000c3d;
+}
+.section1 a {
+    text-decoration: none;
+    background-color: #EDE7E0;
+}
+.section1 img {
+    width: 300px;
+    height: 350px;
+    border-radius: 10px 10px 0 0;
+    margin: 10px;
+}
+/* Icons and Emojis */
+.icons-emoji {
+    background-color: #EDE7E0;
+    border-radius: 10px;
+    border: 1px solid rgb(1, 0, 32);
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.icons-emoji:hover {
+    box-shadow: 0.5rem 0.5rem rgb(0, 13, 71);
+    transition: 0.3s;
+}
+.icons-emoji img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+/* Square Container */
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px;
+    background-color: #EDE7E0;
+}
+
+/* Footer style section */
+footer {
+    background-color: #EDE7E0;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 16px;
+    text-align: center;
+}
+footer p {
+    color: #000;
+}
+.github-links {
+    display: flex; /* Use Flexbox for layout */
+    flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
+    justify-content: center; /* Center links horizontally */
+    gap: 8px; /* Add space between links */
+}
+.github-links a {
+    margin: 0; /* Reset margins (gap handles spacing) */
+    padding: 8px 16px; /* Add padding for a clickable area */
+    text-decoration: none;
+    color: #96d41b;
+    opacity: 0.5;
+    display: inline-block; /* Ensure links behave like blocks */
+    border: 1px solid #96d41b; /* Add border for visibility */
+    border-radius: 4px;
+    background-color: #0e1a01; 
+}
+.github-links a:hover {
+    opacity: 1;
+    color: #152700;
+    background-color: #4f6b16;
+}
+/* Media query for smaller screens */
+@media screen and (min-width: 576px) {
+    .github-links {
+        flex-direction: row; /* Links stay in a row */
+    }
+
+    .github-links a {
+        flex: 1 1 auto; /* Links shrink or grow evenly */
+        text-align: center; /* Center the text inside each link */
+    }
+
 }
