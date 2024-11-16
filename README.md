@@ -1,5 +1,7 @@
 # ICONic needs
 
+------- Text marked in the begging with dash ------ needs to be checked, if it is correct or if there needs to be a screen shot added there.
+
 **Needs expressed to be heard**
 
 Our website is designed to give individuals with intellectual disabilities an easy and clear way to express their needs. By clicking on icons representing common requests and needs, such as hungry, tired, go outside, take a bath.
@@ -14,21 +16,30 @@ The user can quickly and easily communicate their needs to their caregiver. This
 ### Existing features
 #### Icon-Based Communication System
 Variety of Icons: A wide range of icons representing common needs (e.g., hunger, tiredness, emotions, activities) that users can select.
+
 Customizable Icons: The cargiver has the ability to add or modify icons to cater to the user’s personal needs.
+
 Categorized Icons: Icons can be organized into clear categories like "Basic Needs", "Emotions", "Activities", etc.
 
 #### Simple User Interface (UI)
 Large, Easy-to-Click Icons: Icons are clear, big, and visually intuitive, making it easy for users with limited motor skills to navigate.
+
 Text Labels: Icons include text labels to provide clarity and support for those who can read.
-Visual Feedback: Provides visual confirmation by enlarging the chossen icon.
+
+Visual Feedback: Provides visual confirmation by slightly enlarging the chossen icon and change its color.
+
+-------Dark mode: The user can choose if they prefer dark mode or light mode.
 
 #### Message Notification System
 Automatic Notifications: When an icon is clicked, an automated message is sent to the caregiver’s device (e.g., mobile, tablet, or computer).
-------Message Details: The notification include the icon selected and the time, and a short description of the need.
+Message Details: The notification include the title of the icon, eg. "hungry" or "tired".
 
 #### Caregiver Tools
 Caregiver Access: Caregivers can view and manage messages, receive notifications, and track user activity. And caregiver can add, edit and delete icons to meet the user's needs.
-------Favorite Icons: Users can mark icons they frequently use as "favorites" for quick access.
+
+Favorite Icons: Users can mark icons they frequently use as "favorites" for quick access.
+
+
 ------Activity Log: History of requests made by the user, which can be useful for long-term care planning.
 
 #### Security and Privacy
@@ -58,33 +69,36 @@ Anonymous Usage: For individuals who do not want to share personal information, 
 
 ## Improvements for the future
 
+-------
+
 ## Accessability
-The website is simple and clear, with large, colorful icons representing different needs, such as "hungry," "tired," and "sad." Each icon has a short text to clarify its meaning. The user taps on the icons to express their needs. The design is clean, with large buttons and enough space to prevent mistakes. There is a confirmation when an icon is tapped. The colors are contrasting, but still soft and easy to read. Everything is designed to be easy to use with both touch screens and a mouse.
+The website is simple and clear, with large, icons representing different needs, such as "hungry," "tired," and "sad." Each icon has a short text to clarify its meaning. The user taps on the icons to express their needs. The design is clean, with large buttons and enough space to prevent mistakes. There is a confirmation sound when an icon is tapped. The colors are contrasting, but still soft and easy to read. Everything is designed to be easy to use with both touch screens and a mouse. The website is also keyboard accessible.
 
 ### Accessability testing
 **WAVE Web Accessibility Evaluation Tools**
 https://wave.webaim.org/
 
-screenshot
+------screenshot
 
 **Lihthouse**
 
-screenshot
+-------screenshot
 
 **Web Content Accessibility Guidelines (WCAG)**
 https://www.w3.org/TR/WCAG22/
 We have reviewed parts of the guidelines and can conclude that much more work can be done on the website to make it even more accessible. Due to the limited development time, during a hackathon, we were only able to fulfill some of the requirements. For future improvements, the WCSG will be continuously followed.
 
 Examples of features that needs improvement to meet WCAG:
-- Make sure everything works for keyboard-only users
+--------Make sure everything works for keyboard-only users
 - Make it easy for people to log in without having to remember information
 - Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.
 - More examples can be found at [features for the future](#features-for-the-future).
 
 ## Design
+---------
 
 ### User Stories
-
+------ Here I think we only need to show a couple of examples of user stories and then place a link to the kanban board for more reading.
 <details>
 
 <summary>User Story 1</summary>
@@ -95,13 +109,13 @@ Examples of features that needs improvement to meet WCAG:
 
 
 ### Media
-We hav not used blinking or flashing content as it can cause migraines, dizziness, nausea, and seizures. Comply with WCAG  Seizures and Physical Reactions guidlines
+We have consciously not used blinking or flashing content as it can cause migraines, dizziness, nausea, and seizures. This complies with WCAG  Seizures and Physical Reactions guidlines
 
 ### Colors
-Something about good contrast for accessibility while ensuring the design remains soft enough to be safe for people with epilepsy.......
+ -------- Something about good contrast for accessibility while ensuring the design remains soft enough to be safe for people with epilepsy.......
 
 ### Typography
-**Textspacing**
+------**Textspacing** Do we comply?????
 Comply with the WCAG Text Spacing guidelines
 Line height (line spacing) to at least 1.5 times the font size;
 Spacing following paragraphs to at least 2 times the font size;
@@ -111,6 +125,7 @@ Word spacing to at least 0.16 times the font size.
 
 ### Wireframes
 
+------ printscreen
 <details>
 
 <summary> Page Name </summary>
@@ -178,12 +193,13 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 
 
 ## Bugs/Issues
-
+----
 ### Resolved Bugs/Issues
-
+----
 ### Unresolved Bugs/Issues
-
+-----
 ## Deployment
+
 ### Heroku
 - Create an account or log in to **Heroku**.
   - On the dashboard, click on **"New"** and select **"Create new app"**.
@@ -209,20 +225,24 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### Frameworks and Libraries
 - **Django**: A high-level Python framework that enctheages rapid development and clean, pragmatic design. [Django](https://www.djangoproject.com/)
 - **Bootstrap**: A front-end framework for developing responsive and mobile-first websites. [Bootstrap](https://getbootstrap.com/)
--
+
+-------more?
+
 ### Code
-The Code Institute's repository boilerplate for Gitpod was utilized
+The Code Institute's repository boilerplate for Gitpod was utilized.
 
-### Design
-
-### Media
+### Design tools
+-----
 
 ### Editors
+-------
 
 ### Other Tools
+------
 
 ## Credits
-
+------
+WCAG for their outstanding guidelines
 
 ### Disclaimer
 The content available on this site is solely for hackathon purpose and should not be interpreted as a professional tool.
