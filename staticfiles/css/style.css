@@ -1,11 +1,10 @@
-html,
-body {
+html, body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-style: italic;
+    font-style: italic;    
 }
 
 .fave-btn {
@@ -14,16 +13,13 @@ body {
 }
 
 .fave-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 221, 0, 0.863);
-    ;
+    box-shadow: 0 6px 20px rgba(255, 221, 0, 0.863);;
 }
 
 .fave-btn i:hover {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
-    color: rgba(255, 221, 0, 0.863);
-    /* Stronger internal glow */
-    transform: scale(1.85);
-    /* Slight zoom on hover */
+    color: rgba(255, 221, 0, 0.863); /* Stronger internal glow */
+    transform: scale(1.85); /* Slight zoom on hover */
 }
 
 .row {
@@ -43,7 +39,7 @@ body {
 .icon-tile {
     text-align: center;
     padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */ 
     background-color: #EDE7E0; /* Ensure consistency with enlarged background */
     border-radius: 10px;
     border: 1px solid rgb(1, 0, 32);
@@ -54,8 +50,7 @@ body {
 
 .icon-tile img {
     max-height: 120px;
-    transition: transform 0.3s ease;
-    /* Added smooth scaling for enlarged state */
+    transition: transform 0.3s ease; /* Added smooth scaling for enlarged state */
     border-radius: 10px;
 }
 
@@ -100,7 +95,7 @@ body {
 /* Skip to main content link */
 .skip-to-main-content-link {
     position: absolute;
-    left: -9999px;
+    left:-9999px;
     z-index: 9999;
     padding: 1em;
     background-color: white;
@@ -115,7 +110,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     opacity: 1;
-    top: 20px;
+    top:20px;
 }
 
 /* Focus styles for better visibility */
@@ -169,90 +164,47 @@ header .bg-body-tertiary {
 footer {
     background-color: #EDE7E0;
     display: flex;
-    flex-wrap: wrap;
-    /* Allow wrapping for responsiveness */
-    justify-content: center;
-    /* Center content horizontally */
-    align-items: center;
-    /* Center content vertically */
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
     padding: 16px;
     text-align: center;
 }
-
 footer p {
     color: #000;
 }
-
 .github-links {
     display: flex;
-    flex-wrap: wrap;
-    /* Allow links to wrap if they don’t fit */
-    justify-content: center;
-    /* Center links horizontally */
-    gap: 8px;
-    /* Add space between links */
+    flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
+    justify-content: center; /* Center links horizontally */
+    gap: 8px; /* Add space between links */
 }
-
 .github-links a {
-    margin: 0;
-    /* Reset margins (gap handles spacing) */
-    padding: 8px 16px;
-    /* Add padding for a clickable area */
+    margin: 0; /* Reset margins (gap handles spacing) */
+    padding: 8px 16px; /* Add padding for a clickable area */
     text-decoration: none;
     color: #96d41b;
     opacity: 0.5;
-    display: inline-block;
-    /* Ensure links behave like blocks */
-    border: 1px solid #96d41b;
-    /* Add border for visibility */
+    display: inline-block; /* Ensure links behave like blocks */
+    border: 1px solid #96d41b; /* Add border for visibility */
     border-radius: 4px;
-    background-color: #0e1a01;
+    background-color: #0e1a01; 
 }
-
 .github-links a:hover {
     opacity: 1;
     color: #152700;
     background-color: #4f6b16;
 }
 
-.unread-indicator {
-    position: absolute;
-    /* top: 17px;
-    right: 57px; */
-    top: 67px;
-    left: 21px;
-    width: 15px;
-    height: 15px;
-    background-color: red;
-    border-radius: 50%;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 15px;
-    display: none;
-}
-
 /* Media query for small screens */
 @media screen and (min-width: 576px) {
     .github-links {
-        flex-direction: row;
-        /* Links stay in a row */
+        flex-direction: row; /* Links stay in a row */
     }
 
     .github-links a {
-        flex: 1 1 auto;
-        /* Links shrink or grow evenly */
-        text-align: center;
-        /* Center the text inside each link */
+        flex: 1 1 auto; /* Links shrink or grow evenly */
+        text-align: center; /* Center the text inside each link */
     }
 
-}
-
-@media (min-width: 992px) {
-    .unread-indicator {
-        top: 17px;
-        left: auto;
-        right: 57px;
-    }
 }
