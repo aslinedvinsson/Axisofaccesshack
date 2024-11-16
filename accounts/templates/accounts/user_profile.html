@@ -1,26 +1,27 @@
-<!--THIS IS THE USERS PROFILE PAGE, THEY CAN SEE WHO THEIR CARER IS AND OTHER DETAILS-->
+<!-- THIS IS THE USERS PROFILE PAGE, THEY CAN SEE WHO THEIR CARER IS AND OTHER DETAILS -->
 
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Code in this block -->
-<h1>End-User Profile</h1>
+<h1 data-bs-toggle="tooltip" title="This is your profile page">End-User Profile</h1>
 
 <div class="text-center mt-3">
-    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+    <h2 data-bs-toggle="tooltip" title="Welcome, {{ user.first_name }} {{ user.last_name }}">
+        Welcome, {{ user.first_name }} {{ user.last_name }}
+    </h2>
     <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
+        <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" title="Log out of your account">Log Out</button>
     </form>
     <div class="text-center mt-3">
         {% if user_profile.caregiver %}
-        <p>Your assigned caregiver is: {{ user_profile.caregiver.name }}</p>
+        <p data-bs-toggle="tooltip" title="Your assigned caregiver's name">Your assigned caregiver is: {{ user_profile.caregiver.name }}</p>
         {% else %}
-        <p>No caregiver assigned.</p>
+        <p data-bs-toggle="tooltip" title="No caregiver has been assigned to your profile">No caregiver assigned.</p>
         {% endif %}
     </div>
     <div>
-        <a href="{% url 'index' %}" class="btn btn-primary">
+        <a href="{% url 'index' %}" class="btn btn-primary" data-bs-toggle="tooltip" title="Return to the homepage">
             Return to Home
         </a>
     </div>
