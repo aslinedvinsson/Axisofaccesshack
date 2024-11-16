@@ -17,6 +17,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+  <style>
+    .unread-indicator {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -28,43 +39,48 @@
   <header role="banner">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" role="navigation" aria-label="Main navigation">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}" aria-label="Iconic - Return to homepage" data-bs-toggle="tooltip" title="Go to the homepage">
+        <a class="navbar-brand" href="{% url 'index' %}" aria-label="Iconic - Return to homepage"
+          data-bs-toggle="tooltip" title="Go to the homepage">
           Iconic
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu" data-bs-toggle="tooltip" title="Toggle navigation menu">
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu" data-bs-toggle="tooltip"
+          title="Toggle navigation menu">
           <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto" role="menubar"> <!-- 'ms-auto' pushes items to the right -->
             {% if request.user.is_authenticated %}
-              <!-- Notifications link visible only to caregivers -->
-              {% if request.user.userprofile.role == 'CG' %}
-                <li class="nav-item me-3" role="none"> <!-- Add margin between icons -->
-                  <a class="nav-link" href="{% url 'notification_index' %}" role="menuitem" aria-label="Notifications"
-                     data-bs-toggle="tooltip" title="View your notifications">
-                    <i class="fas fa-bell"></i>
-                    <span class="sr-only">Notifications</span>
-                  </a>
-                </li>
-              {% endif %}
+            <!-- Notifications link visible only to caregivers -->
+            {% if request.user.userprofile.role == 'CG' %}
+            <li class="nav-item me-3" role="none"> <!-- Add margin between icons -->
+              <a class="nav-link notification-icon" href="{% url 'notification_index' %}" role="menuitem"
+                aria-label="Notifications" data-bs-toggle="tooltip" title="View your notifications">
+                <i class="fas fa-bell"></i>
+                <!-- <span class="sr-only">Notifications</span> -->
+                <span class="unread-indicator" style="display: none;"></span> <!-- Red dot for unread -->
+              </a>
+            </li>
+            {% endif %}
 
-              <!-- Profile link -->
-              <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'user_profile' %}" role="menuitem" aria-label="Profile"
-                   data-bs-toggle="tooltip" title="Go to your profile">
-                  <i class="fas fa-user-circle"></i>
-                  <span class="sr-only">Profile</span>
-                </a>
-              </li>
+            <!-- Profile link -->
+            <li class="nav-item" role="none">
+              <a class="nav-link" href="{% url 'user_profile' %}" role="menuitem" aria-label="Profile"
+                data-bs-toggle="tooltip" title="Go to your profile">
+                <i class="fas fa-user-circle"></i>
+                <span class="sr-only">Profile</span>
+              </a>
+            </li>
             {% else %}
-              <!-- Log In and Register links -->
-              <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'account_login' %}" role="menuitem" data-bs-toggle="tooltip" title="Log in to your account">Log In</a>
-              </li>
-              <li class="nav-item" role="none">
-                <a class="nav-link" href="{% url 'register' %}" role="menuitem" data-bs-toggle="tooltip" title="Create a new account">Register</a>
-              </li>
+            <!-- Log In and Register links -->
+            <li class="nav-item" role="none">
+              <a class="nav-link" href="{% url 'account_login' %}" role="menuitem" data-bs-toggle="tooltip"
+                title="Log in to your account">Log In</a>
+            </li>
+            <li class="nav-item" role="none">
+              <a class="nav-link" href="{% url 'register' %}" role="menuitem" data-bs-toggle="tooltip"
+                title="Create a new account">Register</a>
+            </li>
             {% endif %}
           </ul>
         </div>
@@ -78,17 +94,18 @@
   </main>
   <footer role="contentinfo" class="mt-auto py-3">
     <div class="container text-center">
-        <p data-bs-toggle="tooltip" title="© Axis of Access, All rights reserved">{% now "Y" %} Axis of Access. All rights reserved.</p>
+      <p data-bs-toggle="tooltip" title="© Axis of Access, All rights reserved">{% now "Y" %} Axis of Access. All rights
+        reserved.</p>
     </div>
     <div class="github-links">
 
-        <a href="https://github.com/aslinedvinsson" target="_blank" rel="noopener noreferrer">Ann</a>
-        <a href="https://github.com/olliesharp5" target="_blank" rel="noopener noreferrer">Oliver</a>
-        <a href="https://github.com/LlewBach" target="_blank" rel="noopener noreferrer">Gareth</a>
-        <a href="https://github.com/farhatamannaislam" target="_blank" rel="noopener noreferrer">Farhatamannaislam</a>
-        <a href="https://github.com/SebZG" target="_blank" rel="noopener noreferrer">Seb</a>
-        <a href="https://github.com/BadrAlioui" target="_blank" rel="noopener noreferrer">Badr</a>
-        <a href="https://github.com/AshLaw96" target="_blank" rel="noopener noreferrer">Ash</a>
+      <a href="https://github.com/aslinedvinsson" target="_blank" rel="noopener noreferrer">Ann</a>
+      <a href="https://github.com/olliesharp5" target="_blank" rel="noopener noreferrer">Oliver</a>
+      <a href="https://github.com/LlewBach" target="_blank" rel="noopener noreferrer">Gareth</a>
+      <a href="https://github.com/farhatamannaislam" target="_blank" rel="noopener noreferrer">Farhatamannaislam</a>
+      <a href="https://github.com/SebZG" target="_blank" rel="noopener noreferrer">Seb</a>
+      <a href="https://github.com/BadrAlioui" target="_blank" rel="noopener noreferrer">Badr</a>
+      <a href="https://github.com/AshLaw96" target="_blank" rel="noopener noreferrer">Ash</a>
 
     </div>
   </footer>
@@ -105,6 +122,28 @@
       tooltipTriggerList.forEach(function (tooltipTriggerEl) {
         new bootstrap.Tooltip(tooltipTriggerEl);
       });
+    });
+  </script>
+
+  <script>
+    function checkUnreadNotifications() {
+      fetch("{% url 'unread_notifications' %}")
+        .then(response => response.json())
+        .then(data => {
+          const notificationIcon = document.querySelector('.notification-icon .unread-indicator');
+          if (data.unread_count > 0) {
+            notificationIcon.style.display = 'inline-block';
+          } else {
+            notificationIcon.style.display = 'none';
+          }
+        })
+        .catch(error => console.error('Error checking notifications:', error));
+    }
+
+    // Check for unread notifications periodically
+    document.addEventListener('DOMContentLoaded', function () {
+      checkUnreadNotifications(); // Check immediately on load
+      setInterval(checkUnreadNotifications, 30000); // Check every 30 seconds
     });
   </script>
 </body>
