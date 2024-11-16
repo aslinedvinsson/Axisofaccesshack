@@ -13,7 +13,7 @@
     <!-- Favorites Button (only for logged-in users) -->
     {% if user.is_authenticated %}
     <div class="text-center mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+        <button type="button" class="btn btn-primary fave-btn" data-bs-toggle="modal" data-bs-target="#favoritesModal">
             <i class="fas fa-star"></i>
         </button>
     </div>
@@ -26,7 +26,7 @@
         <div class="row">
             {% for group in groups %}
             <div class="col-md-3 mb-3">
-                <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal"
+                <button class="btn btn-outline-secondary w-100 group-btn" data-bs-toggle="modal"
                     data-bs-target="#groupModal-{{ group.id }}">
                     {{ group.name }}
                 </button>

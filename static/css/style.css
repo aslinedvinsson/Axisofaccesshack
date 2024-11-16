@@ -7,23 +7,58 @@ html, body{
     font-style: italic;    
 }
 
+.fave-btn {
+    background-color: #162b7e;
+    width: 50%;
+}
+
+.fave-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 221, 0, 0.863);;
+}
+
+.fave-btn i:hover {
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    color: rgba(255, 221, 0, 0.863); /* Stronger internal glow */
+    transform: scale(1.85); /* Slight zoom on hover */
+}
+
+.row {
+    gap: 10px;
+}
+
+.group-btn {
+    background-color: #EDE7E0;
+    color: #000d3f;
+}
+
+.group-btn:hover {
+    color: #EDE7E0;
+    background-color: #000c3d;
+}
+
 .icon-tile {
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 10px;
     padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
-    background-color: white; /* Ensure consistency with enlarged background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */ 
+    background-color: #EDE7E0; /* Ensure consistency with enlarged background */
+    border-radius: 10px;
+    border: 1px solid rgb(1, 0, 32);
+    text-transform: uppercase;
+    color: #000c3d;
+    font-size: xx-large;
 }
 
 .icon-tile img {
-    max-height: 100px;
+    max-height: 120px;
     transition: transform 0.3s ease; /* Added smooth scaling for enlarged state */
+    border-radius: 10px;
 }
 
 .icon-tile:hover {
     transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    background-color: #000c3d;
+    color: #EDE7E0;
 }
 
 .icon-clicked {
@@ -117,73 +152,12 @@ body {
 
 /* CSS to be added to index */
 
+.navbar-brand {
+    font-size: 200%;
+}
+
 header .bg-body-tertiary {
     background-color: #EDE7E0 !important;
-}
-
-/* Typography */
-h3 {
-    margin: 15px;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-/* Homepage Title */
-.title-homepage h1 {
-    text-align: center;
-    color: #000d3f;
-    margin: 20px;
-}
-/* Section 1 */
-.section1 {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); /* 2 columns of equal width */
-    gap: 50px; /* Space between images */
-    margin: 25px;
-}
-.section1 h3 {
-    color: #000c3d;
-}
-.section1 a {
-    text-decoration: none;
-    background-color: #EDE7E0;
-}
-.section1 img {
-    width: 300px;
-    height: 350px;
-    border-radius: 10px 10px 0 0;
-    margin: 10px;
-}
-/* Icons and Emojis */
-.icons-emoji {
-    background-color: #EDE7E0;
-    border-radius: 10px;
-    border: 1px solid rgb(1, 0, 32);
-    box-shadow:
-        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-        0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-        0 100px 80px rgba(0, 0, 0, 0.12);
-}
-.icons-emoji:hover {
-    box-shadow: 0.5rem 0.5rem rgb(0, 13, 71);
-    transition: 0.3s;
-}
-.icons-emoji img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
-/* Square Container */
-.square {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10px;
-    background-color: #EDE7E0;
 }
 
 /* Footer style section */
@@ -200,7 +174,7 @@ footer p {
     color: #000;
 }
 .github-links {
-    display: flex; /* Use Flexbox for layout */
+    display: flex;
     flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
     justify-content: center; /* Center links horizontally */
     gap: 8px; /* Add space between links */
@@ -221,7 +195,8 @@ footer p {
     color: #152700;
     background-color: #4f6b16;
 }
-/* Media query for smaller screens */
+
+/* Media query for small screens */
 @media screen and (min-width: 576px) {
     .github-links {
         flex-direction: row; /* Links stay in a row */
