@@ -76,6 +76,8 @@ CSS Variables
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
 
+    --modal-bg: var(--kaki);
+
     /* FONTS */
     --font-roboto: "Roboto", sans-serif;
     --font-oswald: "Oswald", sans-serif;
@@ -367,6 +369,14 @@ Cards
 
 .card .btn:active {
     background-color: var(--card-btn-active-bg);
+}
+
+/* 
+Modals
+*/
+
+.modal-content {
+    background-color: var(--modal-bg);
 }
 
 /*
