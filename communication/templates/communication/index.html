@@ -12,7 +12,7 @@
     {% else %}
     <!-- Show a message for logged-in caregivers -->
     {% if user.userprofile.role == "CG" %}
-    <div class="alert alert-warning text-center">
+    <div class="alert alert-warning text-center my-3">
         You are currently logged in as a caregiver. You will be unable to interact with the icons below.
         You can manage the icons displayed to the enduser in your <a href="{% url 'user_profile' %}">profile</a> page.
     </div>
@@ -21,7 +21,7 @@
 
     <!-- Favorites Button (only for logged-in users) -->
     {% if user.is_authenticated %}
-    <div class="text-center my-3">
+    <div class="text-center mb-1 mt-4">
         <button type="button" class="btn fave-btn" data-bs-toggle="modal" data-bs-target="#favoritesModal">
             <i class="fas fa-star"></i>
         </button>

@@ -66,6 +66,14 @@ CSS Variables
     --icon-tile-hover-text-color: var(--white);
     --icon-clicked-bg: #e0f7fa;
 
+    --icon-btn-disabled-bg: var(--blue);
+    --icon-btn-disabled-text-color: var(--black);
+    
+    --btn-disabled-p-text-color: var(--black);
+
+    --modal-icon-tile-bg:var(--blue) ;
+    --modal-icon-tile-text-color: var(--black);
+
     --skip-to-main-content-link-bg: var(--white);
     --skip-to-main-content-link-text-color: var(--black);
     --focus-outline-color: #4a90e2;
@@ -208,19 +216,14 @@ button:focus-visible,
 /* STYLES FOR WHEN ICONS ARE DISABLED  */
 
 .icons-wrapper button[disabled] {
-    background-color: white;
-    color: #000;
+    background-color: var(--icon-btn-disabled-bg);
+    color: var(-icon-btn-disabled-text-color);
     opacity: 1;
+    cursor: not-allowed;
 }
 
 .icons-wrapper button[disabled] + img {
     opacity: 1;
-}
-
-.icons-wrapper {
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    padding: 10px; 
 }
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {
@@ -231,7 +234,7 @@ button:focus-visible,
 
 /* Ensure <p> inside disabled buttons has a visible color */
 .btn.disabled p, .btn:disabled p {
-    color: #000; 
+    color: var(--btn-disabled-p-text-color);
     opacity: 1; 
 }
 
@@ -305,6 +308,9 @@ Icons
 .icons-wrapper {
     width: 225px;
     height: auto;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px;  */
+    /* padding: 10px; */
 }
 
 .icon-tile {
@@ -408,6 +414,11 @@ Modals
 
 .modal-content {
     background-color: var(--modal-bg);
+}
+
+.modal .icon-tile {
+    background-color: var(--modal-icon-tile-bg);
+    color: var(--modal-icon-tile-text-color);
 }
 
 /*
