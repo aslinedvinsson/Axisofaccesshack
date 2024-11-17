@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     notificationIcon.style.display = 'none';
                     document.title = 'ICONic Needs';
                 }
+                if (data.unread_count === 1) {
+                    document.title = '(1) New Notification - ICONic Needs';
+                }
             })
             .catch(error => console.error('Error checking notifications:', error));
     }
