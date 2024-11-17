@@ -162,6 +162,12 @@ button:focus-visible,
     text-decoration: underline;
 }
 
+/* TOOLTIP */
+
+.tooltip {
+    pointer-events: none; /* Prevent tooltips from capturing mouse events */
+}
+
 /*
 Fave Button
 */
