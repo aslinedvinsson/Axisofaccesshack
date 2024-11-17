@@ -123,11 +123,13 @@
   <!-- Initialize tooltips and unread notification counter -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Tooltips
-      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl);
-      });
+    // Tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl, {
+            container: 'body' // Ensure tooltips are appended to <body>
+        });
+    });
 
       // Unread notification counter
       function checkUnreadNotifications() {
