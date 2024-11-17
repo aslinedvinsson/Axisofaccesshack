@@ -20,7 +20,8 @@ CSS Variables
     --orange: #e0724f;
     --green: #00a993;
 
-    --body-bg: #222;
+    /* --body-bg-white: var(--white); */
+    --body-bg-black: #222;
 
     --fave-btn-glow: rgba(255, 221, 0, 0.863);
     --fave-btn-bg: #162b7e;
@@ -46,7 +47,8 @@ CSS Variables
 
     --nav-link-text-color: #2c3e50;
 
-    /* --footer-bg: #ede7e0; */
+    --card-btn-hover: #de4f24;
+    
     --footer-bg: var(--blue);
 
     --github-links-a-border: #96d41b;
@@ -69,7 +71,8 @@ body {
     font-family: var(--font-roboto);
     font-weight: 500;
     font-style: italic;
-    background-color: var(--body-bg);
+    /* background-color: var(--body-bg-white); */
+    background-color: var(--body-bg-black);
 
     /* --- WCAG Guidelines --- */
     line-height: 1.5em; /* Line height at least 1.5 times the font size */
@@ -82,10 +85,6 @@ p {
     margin: 2em 0; /* Spacing following paragraph at least 2 times the font size */
     letter-spacing: 0.12em; /* Letter spacing at least 0.12 times the font size */
     word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
-}
-
-.row {
-    gap: 10px;
 }
 
 /* 
@@ -274,6 +273,32 @@ Icons
     margin-top: 20px;
     text-align: center;
     color: var(--icon-title-text-color);
+}
+
+/* 
+Cards
+*/
+
+.card {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.card a {
+    color: var(--black);
+}
+
+.card .btn {
+    background-color: var(--orange);
+}
+
+.card .btn:hover,
+.card .btn:focus {
+    background-color: var(--card-btn-hover);
+}
+
+.card .btn:active {
+    background-color: var(--orange);
 }
 
 /*

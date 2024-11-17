@@ -9,7 +9,7 @@
 
 {% if not SOCIALACCOUNT_ONLY %}
 <p class="text-center" data-bs-toggle="tooltip" title="Don’t have an account? Create one by signing up.">
-  Don’t have an account? Then please <a href="{% url 'register' %}" data-bs-toggle="tooltip" title="Go to the sign-up page">sign up</a>.
+  Don’t have an account? Then please <a class="form-links" href="{% url 'register' %}" data-bs-toggle="tooltip" title="Go to the sign-up page">sign up</a>.
 </p>
 
 {% url 'account_login' as login_url %}
@@ -18,7 +18,7 @@
   {{ form|crispy }}
   {{ redirect_field }}
   <div class="mt-3 text-center">
-    <button type="submit" class="btn btn-primary w-100 py-2 mt-4" data-bs-toggle="tooltip" title="Click here to sign in">
+    <button type="submit" class="btn w-100 py-2 mt-4" data-bs-toggle="tooltip" title="Click here to sign in">
       {% trans "Sign In" %}
     </button>
   </div>
