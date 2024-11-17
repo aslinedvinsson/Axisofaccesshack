@@ -14,14 +14,39 @@ CSS Variables
 
 :root {
     /* COLORS */
-    --white: whitesmoke;
+
+    /* Color Scheme #1 */
+    --purple: #570276; /* with white text */
+    --maroon: #9c0643; /* with white text */
+    --red: #c3170c; /* with white text */
+    --salmon: #ce805d; /* with black text */
+    --kaki: #d9c98e; /* with black text */
+
+    /* General Colors */
     --black: #000;
+    --white: whitesmoke;
     --blue: #5396d5;
-    --orange: #e0724f;
-    --green: #00a993;
+    --blue-links: rgb(13, 110, 253);
 
     /* --body-bg-white: var(--white); */
     --body-bg-black: #222;
+
+    --nav-bg: var(--kaki);
+    --footer-bg: var(--kaki);
+
+    --nav-link-text-color: var(--black);
+    --nav-logo-chat-bubble-color: var(--purple);
+    --logo-iconic-text-color: var(--purple);
+    --logo-needs-text-color: var(--purple);
+    --nav-link-hover-text-color: var(--purple);
+
+    --card-text-color: var(--black);
+    --card-bg: var(--kaki);
+    --card-btn-text-color: var(--white);
+    --card-btn-bg: var(--purple);
+    --card-btn-hover-bg: var(--maroon);
+    --card-btn-active-bg: var(--purple);
+    --card-a-text-color: var(--blue-links);
 
     --fave-btn-glow: rgba(255, 221, 0, 0.863);
     --fave-btn-bg: #162b7e;
@@ -32,11 +57,10 @@ CSS Variables
     --group-btn-hover-bg: #000c3d;
     --group-btn-hover-text-color: #ede7e0;
 
-    --icon-title-bg: var(--blue);
-    --icon-title-text-color: var(--white);
-
-    --icon-title-hover-bg: #2372bc;
-    --icon-title-hover-text-color: var(--white);
+    --icon-tile-bg: var(--blue);
+    --icon-tile-text-color: var(--white);
+    --icon-tile-hover-bg: var(--blue-links);
+    --icon-tile-hover-text-color: var(--white);
 
     --icon-clicked-bg: #e0f7fa;
 
@@ -44,12 +68,6 @@ CSS Variables
     --skip-to-main-content-link-text-color: var(--black);
 
     --focus-outline-color: #4a90e2;
-
-    --nav-link-text-color: #2c3e50;
-
-    --card-btn-hover: #de4f24;
-    
-    --footer-bg: var(--blue);
 
     --github-links-a-border: #96d41b;
     --github-links-a-text-color: #96d41b;
@@ -92,22 +110,36 @@ Navbar
 */
 
 .navbar {
-    background-color: var(--orange);
+    background-color: var(--nav-bg);
 }
 
 .navbar-brand .logo-chat-bubble {
     width: 2rem;
     height: auto;
+    color: var(--nav-logo-chat-bubble-color);
 }
 
-.navbar-brand .logo-text,
+.navbar-brand span,
 .navbar .nav-link {
     font-size: 1.5rem;
     font-style: normal;
 }
 
-.navbar-brand .logo-wrapper .logo-text {
+.navbar-brand .logo-wrapper span {
     font-family: var(--font-oswald);
+}
+
+.navbar-brand .logo-wrapper .logo-iconic {
+    color: var(--logo-iconic-text-color);
+}
+
+.navbar-brand .logo-wrapper .logo-needs {
+    color: var(--logo-needs-text-color);
+}
+
+.navbar-brand .logo-wrapper .logo-iconic,
+.navbar-brand .logo-wrapper .logo-needs {
+    margin: 0 0.1rem;
 }
 
 /* 
@@ -126,7 +158,7 @@ Accessibility for Navbar
     text-decoration: none;
     border: 2px solid #000;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.2s ease-in-out-in-out;
 }
 
 .skip-to-main-content-link:focus {
@@ -156,14 +188,17 @@ button:focus-visible,
 
 /* Ensure sufficient color contrast */
 .navbar-nav .nav-link {
-    color: var(--white);
+    color: var(--nav-link-text-color);
     font-weight: 500;
+    transition: color 0.2s ease-in-out-in-out;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
     /* color: var(--white); */
     text-decoration: underline;
+    color: var(--nav-link-hover-text-color);
+
 }
 
 
@@ -217,7 +252,7 @@ Fave Button
 }
 
 .fave-btn i:hover {
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
     color: var(--fave-btn-glow); /* Stronger internal glow */
     transform: scale(1.85); /* Slight zoom on hover */
 }
@@ -251,26 +286,26 @@ Icons
     text-align: center;
     text-transform: uppercase;
     font-size: xx-large;
-    color: var(--icon-title-text-color);
-    background-color: var(--icon-title-bg);
+    color: var(--icon-tile-text-color);
+    background-color: var(--icon-tile-bg);
     border: 1px solid rgb(1, 0, 32);
     border-radius: 10px;
     padding: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for transform and shadow */
 }
 
 .icon-tile:hover,
 .icon-tile:focus {
     transform: scale(1.05);
-    transition: 0.3s;
-    background-color: var(--icon-title-hover-bg);
-    color: var(--icon-title-hover-text-color);
+    transition: 0.2s;
+    background-color: var(--icon-tile-hover-bg);
+    color: var(--icon-tile-hover-text-color);
 }
 
 .icon-tile img {
     max-width: 100%;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease-in-out;
     border-radius: 10px; /* Added smooth scaling for enlarged state */
 }
 
@@ -309,7 +344,7 @@ Icons
     font-weight: bold;
     margin-top: 20px;
     text-align: center;
-    color: var(--icon-title-text-color);
+    color: var(--icon-tile-text-color);
 }
 
 /* 
@@ -317,25 +352,27 @@ Cards
 */
 
 .card {
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: var(--card-bg);
+    color: var(--card-text-color);
 }
 
 .card a {
-    color: var(--black);
+    color: var(--card-a-text-color);
 }
 
 .card .btn {
-    background-color: var(--orange);
+    background-color: var(--card-btn-bg);
+    color: var(--card-btn-text-color);
+    transition: background-color 0.2s ease-in-out-in-out;
 }
 
 .card .btn:hover,
 .card .btn:focus {
-    background-color: var(--card-btn-hover);
+    background-color: var(--card-btn-hover-bg);
 }
 
 .card .btn:active {
-    background-color: var(--orange);
+    background-color: var(--card-btn-active-bg);
 }
 
 /*
