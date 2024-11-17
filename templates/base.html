@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Axis of Access - Connecting caregivers and users">
-  <title>Axis of Access</title>
+  <title>ICONic Needs</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -62,7 +62,6 @@
               <a class="nav-link notification-icon" href="{% url 'notification_index' %}" role="menuitem"
                 aria-label="Notifications" data-bs-toggle="tooltip" title="View your notifications">
                 <i class="fas fa-bell"></i>
-                <!-- <span class="sr-only">Notifications</span> -->
                 <span class="unread-indicator" style="display: none;">0</span> <!-- Red dot for unread -->
               </a>
             </li>
@@ -125,13 +124,13 @@
   <!-- Initialize tooltips and unread notification counter -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-    // Tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      // Tooltips
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
         new bootstrap.Tooltip(tooltipTriggerEl, {
-            container: 'body' // Ensure tooltips are appended to <body>
+          container: 'body' // Ensure tooltips are appended to <body>
         });
-    });
+      });
 
       // Unread notification counter
       function checkUnreadNotifications() {
@@ -142,8 +141,10 @@
             if (data.unread_count > 0) {
               notificationIcon.style.display = 'inline-block';
               notificationIcon.textContent = data.unread_count;
+              document.title = `(${data.unread_count}) New Notifications - ICONic Needs`;
             } else {
               notificationIcon.style.display = 'none';
+              document.title = 'ICONic Needs';
             }
           })
           .catch(error => console.error('Error checking notifications:', error));
