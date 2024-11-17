@@ -257,6 +257,16 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 
 ![](docs/test/xxx.png)
 
+### JavaScript Validator
+**JSHint**: A tool for linting JavaScript. [JS Hint](https://jshint.com/)
+
+| JS file tested                                 | Test result |
+| :-------------------------------------------:  | :---------: |
+| static/main.js                                 | Pass        |
+| notifications/templates/notificationindex.html | Pass        |
+
+The only errors came from Bootstrap's tooltip initializer and from ES6 syntax.
+
 ### Python Validator
 **CI Python Linter**: A Code Insitute tool to validate Python. [CI Python Linter](https://pep8ci.herokuapp.com/)
 
