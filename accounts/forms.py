@@ -18,13 +18,16 @@ class UserForm(forms.ModelForm):
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
 
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['role', 'about']
         widgets = {
-            'role': forms.Select(attrs={'class': 'form-select'}),  # Dropdown for role field
-            'about': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'role': forms.Select(attrs={'class': 'form-select'}),
+            'about': forms.Textarea(
+                attrs={'class': 'form-control', 'rows': 4}
+            ),
         }
 
     def __init__(self, *args, **kwargs):
@@ -41,6 +44,7 @@ class IconForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'group': forms.Select(attrs={'class': 'form-select'}),
         }
+
 
 class GroupForm(forms.ModelForm):
     class Meta:

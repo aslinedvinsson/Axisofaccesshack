@@ -6,9 +6,11 @@ from communication.models import Icon, Group
 from .forms import UserForm, UserProfileForm, IconForm, GroupForm
 from .models import UserProfile
 
+
 def register(request):
     """
-    Handles the creation of a new user and their profile in :model:`accounts.User` and :model:`accounts.UserProfile`.
+    Handles the creation of a new user and their profile in
+    :model:`accounts.User` and :model:`accounts.UserProfile`.
 
     **Arguments:**
 
@@ -17,8 +19,9 @@ def register(request):
 
     **POST:**
 
-    User information is validated and if valid, a new User is created along with their profile.
-    After creation, the user is redirected to the home page.
+    User information is validated and if valid, a new User is created along
+    with their profile. After creation, the user is redirected to the home
+    page.
 
     **GET:**
 
@@ -35,7 +38,7 @@ def register(request):
             user = user_form.save(commit=False)
             user.set_password(user_form.cleaned_data['password'])
             user.save()
-            
+
             profile = profile_form.save(commit=False)
             profile.user = user
             # Set the email and name fields from the user instance
@@ -43,14 +46,24 @@ def register(request):
             profile.name = f"{user.first_name} {user.last_name}"
             profile.save()
 
-            user.backend = 'allauth.account.auth_backends.AuthenticationBackend'
+            user.backend = (
+                'allauth.account.auth_backends.AuthenticationBackend'
+            )
             login(request, user)
-            messages.add_message(request, messages.SUCCESS, 'Congratulations, you have successfully registered!')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Congratulations, you have successfully registered!'
+            )
             return redirect('index')
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    return render(request, 'accounts/register.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(
+        request,
+        'accounts/register.html',
+        {'user_form': user_form, 'profile_form': profile_form}
+    )
+
 
 @login_required
 def user_profile(request):
@@ -58,13 +71,20 @@ def user_profile(request):
     Displays the profile page for a user (either regular or caregiver),
     including assigned end users and icon management options for caregivers.
     """
-    user_profile = request.user.userprofile  # Get the current logged-in user's profile
+    # Get the current logged-in user's profile
+    user_profile = request.user.userprofile
 
     if user_profile.role == 'CG':
-        caregiver_icons = Icon.objects.filter(caregiver=user_profile)  # Get the caregiver's icons
-        caregiver_groups = Group.objects.filter(caregiver=user_profile)  # Get the caregiver's groups
-        assigned_end_users = user_profile.end_users.all()  # Get the end users assigned to this caregiver
-        unassigned_end_users = UserProfile.objects.filter(role='EU', caregiver__isnull=True)  # Unassigned users
+        # Get the caregiver's icons
+        caregiver_icons = Icon.objects.filter(caregiver=user_profile)
+        # Get the caregiver's groups
+        caregiver_groups = Group.objects.filter(caregiver=user_profile)
+        # Get the end users assigned to this caregiver
+        assigned_end_users = user_profile.end_users.all()
+        # Unassigned users
+        unassigned_end_users = UserProfile.objects.filter(
+            role='EU', caregiver__isnull=True
+        )
 
         # Attach a form to each icon and group
         for icon in caregiver_icons:
@@ -83,7 +103,8 @@ def user_profile(request):
             'caregiver_icons': caregiver_icons,
             'caregiver_groups': caregiver_groups,
             'assigned_end_users': assigned_end_users,
-            'unassigned_end_users': unassigned_end_users,  # Pass unassigned users
+            # Pass unassigned users
+            'unassigned_end_users': unassigned_end_users,
             'icon_form': icon_form,  # For adding new icons
             'group_form': group_form,  # For adding new groups
         })
@@ -122,7 +143,9 @@ def manage_end_users(request):
             return redirect('user_profile')
 
         # For GET request, render the modal data
-        unassigned_end_users = UserProfile.objects.filter(role='EU', caregiver__isnull=True)
+        unassigned_end_users = UserProfile.objects.filter(
+            role='EU', caregiver__isnull=True
+        )
         assigned_end_users = user_profile.end_users.all()
         print("Unassigned End Users in View:", unassigned_end_users)
 
@@ -160,13 +183,21 @@ def add_icon(request):
             return redirect('user_profile')
     else:
         form = IconForm()
-    return render(request, 'accounts/caregiver_profile.html', {'icon_form': form})
+    return render(
+        request,
+        'accounts/caregiver_profile.html',
+        {'icon_form': form}
+    )
 
 
 # Editing an existing icon
 @login_required
 def edit_icon(request, icon_id):
-    icon = get_object_or_404(Icon, id=icon_id, caregiver=request.user.userprofile)
+    icon = get_object_or_404(
+        Icon,
+        id=icon_id,
+        caregiver=request.user.userprofile
+    )
     if request.method == 'POST':
         form = IconForm(request.POST, request.FILES, instance=icon)
         if form.is_valid():
@@ -174,26 +205,36 @@ def edit_icon(request, icon_id):
             return redirect('user_profile')
     else:
         form = IconForm(instance=icon)
-    return render(request, 'accounts/caregiver_profile.html', {'icon_form': form})
+    return render(
+        request,
+        'accounts/caregiver_profile.html',
+        {'icon_form': form}
+    )
 
 
 # Adding a new group
 @login_required
 def add_group(request):
     """
-    Allows a caregiver to add a new group, automatically associating it with their profile.
+    Allows a caregiver to add a new group, automatically associating it with
+    their profile.
     """
     if request.method == 'POST':
         form = GroupForm(request.POST)
         if form.is_valid():
             group = form.save(commit=False)
-            group.caregiver = request.user.userprofile  # Assign the logged-in user as the caregiver
+            # Assign the logged-in user as the caregiver
+            group.caregiver = request.user.userprofile
             group.save()
             return redirect('user_profile')
     else:
         form = GroupForm()
-    
-    return render(request, 'accounts/caregiver_profile.html', {'group_form': form})
+
+    return render(
+        request,
+        'accounts/caregiver_profile.html',
+        {'group_form': form}
+    )
 
 
 # Editing an existing group
@@ -207,7 +248,12 @@ def edit_group(request, group_id):
             return redirect('user_profile')
     else:
         form = GroupForm(instance=group)
-    return render(request, 'accounts/caregiver_profile.html', {'group_form': form})
+    return render(
+        request,
+        'accounts/caregiver_profile.html',
+        {'group_form': form}
+    )
+
 
 # Deleting an icon
 @login_required
@@ -217,13 +263,16 @@ def delete_icon(request, icon_id):
     """
     if request.method == 'POST':
         try:
-            icon = Icon.objects.get(id=icon_id, caregiver=request.user.userprofile)
+            icon = Icon.objects.get(
+                id=icon_id, caregiver=request.user.userprofile
+            )
             icon.delete()
             return redirect('user_profile')
         except Icon.DoesNotExist:
             return redirect('user_profile')
 
-#Editing a group
+
+# Editing a group
 @login_required
 def delete_group(request, group_id):
     """
