@@ -251,6 +251,35 @@ button:focus-visible,
 
 }
 
+/* STYLES FOR LANDING PAGE/UNAUTHORISED IN USERS */
+
+/* Background image for unauthenticated users */
+.unauthenticated-background {
+    background-image: url("/static/icons-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Center text and buttons in overlay */
+.unauthenticated-overlay h2,
+.unauthenticated-overlay p {
+    z-index: 11;
+    margin-bottom: 1.5rem;
+}
+
+/* Overlay restricted to main content */
+.unauthenticated-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    color: white;
+}
 
 /* STYLES FOR WHEN ICONS ARE DISABLED  */
 
@@ -604,6 +633,10 @@ footer p {
     background-color: var(--github-links-a-hover-bg);
 }
 
+/*
+Notification bell icon
+*/
+
 .notification-icon {
     position: relative;
 }
@@ -621,6 +654,14 @@ footer p {
     font-weight: bold;
     text-align: center;
     line-height: 15px;
+    display: none;
+}
+
+/*
+Sign in page
+*/
+
+#id_password_helptext {
     display: none;
 }
 

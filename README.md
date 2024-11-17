@@ -2,6 +2,11 @@
 
 ------- Text marked in the begging with dash ------ needs to be checked, if the information is correct or if there needs to be a screen shot added there.
 
+
+------ add a Am I responsive print screen
+
+![](docs/amiresponsive.png)
+
 **Needs expressed to be heard**
 
 Our website is designed to give individuals with intellectual disabilities an easy and clear way to express their needs. By clicking on icons representing common requests and needs, such as hungry, tired, go outside, take a bath.
@@ -19,7 +24,7 @@ Variety of Icons: A wide range of icons representing common needs (e.g., hunger,
 
 Customizable Icons: The cargiver has the ability to add or modify icons to cater to the user’s personal needs.
 
-Categorized Icons: Icons can be organized into clear categories like "Basic Needs", "Emotions", "Activities", etc.
+Categorized Icons: Caregiver can organized the icons into clear categories like "Basic Needs", "Emotions", "Activities", etc.
 
 #### Simple User Interface (UI)
 Large, Easy-to-Click Icons: Icons are clear, big, and visually intuitive, making it easy for users with limited motor skills to navigate.
@@ -28,19 +33,14 @@ Text Labels: Icons include text labels to provide clarity and support for those 
 
 Visual Feedback: Provides visual confirmation by slightly enlarging the chossen icon and change its color.
 
--------Dark mode: The user can choose if they prefer dark mode or light mode.
-
 #### Message Notification System
 Automatic Notifications: When an icon is clicked, an automated message is sent to the caregiver’s device (e.g., mobile, tablet, or computer).
-Message Details: The notification include the title of the icon, eg. "hungry" or "tired".
+Message Details: The notification include the title of the icon, eg. "hungry" or "tired" and the time when the icon was clicked by the user.
 
 #### Caregiver Tools
-Caregiver Access: Caregivers can view and manage messages, receive notifications, and track user activity. And caregiver can add, edit and delete icons to meet the user's needs.
+Caregiver Access: Caregivers can receive notifications from the user. And caregiver can add, edit and delete icons to meet the user's needs.
 
 Favorite Icons: Users can mark icons they frequently use as "favorites" for quick access.
-
-
-------Activity Log: History of requests made by the user, which can be useful for long-term care planning.
 
 #### Security and Privacy
 Secure Login: Password-protected access for caregivers and users to maintain privacy and data security.
@@ -55,7 +55,11 @@ Language Options: Multiple languages to accommodate users and caregivers from di
 
 High Contrast Mode: Visual support for users with visual impairments by enabling a high-contrast design.
 
+Switch for dark and light mode: The user can choose if they prefer dark mode or light mode.
+
 Feedback System: Users can give feedback (e.g., "I feel better" or "This worked") to indicate if their need has been addressed.
+
+Activity Log: History of requests made by the user, which can be useful for long-term care planning.
 
 Multiple Requests: Users can select multiple icons at once if they have more than one need.
 
@@ -67,29 +71,34 @@ Data Encryption: Encrypting all communication to protect sensitive information.
 
 Anonymous Usage: For individuals who do not want to share personal information, the platform could allow anonymous use.
 
-## Improvements for the future
-
--------
-
 ## Accessability
-The website is simple and clear, with large, icons representing different needs, such as "hungry," "tired," and "sad." Each icon has a short text to clarify its meaning. The user taps on the icons to express their needs. The design is clean, with large buttons and enough space to prevent mistakes. There is a confirmation sound when an icon is tapped. The colors are contrasting, but still soft and easy to read. Everything is designed to be easy to use with both touch screens and a mouse. The website is also keyboard accessible.
+The website is simple and clear, with large, icons representing different needs, such as "hungry," "tired," and "sad." Each icon has a short text to clarify its meaning. The user taps on the icons to express their needs. The design is clean, with large buttons and enough space to prevent mistakes. There is a confirmation sound when an icon is tapped. The colors are contrasting, but still soft and easy to read. Everything is designed to be easy to use with both touch screens and a mouse.
+--------The website is also keyboard accessible.
 
 ### Accessability testing
 **[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)**
 
-
-------screenshot
+------add screenshot
+<details>
+    <summary>WAWE</summary>
+        <img src="docs/test/xxxx.png">
+</details>
 
 **Lihthouse**
 
--------screenshot
+-------add screenshot
+<details>
+    <summary>Lighthoues</summary>
+    <img src="docs/test/xxxx.png">
+</details>
+
 
 **[Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG22/)**
 
 We have reviewed parts of the guidelines and can conclude that much more work can be done on the website to make it even more accessible. Due to the limited development time, during a hackathon, we were only able to fulfill some of the requirements. For future improvements, the WCSG will be continuously followed.
 
 Examples of features that needs improvement to meet WCAG:
---------Make sure everything works for keyboard-only users
+-------- Make sure everything works for keyboard-only users
 - Make it easy for people to log in without having to remember information
 - Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.
 - More examples can be found at [features for the future](#features-for-the-future).
@@ -102,21 +111,21 @@ There is a register page where both the user and caregiver can sign up. The user
 The caregiver's profile page includes functionality to add, delete, mark icons as favorites, and change the names and group affiliations of the icons. On the caregiver's profile page, the linked user is also displayed. When the linked user clicks on an icon, the caregiver receives a notification about which icon was clicked. The notification bell symbol on the caregiver's profile page also indicates if there are unread notifications by displaying a number corresponding to the count of unread notifications.
 
 ### User Stories
------- Here I think we only need to show a couple of examples of user stories and then place a link to the kanban board for more reading.
-<details>
-
-<summary>User Story 1</summary>
-
-<p></p>
-
-</details>
-
+For user stories and agile work process, please look at the [project's kanban board](https://github.com/users/aslinedvinsson/projects/9)
 
 ### Media
 We have consciously not used blinking or flashing content as it can cause migraines, dizziness, nausea, and seizures. This complies with WCAG  Seizures and Physical Reactions guidlines
 
 ### Colors
- -------- Something about good contrast for accessibility while ensuring the design remains soft enough to be safe for people with epilepsy.......
+We took the help of [Venngage](https://venngage.com/blog/accessible-colors/#examples) to find accessible colors.
+The choosen accessible color palette is dark to light
+
+![](docs/colors.png)
+
+### Fonts
+-------- add fonts
+
+![](docs/font.png)
 
 ### Typography
 ------**Textspacing** Do we comply?????
@@ -126,16 +135,31 @@ Spacing following paragraphs to at least 2 times the font size;
 Letter spacing (tracking) to at least 0.12 times the font size;
 Word spacing to at least 0.16 times the font size.
 
+### Icons
+The site uses icons from [Free Pik]( https://www.freepik.com ) and [pixabay](https://pixabay.com)
+
+------ Favicon comes from... -------
 
 ### Wireframes
 
------- printscreen
+<details open>
+    <summary>Home page</summary>
+    <img src="docs/wireframes/home.png">
+</details>
+
 <details>
+    <summary>User profile page</summary>
+    <img src="docs/wireframes/user-profile.png">
+</details>
 
-<summary> Page Name </summary>
+<details>
+    <summary>Caregiver page</summary>
+    <img src="docs/wireframes/caregiver-profile.png">
+</details>
 
-![Link to wireframe]("Link goes here")
-
+<details>
+    <summary>Registration page</summary>
+    <img src="docs/wireframes/sign-up.png">
 </details>
 
 ### Custom Models and Database design ERD
@@ -213,40 +237,109 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### Lighthouse Score
 **Lighthouse**: Google Lighthouse is a web performance and SEO auditing tool that analyzes web pages, providing detailed reports and recommendations for improving page speed, accessibility, and user experience. [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
 
-----screenshot
+----add screenshot
+
+![](docs/test/xxx.png)
 
 ### HTML Validator
 **HTML Validation Service**: A tool to check the markup validity of Ib documents in HTML. [HTML Validation](https://validator.w3.org/)
 
-----screenshot
+----add screenshot
+
+![](docs/test/xxx.png)
 
 ### CSS Validator
 **CSS Validation Service**: A service to check the validity of Cascading Style Sheets (CSS). [CSS Validation](https://jigsaw.w3.org/css-validator/)
 
----screenshot
+--- add screenshot
+
+![](docs/test/xxx.png)
 
 ### Python Validator
 **CI Python Linter**: A Code Insitute tool to validate Python. [CI Python Linter](https://pep8ci.herokuapp.com/)
 
-----screenshot
+----add screenshot
+
+![](docs/test/xxx.png)
 
 ### Manual Testing
 [User Acceptance Testing and Functional Testing](manual_testing.md)
 
 ------check so the information still is correct in the manual testing.
+
 ## Bugs/Issues
-----
+---- any?
 ### Resolved Bugs/Issues
-----
+---- any?
 ### Unresolved Bugs/Issues
------
+----- any?
 ## Deployment
 
-### Heroku
+### Deploying a Django Project on Heroku
+Heroku is a cloud platform service that enables developers to build, run, and operate applications entirely in the cloud. [Heroku](https://id.heroku.com/)
+Here is how to use it:
 - Create an account or log in to **Heroku**.
-  - On the dashboard, click on **"New"** and select **"Create new app"**.
-  - Give the app a unique name and select the region closest to you. Then click **"Create app"** to confirm.
----------.......continue
+- On the dashboard, click on **"New"** and select **"Create new app"**.
+- Give the app a unique name and select the region closest to you. Then click **"Create app"** to confirm.
+
+**Settings**
+
+1. **Update `settings.py`**:
+   - Set `ALLOWED_HOSTS`:
+     ```python
+     ALLOWED_HOSTS = ['your-app-name.herokuapp.com']
+     ```
+   - Install `whitenoise` for handling static files:
+     ```bash
+     pip install whitenoise
+     ```
+     Add it to your middleware:
+     ```python
+     MIDDLEWARE = [
+         'whitenoise.middleware.WhiteNoiseMiddleware',
+         # other middleware...
+     ]
+     ```
+     Configure static files:
+     ```python
+     STATIC_ROOT = BASE_DIR / 'staticfiles'
+     ```
+     Run `python manage.py collectstatic` during deployment.
+   - Install `psycopg2` and `dj-database-url` for database configuration:
+     ```bash
+     pip install psycopg2 dj-database-url
+     ```
+     Update database settings:
+     ```python
+     import dj_database_url
+     DATABASES = {'default': dj_database_url.config()}
+     ```
+   - Set `DEBUG = False` and move `SECRET_KEY` to Config Vars.
+
+2. **Install Gunicorn**:
+   - Install Gunicorn:
+     ```bash
+     pip install gunicorn
+     ```
+   - Create a `Procfile` in the root directory:
+     ```
+     web: gunicorn your_project_name.wsgi
+     ```
+
+3. **Config Vars**
+
+      a. Go to your app's **Settings** tab on Heroku.
+
+      b. Click **"Reveal Config Vars"** and add the following:
+         - `SECRET_KEY`: A secure Django secret key.
+         - `DATABASE_URL`: Automatically set if using Heroku Postgres.
+         - `DEBUG`: Set to `False`.
+
+      c. Access these variables in `settings.py`:
+          ```python
+          import os
+          SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-key')
+          DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ### Forking repository
 - Forking enables you to create a personal copy of an existing repository on a remote server. To do so with the specified repository:
@@ -267,23 +360,18 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### Frameworks and Libraries
 - **Django**: A high-level Python framework that enctheages rapid development and clean, pragmatic design. [Django](https://www.djangoproject.com/)
 - **Bootstrap**: A front-end framework for developing responsive and mobile-first websites. [Bootstrap](https://getbootstrap.com/)
-
--------more?
+- **Psycopg2**: A PostgreSQL adapter for Python. [Psycopg2](https://pypi.org/project/psycopg2/)
+- **Gunicorn**: A Python WSGI HTTP Server for UNIX, used to run Python Ib applications. [Gunicorn](https://gunicorn.org/)
 
 ### Code
 The Code Institute's repository boilerplate for Gitpod was utilized.
 
-### Design tools
------
-
-### Editors
--------
-
 ### Other Tools
-------
+------ something else?
 
 ## Credits
-------
+------ some more?
+
 WCAG for their outstanding guidelines
 
 ### Disclaimer
