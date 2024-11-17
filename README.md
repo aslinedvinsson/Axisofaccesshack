@@ -266,6 +266,12 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 | accounts/tests.py           | Pass        |
 | accounts/urls.py            | Pass        |
 | accounts/views.py           | Pass        |
+| communication/admin.py      | Pass        |
+| communication/apps.py       | Pass        |
+| communication/models.py     | Pass        |
+| communication/tests.py      | Pass        |
+| communication/urls.py       | Pass        |
+| communication/views.py      | Pass        |
 
 ----add screenshot
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Group, Icon
 
+
 def index(request):
     user_role = None
     groups, icons, favorites = None, None, None
@@ -25,13 +26,15 @@ def index(request):
 
             groups = Group.objects.prefetch_related('icons').all()
             for group in groups:
-                group.active_icons = group.icons.filter(is_active=True)  # Only active icons
+                # Only active icons
+                group.active_icons = group.icons.filter(is_active=True)
             icons = Icon.objects.filter(is_active=True).order_by('name')
 
         elif user_role == 'CG':  # CareGiver role
             groups = Group.objects.prefetch_related('icons').all()
             for group in groups:
-                group.active_icons = group.icons.filter(is_active=True)  # Only active icons
+                # Only active icons
+                group.active_icons = group.icons.filter(is_active=True)
             icons = Icon.objects.filter(is_active=True).order_by('name')
 
             # Include favorites selected by the caregiver
@@ -42,7 +45,9 @@ def index(request):
             ).order_by('name')
     else:
         # Unauthenticated users see default icons only
-        icons = Icon.objects.filter(is_default=True, is_active=True).order_by('name')
+        icons = Icon.objects.filter(
+            is_default=True, is_active=True
+        ).order_by('name')
 
     return render(request, 'communication/index.html', {
         'groups': groups,
@@ -50,7 +55,6 @@ def index(request):
         'favorites': favorites,
         'user_role': user_role,
     })
-
 
 
 # View to display custom 404 page
