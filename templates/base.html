@@ -17,11 +17,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <!-- Skip to main content link -->
-  <a href="#main-content" class="skip-to-main-content-link" data-bs-toggle="tooltip" title="Skip to the main content" role="link">
+  <a href="#main-content" class="skip-to-main-content-link" data-bs-toggle="tooltip" title="Skip to the main content"
+    role="link">
     Skip to main content
   </a>
 
@@ -31,19 +33,19 @@
         <a class="navbar-brand" href="{% url 'index' %}" aria-label="Iconic - Return to homepage"
           data-bs-toggle="tooltip" title="Go to the homepage">
 
-            <div class="logo-wrapper d-flex justify-content-center align-items-center">
-              <svg class="logo-chat-bubble" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M2 22V9q0-.825.588-1.413Q3.175 7 4 7h2v5q0 .825.588 1.412Q7.175 14 8 14h10v3q0 .825-.587 1.413Q16.825 19 16 19H5Zm16-8V9q0-.825-.587-1.413Q16.825 7 16 7H6V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v8q0 .825-.587 1.412Q20.825 14 20 14Zm-6-3.5Zm0 0Z" />
-              </svg>
+          <div class="logo-wrapper d-flex justify-content-center align-items-center">
+            <svg class="logo-chat-bubble" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M2 22V9q0-.825.588-1.413Q3.175 7 4 7h2v5q0 .825.588 1.412Q7.175 14 8 14h10v3q0 .825-.587 1.413Q16.825 19 16 19H5Zm16-8V9q0-.825-.587-1.413Q16.825 7 16 7H6V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v8q0 .825-.587 1.412Q20.825 14 20 14Zm-6-3.5Zm0 0Z" />
+            </svg>
 
-              <!-- <svg class="logo-chat-bubble" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <!-- <svg class="logo-chat-bubble" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
               <path fill="currentColor"
               d="M2 22V9q0-.825.588-1.413Q3.175 7 4 7h2V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v8q0 .825-.587 1.412Q20.825 14 20 14h-2v3q0 .825-.587 1.413Q16.825 19 16 19H5Zm6-10h8V9H8Zm-4 5h12v-3H8q-.825 0-1.412-.588Q6 12.825 6 12V9H4Zm14-5h2V4H8v3h8q.825 0 1.413.587Q18 8.175 18 9Z" />
             </svg> -->
 
-              <span class="logo-text">ICONic needs</span>
-            </div>
+            <span class="logo-text">ICONic needs</span>
+          </div>
 
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

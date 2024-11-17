@@ -11,7 +11,7 @@
           <h1 class="card-title text-center mb-4" data-bs-toggle="tooltip" title="Create a new account to get started">{% trans "Sign Up" %}</h1>
           <p class="card-text text-center mb-4" data-bs-toggle="tooltip" title="Already have an account? Click here to log in">
             Already have an account? Then please
-            <a href="{% url 'account_login' %}" data-bs-toggle="tooltip" title="Log in to your existing account">sign in</a>.
+            <a class="form-links" href="{% url 'account_login' %}" data-bs-toggle="tooltip" title="Log in to your existing account">sign in</a>.
           </p>
           <form class="signup" id="signup_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             {% csrf_token %}
@@ -20,7 +20,7 @@
             {{ user_form|crispy }}
             {{ profile_form|crispy }}
 
-            <button type="submit" class="btn btn-primary w-100 py-2 mt-4" data-bs-toggle="tooltip" title="Click here to create your account">
+            <button type="submit" class="btn w-100 py-2 mt-4" data-bs-toggle="tooltip" title="Click here to create your account">
               {% trans "Sign Up" %} &raquo;
             </button>
           </form>
