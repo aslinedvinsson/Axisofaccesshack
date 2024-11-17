@@ -1,112 +1,124 @@
+/* 
+CSS Reset
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+CSS Variables 
+*/
+
+:root {
+    /* Color Variables */
+    --white: whitesmoke;
+    --black: #000;
+    --blue: #5396d5;
+    --orange: #e0724f;
+    --green: #00a993;
+
+    --body-bg: #222;
+
+    --fave-btn-glow: rgba(255, 221, 0, 0.863);
+    --fave-btn-bg: #162b7e;
+
+    --group-btn-bg: #ede7e0;
+    --group-btn-text-color: #000d3f;
+
+    --group-btn-hover-bg: #000c3d;
+    --group-btn-hover-text-color: #ede7e0;
+
+    --icon-title-bg: var(--blue);
+    --icon-title-text-color: var(--white);
+
+    --icon-title-hover-bg: #2372bc;
+    --icon-title-hover-text-color: var(--white);
+
+    --icon-clicked-bg: #e0f7fa;
+
+    --skip-to-main-content-link-bg: var(--white);
+    --skip-to-main-content-link-text-color: var(--black);
+
+    --focus-outline-color: #4a90e2;
+
+    --nav-link-text-color: #2c3e50;
+
+    /* --footer-bg: #ede7e0; */
+    --footer-bg: var(--blue);
+
+    --github-links-a-border: #96d41b;
+    --github-links-a-text-color: #96d41b;
+    --github-links-a-bg: #0e1a01;
+    --github-links-a-hover-text-color: var(--white);
+    --github-links-a-hover-bg: #4f6b16;
+}
+
+/*
+Global Styles
+*/
+
 html,
 body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: italic;
+    background-color: var(--body-bg);
+
+    /* --- WCAG Guidelines --- */
+    line-height: 1.5em; /* Line height at least 1.5 times the font size */
 }
 
-.fave-btn {
-    background-color: #162b7e;
-    width: 50%;
+p {
+    font-size: 16px;
+
+    /* --- WCAG Guidelines --- */
+    margin: 2em 0; /* Spacing following paragraph at least 2 times the font size */
+    letter-spacing: 0.12em; /* Letter spacing at least 0.12 times the font size */
+    word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
 }
 
-.fave-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 221, 0, 0.863);
-    ;
-}
-
-.fave-btn i:hover {
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    color: rgba(255, 221, 0, 0.863);
-    /* Stronger internal glow */
-    transform: scale(1.85);
-    /* Slight zoom on hover */
-}
-
-/* .row {
+.row {
     gap: 10px;
-} */
-
-.group-btn {
-    background-color: #EDE7E0;
-    color: #000d3f;
 }
 
-.group-btn:hover {
-    color: #EDE7E0;
-    background-color: #000c3d;
+/* 
+Navbar
+*/
+
+.navbar {
+    background-color: var(--orange);
 }
 
-.icon-tile {
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth transition for transform and shadow */
-    background-color: #EDE7E0;
-    /* Ensure consistency with enlarged background */
-    border-radius: 10px;
-    border: 1px solid rgb(1, 0, 32);
-    text-transform: uppercase;
-    color: #000c3d;
-    font-size: xx-large;
+.navbar-brand {
+    font-size: 200%;
 }
 
-.icon-tile img {
-    max-height: 120px;
-    transition: transform 0.3s ease;
-    /* Added smooth scaling for enlarged state */
-    border-radius: 10px;
-}
-
-.icon-tile:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
-    background-color: #000c3d;
-    color: #EDE7E0;
-}
-
-.icon-clicked {
-    transform: scale(1.1);
-    background-color: #e0f7fa;
-}
-
-/* Enlarged state */
-.icon-tile.enlarged {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.2);
-    z-index: 1050;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-}
-
-.icon-tile.enlarged img {
-    max-height: 70vh;
-    transform: scale(1.2);
-}
-
-.icon-tile.enlarged p {
+.navbar-brand .logo-text,
+.navbar .nav-link {
     font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
+    font-style: normal;
 }
 
-/* Accessible Navbar */
+.navbar-brand .logo-chat-bubble {
+    width: 2rem;
+    height: auto;
+}
+
+/* 
+Accessibility for Navbar 
+*/
 
 /* Skip to main content link */
 .skip-to-main-content-link {
     position: absolute;
     left: -9999px;
+    left: -9999px;
     z-index: 9999;
     padding: 1em;
-    background-color: white;
-    color: black;
+    background-color: var(--skip-to-main-content-link-bg);
+    color: var(--skip-to-main-content-link-text-color);
     text-decoration: none;
     border: 2px solid #000;
     opacity: 0;
@@ -118,72 +130,166 @@ body {
     transform: translateX(-50%);
     opacity: 1;
     top: 20px;
+    top: 20px;
 }
 
 /* Focus styles for better visibility */
-
 a:focus,
-button:focus {
-    outline: 3px solid #4A90E2;
+button:focus,
+.navbar-nav .nav-link:focus {
+    outline: 3px solid var(--focus-outline-color);
     outline-offset: 2px;
 }
 
 /* High contrast focus for keyboard navigation */
-
 a:focus-visible,
-button:focus-visible {
-    outline: 3px solid #4A90E2;
+button:focus-visible,
+.navbar-nav .nav-link:focus-visible {
+    outline: 3px solid var(--focus-outline-color);
     outline-offset: 2px;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 5px #4A90E2;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--focus-outline-color);
 }
 
 /* Ensure sufficient color contrast */
-
 .navbar-nav .nav-link {
-    color: #2C3E50;
+    color: var(--white);
     font-weight: 500;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
-    color: #1ABC9C;
+    /* color: var(--white); */
     text-decoration: underline;
 }
 
-/* Improved text readability */
+/*
+Fave Button
+*/
 
-body {
-    line-height: 1.6;
-    font-size: 16px;
+.fave-btn {
+    background-color: var(--fave-btn-bg);
+    width: 50%;
 }
 
-/* CSS to be added to index */
-
-.navbar-brand {
-    font-size: 200%;
+.fave-btn:hover {
+    box-shadow: 0 6px 20px var(--fave-btn-glow);
 }
 
-header .bg-body-tertiary {
-    background-color: #EDE7E0 !important;
+.fave-btn i:hover {
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    color: var(--fave-btn-glow); /* Stronger internal glow */
+    transform: scale(1.85); /* Slight zoom on hover */
 }
 
-/* Footer style section */
+/*  
+Group Button 
+*/
+
+.group-btn {
+    background-color: var(--group-btn-bg);
+    color: var(--group-btn-text-color);
+}
+
+.group-btn:hover {
+    color: var(--group-btn-hover-text-color);
+    background-color: var(--group-btn-hover-bg);
+}
+
+/* 
+Icons 
+*/
+
+.icons-wrapper {
+    width: 225px;
+    height: auto;
+}
+
+.icon-tile {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: xx-large;
+    color: var(--icon-title-text-color);
+    background-color: var(--icon-title-bg);
+    border: 1px solid rgb(1, 0, 32);
+    border-radius: 10px;
+    padding: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
+
+.icon-tile:hover,
+.icon-tile:focus {
+    transform: scale(1.05);
+    transition: 0.3s;
+    background-color: var(--icon-title-hover-bg);
+    color: var(--icon-title-hover-text-color);
+}
+
+.icon-tile img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 10px; /* Added smooth scaling for enlarged state */
+}
+
+.icon-tile p {
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.icon-clicked {
+    transform: scale(1.1);
+    background-color: var(--icon-clicked-bg);
+}
+
+.icons-wrapper.enlarged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 1050;
+    border-radius: 15px;
+
+    width: 80vw;
+    max-width: 600px;
+    height: auto;
+}
+
+.icons-wrapper.enlarged button img {
+    max-height: 60vh;
+    width: auto;
+    object-fit: contain;
+    margin-top: 20px;
+}
+
+.icons-wrapper.enlarged button p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--icon-title-text-color);
+}
+
+/*
+Footer
+*/
+
 footer {
-    background-color: #EDE7E0;
+    background-color: var(--footer-bg);
     display: flex;
     flex-wrap: wrap;
-    /* Allow wrapping for responsiveness */
-    justify-content: center;
-    /* Center content horizontally */
-    align-items: center;
-    /* Center content vertically */
-    padding: 16px;
+    justify-content: center; /* Allow wrapping for responsiveness */
+    align-items: center; /* Center content horizontally */
+    padding: 16px; /* Center content vertically */
     text-align: center;
 }
+
 
 footer p {
     color: #000;
 }
+
 
 .github-links {
     display: flex;
@@ -195,26 +301,26 @@ footer p {
     /* Add space between links */
 }
 
+
 .github-links a {
     margin: 0;
     /* Reset margins (gap handles spacing) */
     padding: 8px 16px;
     /* Add padding for a clickable area */
     text-decoration: none;
-    color: #96d41b;
     opacity: 0.5;
-    display: inline-block;
-    /* Ensure links behave like blocks */
-    border: 1px solid #96d41b;
-    /* Add border for visibility */
+    display: inline-block; /* Ensure links behave like blocks */
     border-radius: 4px;
-    background-color: #0e1a01;
+    background-color: var(--github-links-a-bg); /* Add border for visibility */
+    border: 1px solid var(--github-links-a-border);
+    color: var(--github-links-a-text-color);
 }
+
 
 .github-links a:hover {
     opacity: 1;
-    color: #152700;
-    background-color: #4f6b16;
+    color: var(--github-links-a-hover-text-color);
+    background-color: var(--github-links-a-hover-bg);
 }
 
 .unread-indicator {
@@ -239,7 +345,6 @@ footer p {
         flex-direction: row;
         /* Links stay in a row */
     }
-
     .github-links a {
         flex: 1 1 auto;
         /* Links shrink or grow evenly */
