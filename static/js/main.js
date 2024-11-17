@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     checkUnreadNotifications(); // Check immediately on load
-    setInterval(checkUnreadNotifications, 30000); // Check every 30 seconds
+    setInterval(checkUnreadNotifications, 10000); // Check every 30 seconds
 });
 
 
