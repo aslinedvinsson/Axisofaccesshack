@@ -16,18 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
      * Updates the notification icon and document title based on the number of unread notifications.
      */
     function checkUnreadNotifications() {
-        fetch("{% url 'unread_notifications' %}")
+        fetch(unreadNotificationsUrl)
             .then(response => response.json())
             .then(data => {
                 const notificationIcon = document.querySelector('.notification-icon .unread-indicator');
                 if (data.unread_count > 0) {
-                    // If there are unread notifications, display the count
                     notificationIcon.style.display = 'inline-block';
                     notificationIcon.textContent = data.unread_count;
-                    // Update the page title to reflect the unread notification count
                     document.title = `(${data.unread_count}) New Notifications - ICONic Needs`;
                 } else {
-                    // If no unread notifications, hide the indicator and reset the title
                     notificationIcon.style.display = 'none';
                     document.title = 'ICONic Needs';
                 }
@@ -87,15 +84,13 @@ function iconClicked(button) {
  * @param {string} iconId - The ID of the icon for which the notification should be sent.
  */
 function sendNotification(iconId) {
-    const url = `{% url 'send_notification' 0 %}`.replace('0', iconId);
-    console.log("Sending notification to URL:", url);
-
+    const url = sendNotificationUrl.replace('0', iconId); // Replace '0' with actual ID
     fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(data => {
             if (data.message) {
