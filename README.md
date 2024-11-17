@@ -257,6 +257,16 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### Python Validator
 **CI Python Linter**: A Code Insitute tool to validate Python. [CI Python Linter](https://pep8ci.herokuapp.com/)
 
+| Python file tested          | Test result |
+| :------------------------:  | :---------: |
+| accounts/admin.py           | Pass        |
+| accounts/apps.py            | Pass        |
+| accounts/forms.py           | Pass        |
+| accounts/models.py          | Pass        |
+| accounts/tests.py           | Pass        |
+| accounts/urls.py            | Pass        |
+| accounts/views.py           | Pass        |
+
 ----add screenshot
 
 ![](docs/test/xxx.png)
