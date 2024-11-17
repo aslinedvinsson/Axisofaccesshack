@@ -66,6 +66,15 @@ CSS Variables
     --manage-users-btn-hover-bg: var(--blue-links);
     --manage-users-btn-active-bg: var(--purple);
 
+    --home-btn-text-color: var(--white);
+    --home-btn-bg: var(--purple);
+    --home-btn-hover-text-color: var(--white);
+    --home-btn-hover-bg: var(--blue-links);
+    --home-btn-active-text-color: var(--white);
+    --home-btn-active-bg: var(--purple);
+
+    --img-thumbnail-bg: var(--blue);
+
     --fave-btn-bg: var(--purple);
     --fave-btn-glow: var(--fave-glow);
     --fave-btn-text-color: var(--fave-glow);
@@ -155,6 +164,29 @@ main p {
     color: var(--main-text-color);
 }
 
+.home-btn {
+    color: var(--home-btn-text-color);
+    background-color: var(--home-btn-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.home-btn svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.home-btn:hover,
+.home-btn:focus {
+    color: var(--home-btn-hover-text-color);
+    background-color: var(--home-btn-hover-bg);
+}
+
+.home-btn:active,
+.home-btn:focus:active {
+    color: var(--home-btn-active-text-color);
+    background-color: var(--home-btn-active-bg);
+}
+
 /* 
 Navbar
 */
@@ -190,6 +222,11 @@ Navbar
 .navbar-brand .logo-wrapper .logo-iconic,
 .navbar-brand .logo-wrapper .logo-needs {
     margin: 0 0.1rem;
+}
+
+.navbar .fa-bell,
+.navbar .fa-user-circle {
+    font-size: 2rem;
 }
 
 /* 
@@ -479,7 +516,8 @@ Cards
     background-color: var(--card-btn-hover-bg);
 }
 
-.card .btn:active {
+.card .btn:active,
+.card .btn:focus:active {
     color: var(--card-btn-active-text-color);
     background-color: var(--card-btn-active-bg);
 }
@@ -499,9 +537,21 @@ Caregiver Profile Page
     background-color: var(--manage-users-btn-hover-bg);
 }
 
-#caregiver-profile .manage-users-btn:active {
+#caregiver-profile .manage-users-btn:active,
+#caregiver-profile .manage-users-btn:focus:active {
     /* color: var(--manage-users-btn-active-text-color); */
     background-color: var(--manage-users-btn-active-bg);
+}
+
+.img-thumbnail {
+    width: 55%;
+    height: auto;
+    background-color: var(--img-thumbnail-bg);
+    border: none;
+}
+
+#caregiver-profile p {
+    margin: 0.5rem 0;
 }
 
 /* 
@@ -528,7 +578,8 @@ Caregiver Notifications Page
     background-color: var(--list-group-btn-hover-bg);
 }
 
-.list-group-item .btn:active {
+.list-group-item .btn:active,
+.list-group-item .btn:focus:active {
     color: var(--list-group-btn-active-text-color);
     background-color: var(--list-group-btn-active-bg);
 }
@@ -572,7 +623,8 @@ Modals
     background-color: var(--modal-save-btn-hover-bg);
 }
 
-.modal .modal-save-btn:active {
+.modal .modal-save-btn:active,
+.modal .modal-save-btn:focus:active {
     color: var(--modal-save-btn-active-text-color);
     background-color: var(--modal-save-btn-active-bg);
 }
