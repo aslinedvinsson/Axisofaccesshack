@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function iconClicked(button) {
     console.log("Tile clicked:", button);
 
-    const allCards = document.querySelectorAll('.icons-wrapper');
+    const allCards = document.querySelectorAll('.icons-wrapper, .icon-tile');
     const isAlreadyEnlarged = button.classList.contains('enlarged');
 
     // Remove "enlarged" class from all cards except the clicked one
