@@ -2,41 +2,46 @@
 
 {% load static %}
 {% block content %}
-<div class="container py-4">
-    <!-- Show a message for logged-out users -->
+<div class="container py-4 position-relative {% if not user.is_authenticated %}unauthenticated-background{% endif %}">
+    <!-- Unauthenticated Overlay -->
     {% if not user.is_authenticated %}
-    <div class="alert alert-info text-center">
-        Please <a href="{% url 'account_login' %}">Log in</a> as either a Care Giver or End User to access the
-        dashboard.
+    <div class="unauthenticated-overlay d-flex flex-column justify-content-center align-items-center text-center">
+        <h2 class="text-white mb-3">Welcome to ICONic Needs!</h2>
+        <p class="text-white mb-4">
+            Discover a platform designed for easy communication. Log in or sign up to explore more.
+        </p>
+        <div>
+            <a href="{% url 'account_login' %}" class="btn btn-primary me-3">Log In</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign Up</a>
+        </div>
     </div>
-    {% else %}
-    <!-- Show a message for logged-in caregivers -->
+    {% endif %}
+
+    <!-- Main content -->
+    {% if user.is_authenticated %}
+    <!-- Show caregiver message -->
     {% if user.userprofile.role == "CG" %}
     <div class="alert alert-warning text-center my-3">
         You are currently logged in as a caregiver. You will be unable to interact with the icons below.
-        You can manage the icons displayed to the enduser in your <a href="{% url 'user_profile' %}">profile</a> page.
+        You can manage the icons displayed to the end user in your <a href="{% url 'user_profile' %}">profile</a> page.
     </div>
     {% endif %}
-    {% endif %}
 
-    <!-- Favorites Button (only for logged-in users) -->
-    {% if user.is_authenticated %}
+    <!-- Favorites Button -->
     <div class="text-center mb-1 mt-4">
         <button type="button" class="btn fave-btn" data-bs-toggle="modal" data-bs-target="#favoritesModal">
             <i class="fas fa-star"></i>
         </button>
     </div>
-    {% endif %}
 
-    <!-- Groups Section (only for logged-in users) -->
-    {% if user.is_authenticated and groups %}
+    <!-- Groups Section -->
+    {% if groups %}
     <div class="mb-4">
         <h2>Groups</h2>
         <div class="row">
             {% for group in groups %}
             <div class="col-md-3 mb-3">
-                <button class="btn group-btn w-100 " data-bs-toggle="modal"
-                    data-bs-target="#groupModal-{{ group.id }}">
+                <button class="btn group-btn w-100" data-bs-toggle="modal" data-bs-target="#groupModal-{{ group.id }}">
                     {{ group.name }}
                 </button>
             </div>
@@ -46,7 +51,7 @@
     {% endif %}
 
     <!-- Icons Section -->
-    <div class="row flex-wrap justify-content-center ">
+    <div class="row flex-wrap justify-content-center">
         {% for icon in icons %}
         <div class="icons-wrapper col-6 col-sm-6 col-md-3 my-3"
             {% if user.is_authenticated and user.userprofile.role == "EU" %} onclick="iconClicked(this)" {% endif %}
@@ -59,6 +64,7 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 </div>
 
 <!-- Include Modals -->
