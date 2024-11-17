@@ -1,6 +1,7 @@
 /* 
 CSS Reset
 */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +13,7 @@ CSS Variables
 */
 
 :root {
-    /* Color Variables */
+    /* COLORS */
     --white: whitesmoke;
     --black: #000;
     --blue: #5396d5;
@@ -53,6 +54,10 @@ CSS Variables
     --github-links-a-bg: #0e1a01;
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
+
+    /* FONTS */
+    --font-roboto: "Roboto", sans-serif;
+    --font-oswald: "Oswald", sans-serif;
 }
 
 /*
@@ -61,7 +66,7 @@ Global Styles
 
 html,
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-roboto);
     font-weight: 500;
     font-style: italic;
     background-color: var(--body-bg);
@@ -91,8 +96,9 @@ Navbar
     background-color: var(--orange);
 }
 
-.navbar-brand {
-    font-size: 200%;
+.navbar-brand .logo-chat-bubble {
+    width: 2rem;
+    height: auto;
 }
 
 .navbar-brand .logo-text,
@@ -101,9 +107,8 @@ Navbar
     font-style: normal;
 }
 
-.navbar-brand .logo-chat-bubble {
-    width: 2rem;
-    height: auto;
+.navbar-brand .logo-wrapper .logo-text {
+    font-family: var(--font-oswald);
 }
 
 /* 
