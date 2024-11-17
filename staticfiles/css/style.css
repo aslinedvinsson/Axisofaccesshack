@@ -1,6 +1,7 @@
 /* 
 CSS Reset
 */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,14 +13,15 @@ CSS Variables
 */
 
 :root {
-    /* Color Variables */
+    /* COLORS */
     --white: whitesmoke;
     --black: #000;
     --blue: #5396d5;
     --orange: #e0724f;
     --green: #00a993;
 
-    --body-bg: #222;
+    /* --body-bg-white: var(--white); */
+    --body-bg-black: #222;
 
     --fave-btn-glow: rgba(255, 221, 0, 0.863);
     --fave-btn-bg: #162b7e;
@@ -45,7 +47,8 @@ CSS Variables
 
     --nav-link-text-color: #2c3e50;
 
-    /* --footer-bg: #ede7e0; */
+    --card-btn-hover: #de4f24;
+    
     --footer-bg: var(--blue);
 
     --github-links-a-border: #96d41b;
@@ -53,6 +56,10 @@ CSS Variables
     --github-links-a-bg: #0e1a01;
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
+
+    /* FONTS */
+    --font-roboto: "Roboto", sans-serif;
+    --font-oswald: "Oswald", sans-serif;
 }
 
 /*
@@ -61,10 +68,11 @@ Global Styles
 
 html,
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-roboto);
     font-weight: 500;
     font-style: italic;
-    background-color: var(--body-bg);
+    /* background-color: var(--body-bg-white); */
+    background-color: var(--body-bg-black);
 
     /* --- WCAG Guidelines --- */
     line-height: 1.5em; /* Line height at least 1.5 times the font size */
@@ -79,10 +87,6 @@ p {
     word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
 }
 
-.row {
-    gap: 10px;
-}
-
 /* 
 Navbar
 */
@@ -91,8 +95,9 @@ Navbar
     background-color: var(--orange);
 }
 
-.navbar-brand {
-    font-size: 200%;
+.navbar-brand .logo-chat-bubble {
+    width: 2rem;
+    height: auto;
 }
 
 .navbar-brand .logo-text,
@@ -101,9 +106,8 @@ Navbar
     font-style: normal;
 }
 
-.navbar-brand .logo-chat-bubble {
-    width: 2rem;
-    height: auto;
+.navbar-brand .logo-wrapper .logo-text {
+    font-family: var(--font-oswald);
 }
 
 /* 
@@ -160,6 +164,12 @@ button:focus-visible,
 .navbar-nav .nav-link:focus {
     /* color: var(--white); */
     text-decoration: underline;
+}
+
+/* TOOLTIP */
+
+.tooltip {
+    pointer-events: none; /* Prevent tooltips from capturing mouse events */
 }
 
 /*
@@ -269,6 +279,32 @@ Icons
     margin-top: 20px;
     text-align: center;
     color: var(--icon-title-text-color);
+}
+
+/* 
+Cards
+*/
+
+.card {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.card a {
+    color: var(--black);
+}
+
+.card .btn {
+    background-color: var(--orange);
+}
+
+.card .btn:hover,
+.card .btn:focus {
+    background-color: var(--card-btn-hover);
+}
+
+.card .btn:active {
+    background-color: var(--orange);
 }
 
 /*
