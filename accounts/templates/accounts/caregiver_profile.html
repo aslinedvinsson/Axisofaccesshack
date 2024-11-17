@@ -12,14 +12,14 @@
             {{ user.first_name }} {{ user.last_name }}</h2>
         <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
+            <button type="submit" class="btn btn-outline-danger btn-sm mt-3" data-bs-toggle="tooltip"
                 title="Log out of your account">Log Out</button>
         </form>
     </div>
 
     {% if user_profile.role == 'CG' %}
     <!-- Button to trigger modal -->
-    <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#manageEndUsersModal">
+    <button type="button" class="btn manage-users-btn mt-4" data-bs-toggle="modal" data-bs-target="#manageEndUsersModal">
         Manage End Users
     </button>
 
@@ -44,7 +44,7 @@
     <!-- Icon Management Section -->
     <div class="mt-5">
         <h3 data-bs-toggle="tooltip" title="Manage your personal icons">Manage Your Icons</h3>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new icon"
+        <button class="btn manage-users-btn mb-3" data-bs-toggle="modal" title="Add a new icon"
             data-bs-target="#addIconModal">
             <i class="fas fa-plus"></i>
         </button>
@@ -61,7 +61,7 @@
                 <form method="POST" action="{% url 'toggle_favorite' icon.id %}" class="d-inline">
                     {% csrf_token %}
                     <button type="submit"
-                        class="btn btn-sm {% if icon.is_favorite %}btn-success{% else %}btn-outline-secondary{% endif %}"
+                        class="btn btn-sm {% if icon.is_favorite %}btn-primary{% else %}btn-success{% endif %}"
                         data-bs-toggle="tooltip"
                         title="{% if icon.is_favorite %}Unfavorite this icon{% else %}Mark this icon as favorite{% endif %}">
                         {% if icon.is_favorite %}Unfavorite{% else %}Favorite{% endif %}
@@ -78,7 +78,7 @@
     <!-- Groups Management Section -->
     <div class="mt-5">
         <h3 data-bs-toggle="tooltip" title="Manage your groups">Manage Groups</h3>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new group"
+        <button class="btn manage-users-btn mb-3" data-bs-toggle="modal" title="Add a new group"
             data-bs-target="#addGroupModal">
             <i class="fas fa-plus"></i>
         </button>

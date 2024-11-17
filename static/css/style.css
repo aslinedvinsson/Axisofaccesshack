@@ -61,6 +61,11 @@ CSS Variables
     --list-group-btn-active-text-color: var(--white);
     --list-group-btn-active-bg: var(--purple);
 
+    --manage-users-btn-text-color: var(--white);
+    --manage-users-btn-bg: var(--purple);
+    --manage-users-btn-hover-bg: var(--blue-links);
+    --manage-users-btn-active-bg: var(--purple);
+
     --fave-btn-bg: var(--purple);
     --fave-btn-glow: var(--fave-glow);
     --fave-btn-text-color: var(--fave-glow);
@@ -83,8 +88,13 @@ CSS Variables
 
     --btn-disabled-p-text-color: var(--white);
 
-    --modal-icon-tile-bg: var(--blue);
-    --modal-h5-text-color: var(--black);
+    --modal-icon-tile-bg:var(--blue) ;
+    --modal-text-color: var(--black);
+    --modal-save-btn-text-color: var(--white);
+    --modal-save-btn-bg: var(--purple);
+    --modal-save-btn-hover-bg: var(--blue-links);
+    --modal-save-btn-active-text-color: var(--white);
+    --modal-save-btn-active-bg: var(--purple);
 
     --list-group-bg: var(--kaki);
     --list-group-text-color: var(--black);
@@ -475,11 +485,32 @@ Cards
 }
 
 /* 
-Notifications
+Caregiver Profile Page
+*/
+
+#caregiver-profile .manage-users-btn {
+    color: var(--manage-users-btn-text-color);
+    background-color: var(--manage-users-btn-bg);
+    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
+}
+
+#caregiver-profile .manage-users-btn:hover,
+#caregiver-profile .manage-users-btn:focus {
+    background-color: var(--manage-users-btn-hover-bg);
+}
+
+#caregiver-profile .manage-users-btn:active {
+    /* color: var(--manage-users-btn-active-text-color); */
+    background-color: var(--manage-users-btn-active-bg);
+}
+
+/* 
+Caregiver Notifications Page
 */
 
 .list-group-item {
     background-color: var(--list-group-bg);
+    border: 1px solid black;
 }
 
 .list-group-item p {
@@ -489,6 +520,7 @@ Notifications
 .list-group-item .btn {
     color: var(--list-group-btn-text-color);
     background-color: var(--list-group-btn-bg);
+    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
 }
 
 .list-group-item .btn:hover,
@@ -513,8 +545,36 @@ Modals
     background-color: var(--modal-icon-tile-bg);
 }
 
-.modal h5 {
-    color: var(--modal-h5-text-color);
+.modal h5,
+.modal h6,
+.modal p,
+.modal label,
+.modal input {
+    color: var(--modal-text-color);
+}
+
+.modal .modal-header {
+    border-bottom: 1px solid black;
+}
+
+.modal .modal-footer {
+    border-top: 1px solid black;
+}
+
+.modal .modal-save-btn {
+    color: var(--modal-save-btn-text-color);
+    background-color: var(--modal-save-btn-bg);
+    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
+}
+
+.modal .modal-save-btn:hover,
+.modal .modal-save-btn:focus {
+    background-color: var(--modal-save-btn-hover-bg);
+}
+
+.modal .modal-save-btn:active {
+    color: var(--modal-save-btn-active-text-color);
+    background-color: var(--modal-save-btn-active-bg);
 }
 
 /*
