@@ -19,6 +19,8 @@ CSS Variables
     --orange: #e0724f;
     --green: #00a993;
 
+    --body-bg: #222;
+
     --fave-btn-glow: rgba(255, 221, 0, 0.863);
     --fave-btn-bg: #162b7e;
 
@@ -28,11 +30,11 @@ CSS Variables
     --group-btn-hover-bg: #000c3d;
     --group-btn-hover-text-color: #ede7e0;
 
-    --icon-title-bg: rgba(83, 150, 213, 0.4);
-    --icon-title-text-color: #3d0023;
+    --icon-title-bg: var(--blue);
+    --icon-title-text-color: var(--white);
 
-    --icon-title-hover-bg: var(--blue);
-    --icon-title-hover-text-color: #ede7e0;
+    --icon-title-hover-bg: #2372bc;
+    --icon-title-hover-text-color: var(--white);
 
     --icon-clicked-bg: #e0f7fa;
 
@@ -43,7 +45,8 @@ CSS Variables
 
     --nav-link-text-color: #2c3e50;
 
-    --footer-bg: #ede7e0;
+    /* --footer-bg: #ede7e0; */
+    --footer-bg: var(--blue);
 
     --github-links-a-border: #96d41b;
     --github-links-a-text-color: #96d41b;
@@ -54,13 +57,14 @@ CSS Variables
 
 /*
 Global Styles
- */
+*/
 
 html,
 body {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: italic;
+    background-color: var(--body-bg);
 
     /* --- WCAG Guidelines --- */
     line-height: 1.5em; /* Line height at least 1.5 times the font size */
@@ -75,13 +79,87 @@ p {
     word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
 }
 
-/* CSS to be added to index */
-header .bg-body-tertiary {
-    background-color: #ede7e0 !important;
-}
-
 .row {
     gap: 10px;
+}
+
+/* 
+Navbar
+*/
+
+.navbar {
+    background-color: var(--orange);
+}
+
+.navbar-brand {
+    font-size: 200%;
+}
+
+.navbar-brand .logo-text,
+.navbar .nav-link {
+    font-size: 1.5rem;
+    font-style: normal;
+}
+
+.navbar-brand .logo-chat-bubble {
+    width: 2rem;
+    height: auto;
+}
+
+/* 
+Accessibility for Navbar 
+*/
+
+/* Skip to main content link */
+.skip-to-main-content-link {
+    position: absolute;
+    left: -9999px;
+    left: -9999px;
+    z-index: 9999;
+    padding: 1em;
+    background-color: var(--skip-to-main-content-link-bg);
+    color: var(--skip-to-main-content-link-text-color);
+    text-decoration: none;
+    border: 2px solid #000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.skip-to-main-content-link:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    top: 20px;
+    top: 20px;
+}
+
+/* Focus styles for better visibility */
+a:focus,
+button:focus,
+.navbar-nav .nav-link:focus {
+    outline: 3px solid var(--focus-outline-color);
+    outline-offset: 2px;
+}
+
+/* High contrast focus for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+.navbar-nav .nav-link:focus-visible {
+    outline: 3px solid var(--focus-outline-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--focus-outline-color);
+}
+
+/* Ensure sufficient color contrast */
+.navbar-nav .nav-link {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    /* color: var(--white); */
+    text-decoration: underline;
 }
 
 /*
@@ -121,19 +199,27 @@ Group Button
 Icons 
 */
 
-.icon-tile {
-    text-align: center;
-    padding: 10px;
-    background-color: var(--icon-title-bg);
-    color: var(--icon-title-text-color);
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
-    border-radius: 10px;
-    border: 1px solid rgb(1, 0, 32);
-    text-transform: uppercase;
-    font-size: xx-large;
+.icons-wrapper {
+    width: 225px;
+    height: auto;
 }
 
-.icon-tile:hover {
+.icon-tile {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: xx-large;
+    color: var(--icon-title-text-color);
+    background-color: var(--icon-title-bg);
+    border: 1px solid rgb(1, 0, 32);
+    border-radius: 10px;
+    padding: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
+
+.icon-tile:hover,
+.icon-tile:focus {
     transform: scale(1.05);
     transition: 0.3s;
     background-color: var(--icon-title-hover-bg);
@@ -141,9 +227,15 @@ Icons
 }
 
 .icon-tile img {
-    max-height: 120px;
+    max-width: 100%;
+    height: auto;
     transition: transform 0.3s ease;
     border-radius: 10px; /* Added smooth scaling for enlarged state */
+}
+
+.icon-tile p {
+    margin-top: 12px;
+    margin-bottom: 0;
 }
 
 .icon-clicked {
@@ -151,94 +243,32 @@ Icons
     background-color: var(--icon-clicked-bg);
 }
 
-/* Enlarged state */
-.icon-tile.enlarged {
+.icons-wrapper.enlarged {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.2);
     z-index: 1050;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
-    padding: 20px;
+
+    width: 80vw;
+    max-width: 600px;
+    height: auto;
 }
 
-.icon-tile.enlarged img {
-    max-height: 70vh;
-    transform: scale(1.2);
+.icons-wrapper.enlarged button img {
+    max-height: 60vh;
+    width: auto;
+    object-fit: contain;
+    margin-top: 20px;
 }
 
-.icon-tile.enlarged p {
-    font-size: 1.5rem;
+.icons-wrapper.enlarged button p {
+    font-size: 2rem;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
-}
-
-/* 
-Navbar
-*/
-
-.navbar {
-    background-color: var(--orange);
-}
-
-.navbar-brand {
-    font-size: 200%;
-}
-
-/* 
-Accessibility for Navbar 
-*/
-
-/* Skip to main content link */
-.skip-to-main-content-link {
-    position: absolute;
-    left: -9999px;
-    z-index: 9999;
-    padding: 1em;
-    background-color: var(--skip-to-main-content-link-bg);
-    color: var(--skip-to-main-content-link-text-color);
-    text-decoration: none;
-    border: 2px solid #000;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.skip-to-main-content-link:focus {
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1;
-    top: 20px;
-}
-
-/* Focus styles for better visibility */
-a:focus,
-button:focus,
-.navbar-nav .nav-link:focus {
-    outline: 3px solid var(--focus-outline-color);
-    outline-offset: 2px;
-}
-
-/* High contrast focus for keyboard navigation */
-a:focus-visible,
-button:focus-visible,
-.navbar-nav .nav-link:focus-visible {
-    outline: 3px solid var(--focus-outline-color);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--focus-outline-color);
-}
-
-/* Ensure sufficient color contrast */
-.navbar-nav .nav-link {
-    color: var(--white);
-    font-weight: 500;
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    /* color: var(--white); */
-    text-decoration: underline;
+    color: var(--icon-title-text-color);
 }
 
 /*
@@ -255,20 +285,28 @@ footer {
     text-align: center;
 }
 
+
 footer p {
     color: #000;
 }
 
+
 .github-links {
     display: flex;
-    flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
-    justify-content: center; /* Center links horizontally */
-    gap: 8px; /* Add space between links */
+    flex-wrap: wrap;
+    /* Allow links to wrap if they don’t fit */
+    justify-content: center;
+    /* Center links horizontally */
+    gap: 8px;
+    /* Add space between links */
 }
 
+
 .github-links a {
-    margin: 0; /* Reset margins (gap handles spacing) */
-    padding: 8px 16px; /* Add padding for a clickable area */
+    margin: 0;
+    /* Reset margins (gap handles spacing) */
+    padding: 8px 16px;
+    /* Add padding for a clickable area */
     text-decoration: none;
     opacity: 0.5;
     display: inline-block; /* Ensure links behave like blocks */
@@ -278,23 +316,48 @@ footer p {
     color: var(--github-links-a-text-color);
 }
 
+
 .github-links a:hover {
     opacity: 1;
     color: var(--github-links-a-hover-text-color);
     background-color: var(--github-links-a-hover-bg);
 }
 
-/* 
-Media Queries
-*/
+.unread-indicator {
+    position: absolute;
+    top: 67px;
+    left: 21px;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 15px;
+    display: none;
+}
 
 /* Media query for small screens */
 @media screen and (min-width: 576px) {
     .github-links {
-        flex-direction: row; /* Links stay in a row */
+        flex-direction: row;
+        /* Links stay in a row */
     }
     .github-links a {
-        flex: 1 1 auto; /* Links shrink or grow evenly */
-        text-align: center; /* Center the text inside each link */
+        flex: 1 1 auto;
+        /* Links shrink or grow evenly */
+        text-align: center;
+        /* Center the text inside each link */
+    }
+
+}
+
+@media (min-width: 992px) {
+    .unread-indicator {
+        top: 17px;
+        left: auto;
+        right: 57px;
     }
 }

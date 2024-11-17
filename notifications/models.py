@@ -36,6 +36,10 @@ class Notification(models.Model):
         default=False,
         help_text="Whether the notification has been sent."
     )
+    is_viewed = models.BooleanField(
+        default=False,
+        help_text="Whether the notification has been viewed."
+    )
 
     def __str__(self):
         return f"Notification to {self.caregiver} about {self.icon.name if self.icon else 'N/A'}"

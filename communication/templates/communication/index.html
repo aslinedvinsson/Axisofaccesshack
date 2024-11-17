@@ -37,18 +37,17 @@
     {% endif %}
 
     <!-- Icons Section -->
-    <div>
-        <div class="row justify-content-center">
-            {% for icon in icons %}
+    <div class="row flex-wrap justify-content-center ">
+        {% for icon in icons %}
 
-            <div class="col-md-3 mb-3">
-                <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)" data-icon-id="{{ icon.id }}">
-                    <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
-                    <p class="mt-2">{{ icon.name }}</p>
-                </button>
-            </div>
-            {% endfor %}
+        <div class="icons-wrapper col-6 col-sm-6 col-md-3 my-3" onclick="iconClicked(this)"
+            data-icon-id="{{ icon.id }}">
+            <button class="icon-tile btn">
+                <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
+                <p class="mt-3">{{ icon.name }}</p>
+            </button>
         </div>
+        {% endfor %}
     </div>
 </div>
 
@@ -59,7 +58,7 @@
     function iconClicked(button) {
         console.log("Tile clicked:", button);
 
-        const allCards = document.querySelectorAll('.icon-tile');
+        const allCards = document.querySelectorAll('.icons-wrapper');
         const isAlreadyEnlarged = button.classList.contains('enlarged');
 
         // Remove "enlarged" class from all cards except the clicked one
@@ -93,11 +92,11 @@
         console.log("Sending notification to URL:", url);
 
         fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.message) {

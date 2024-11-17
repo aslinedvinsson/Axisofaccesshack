@@ -9,12 +9,21 @@
     <div class="list-group">
         <!-- Loop through notifications and display each one -->
         {% for notification in notifications %}
-        <div class="list-group-item">
-            <p>
-                <strong>User:</strong> {{ notification.user.name }}<br>
-                <strong>Icon:</strong> {{ notification.icon.name }}<br>
-                <strong>Time:</strong> {{ notification.notified_at|date:"Y-m-d H:i:s" }}
-            </p>
+        <div class="list-group-item" id="{{ notification.id }}">
+            <div class="row">
+                <div class="col-6">
+                    <p>
+                        <strong>User:</strong> {{ notification.user.name }}<br>
+                        <strong>Icon:</strong> {{ notification.icon.name }}<br>
+                        <strong>Time:</strong> {{ notification.notified_at|date:"Y-m-d H:i:s" }}
+                    </p>
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <button class="btn btn-primary acknowledge-btn" data-notification-id="{{ notification.id }}">
+                        Acknowledge
+                    </button>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -24,6 +33,60 @@
     </div>
     {% endif %}
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add an event listener to the parent container for event delegation
+        document.querySelector(".list-group").addEventListener("click", function (event) {
+            // Check if the clicked element has the acknowledge-btn class
+            if (event.target.classList.contains("acknowledge-btn")) {
+                const button = event.target;
+                const notificationId = button.getAttribute("data-notification-id");
+
+                // Call the function to delete the notification
+                deleteNotification(notificationId);
+            }
+        });
+    });
+    function deleteNotification(notificationId) {
+        const url = `/notifications/delete_notification/${notificationId}/`;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie('csrftoken')
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove the notification element from the DOM
+                    const notificationElement = document.getElementById(notificationId);
+                    if (notificationElement) {
+                        notificationElement.remove();
+                    }
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
+
+    // Function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
 {% endblock %}
-
-

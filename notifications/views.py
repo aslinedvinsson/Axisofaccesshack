@@ -17,6 +17,8 @@ def notification_index(request):
 
     # Get notifications for this caregiver
     notifications = Notification.objects.filter(caregiver=caregiver_profile).order_by('-notified_at')
+    # Mark all notifications as viewed
+    Notification.objects.filter(caregiver=caregiver_profile, is_viewed=False).update(is_viewed=True)
 
     return render(request, 'notificationindex.html', {'notifications': notifications})
 
@@ -49,3 +51,19 @@ def send_notification(request, icon_id):
     )
 
     return JsonResponse({'message': f'Notification sent to {caregiver.name} for icon: {icon.name}'})
+
+
+def unread_notification_count(request):
+    if request.user.is_authenticated and hasattr(request.user, 'userprofile') and request.user.userprofile.role == 'CG':
+        unread_count = Notification.objects.filter(caregiver=request.user.userprofile, is_viewed=False).count()
+        return JsonResponse({'unread_count': unread_count})
+    return JsonResponse({'error': 'Unauthorized'}, status=403)
+
+
+def delete_notification(request, notification_id):
+    if request.method == "POST" and request.user.is_authenticated:
+        # Get the notification and ensure it belongs to the user
+        notification = get_object_or_404(Notification, id=notification_id, caregiver=request.user.userprofile)
+        notification.delete()
+        return JsonResponse({"success": True, "message": "Notification deleted successfully."})
+    return JsonResponse({"success": False, "message": "Invalid request."}, status=400)
