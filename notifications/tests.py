@@ -4,10 +4,14 @@ from communication.models import Icon
 from notifications.models import Notification
 from django.contrib.auth.models import User
 
+
 class NotificationModelTest(TestCase):
     def setUp(self):
         # Create a caregiver user profile
-        caregiver_user = User.objects.create_user(username='caregiver', password='password123')
+        caregiver_user = User.objects.create_user(
+            username='caregiver',
+            password='password123'
+        )
         self.caregiver = UserProfile.objects.create(
             user=caregiver_user,
             name='Caregiver Test',
@@ -16,7 +20,10 @@ class NotificationModelTest(TestCase):
         )
 
         # Create an end user profile
-        user_user = User.objects.create_user(username='enduser', password='password123')
+        user_user = User.objects.create_user(
+            username='enduser',
+            password='password123'
+        )
         self.end_user = UserProfile.objects.create(
             user=user_user,
             name='End User Test',
@@ -54,6 +61,7 @@ class NotificationModelTest(TestCase):
             icon=self.icon,
             is_sent=True
         )
-        expected_string = f"Notification to {self.caregiver} about {self.icon.name}"
+        caregiver = self.caregiver
+        icon_name = self.icon_name
+        expected_string = f"Notification to {caregiver} about {icon_name}"
         self.assertEqual(str(notification), expected_string)
-

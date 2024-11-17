@@ -2,15 +2,18 @@ from django.db import models
 from accounts.models import UserProfile
 from communication.models import Icon
 
+
 class Notification(models.Model):
     """
-    Represents a notification sent to a caregiver when an event (e.g., icon selection) occurs.
+    Represents a notification sent to a caregiver when an event (e.g., icon
+    selection) occurs.
     """
     caregiver = models.ForeignKey(
         UserProfile,
         on_delete=models.CASCADE,
         related_name="notifications",
-        limit_choices_to={'role': 'CG'},  # Ensure only caregivers receive notifications
+        # Ensure only caregivers receive notifications
+        limit_choices_to={'role': 'CG'},
         help_text="The caregiver receiving the notification."
     )
     user = models.ForeignKey(
@@ -42,4 +45,5 @@ class Notification(models.Model):
     )
 
     def __str__(self):
-        return f"Notification to {self.caregiver} about {self.icon.name if self.icon else 'N/A'}"
+        icon_name = self.icon.name if self.icon else "N/A"
+        return f"Notification to {self.caregiver} about {icon_name}"
