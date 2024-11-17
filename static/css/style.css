@@ -204,6 +204,37 @@ button:focus-visible,
 
 }
 
+
+/* STYLES FOR WHEN ICONS ARE DISABLED  */
+
+.icons-wrapper button[disabled] {
+    background-color: white;
+    color: #000;
+    opacity: 1;
+}
+
+.icons-wrapper button[disabled] + img {
+    opacity: 1;
+}
+
+.icons-wrapper {
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 10px; 
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    color: inherit; 
+    background-color: var(--bs-btn-bg, transparent); 
+    opacity: 1;
+}
+
+/* Ensure <p> inside disabled buttons has a visible color */
+.btn.disabled p, .btn:disabled p {
+    color: #000; 
+    opacity: 1; 
+}
+
 /* TOOLTIP */
 
 .tooltip {
