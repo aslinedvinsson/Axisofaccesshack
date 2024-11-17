@@ -4,6 +4,20 @@
 <div class="container py-4">
     <h2>Your Notifications</h2>
 
+    <!-- Display the assigned end-users -->
+    {% if assigned_endusers %}
+    <div class="alert alert-primary">
+        Notifications for your assigned end-users: 
+        {% for enduser in assigned_endusers %}
+            <strong>{{ enduser }}</strong>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-primary">
+        You current have no assigned End Users, please assign yourslef to one on your <a href="{% url 'user_profile' %}">profile</a> page. 
+    </div>
+    {% endif %}
+
     <!-- Check if there are any notifications -->
     {% if notifications %}
     <div class="list-group">
@@ -15,7 +29,7 @@
                     <p>
                         <strong>User:</strong> {{ notification.user.name }}<br>
                         <strong>Icon:</strong> {{ notification.icon.name }}<br>
-                        <strong>Time:</strong> {{ notification.notified_at|date:"Y-m-d H:i:s" }}
+                        <strong>Time:</strong> {{ notification.time_since }}
                     </p>
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
