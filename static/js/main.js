@@ -49,19 +49,22 @@ document.addEventListener('DOMContentLoaded', function () {
 function iconClicked(button) {
     console.log("Tile clicked:", button);
 
+    // Find the closest wrapper or fallback to the button
+    const container = button.closest('.icons-wrapper') || button;
+
     const allCards = document.querySelectorAll('.icons-wrapper, .icon-tile');
-    const isAlreadyEnlarged = button.classList.contains('enlarged');
+    const isAlreadyEnlarged = container.classList.contains('enlarged');
 
     // Remove "enlarged" class from all cards except the clicked one
     allCards.forEach((card) => {
-        if (card !== button) {
+        if (card !== container) {
             card.classList.remove('enlarged');
         }
     });
 
     // If the card is already enlarged, minimize it (no notification)
     if (isAlreadyEnlarged) {
-        button.classList.remove('enlarged');
+        container.classList.remove('enlarged');
         console.log("Tile minimized: no notification sent.");
         return;
     }
@@ -70,13 +73,14 @@ function iconClicked(button) {
     const beep = new Audio("/static/bell.mp3");
     beep.play();
 
-    button.classList.add('enlarged');
+    container.classList.add('enlarged');
     console.log("Tile expanded: sending notification.");
 
     // Send notification to the server
     const iconId = button.getAttribute('data-icon-id');
     sendNotification(iconId);
 }
+
 
 /**
  * Sends a notification to the server for the specified icon ID.
