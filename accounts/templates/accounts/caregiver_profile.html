@@ -43,8 +43,8 @@
             <div class="col-md-3 text-center mb-4">
                 <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-thumbnail" data-bs-toggle="tooltip" title="Icon image: {{ icon.name }}">
                 <p class="mt-2" data-bs-toggle="tooltip" title="Icon name: {{ icon.name }}">{{ icon.name }}</p>
-                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" title="Edit the icon: {{ icon.name }}" data-bs-target="#editIconModal-{{ icon.id }}">Edit</button>
-                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" title="Delete the icon: {{ icon.name }}" data-bs-target="#deleteIconModal-{{ icon.id }}">Delete</button>
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" title="Edit the icon: {{ icon.name }}" data-bs-target="#editIconModal-{{ icon.id }}"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" title="Delete the icon: {{ icon.name }}" data-bs-target="#deleteIconModal-{{ icon.id }}"><i class="fas fa-trash"></i></button>
                 <form method="POST" action="{% url 'toggle_favorite' icon.id %}" class="d-inline">
                     {% csrf_token %}
                     <button type="submit"
@@ -72,8 +72,8 @@
                 <span>{{ group.name }}</span>
                 <span class="badge bg-secondary" data-bs-toggle="tooltip" title="{{ group.icons.count }} icons in this group">{{ group.icons.count }} icons</span>
                 <div>
-                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" title="Edit the group: {{ group.name }}" data-bs-target="#editGroupModal-{{ group.id }}">Edit</button>
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" title="Delete the group: {{ group.name }}" data-bs-target="#deleteGroupModal-{{ group.id }}">Delete</button>
+                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" title="Edit the group: {{ group.name }}" data-bs-target="#editGroupModal-{{ group.id }}"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" title="Delete the group: {{ group.name }}" data-bs-target="#deleteGroupModal-{{ group.id }}"><i class="fas fa-trash"></i></button>
                 </div>
             </li>
             {% empty %}
