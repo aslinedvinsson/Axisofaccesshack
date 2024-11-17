@@ -10,10 +10,11 @@
             <div class="modal-body">
                 <div class="row">
                     {% for icon in group.active_icons %}
-                    <div class="col-md-4 mb-3">
+                    <div class="icons-wrapper col-md-4 mb-3">
                         <button class="icon-tile btn w-100"
                             {% if user_role == "EU" %}
                             onclick="iconClicked(this)"
+                            data-icon-id="{{ icon.id }}"
                             {% else %}
                             disabled
                             {% endif %}>
@@ -40,10 +41,11 @@
             <div class="modal-body">
                 <div class="row">
                     {% for icon in favorites %}
-                    <div class="col-md-4 mb-3">
+                    <div class="icons-wrapper col-md-4 mb-3">
                         <button class="icon-tile btn w-100"
                             {% if user_role == "EU" %}
                             onclick="iconClicked(this)"
+                            data-icon-id="{{ icon.id }}"
                             {% else %}
                             disabled
                             {% endif %}>
