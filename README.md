@@ -1,11 +1,10 @@
 # ICONic needs
 
-------- Text marked in the begging with dash ------ needs to be checked, if the information is correct or if there needs to be a screen shot added there.
+Code Institute November 2024 Hackathon entry by Axis of Access
 
+[View deployed Heroku site](https://iconicneeds-b9a45ca27cf6.herokuapp.com/)
 
------- add a Am I responsive print screen
-
-![](docs/amiresponsive.png)
+![amiresponsive](static/captures/amiresponsive.png)
 
 **Needs expressed to be heard**
 
