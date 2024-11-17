@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.register, name='register'),
     path('user_profile/', views.user_profile, name='user_profile'),
+    path('manage_end_users/', views.manage_end_users, name='manage_end_users'),
     path('toggle_favorite/<int:icon_id>/', views.toggle_favorite, name='toggle_favorite'),
     
     # Icon Management
