@@ -31,6 +31,7 @@ CSS Variables
 
     /* --body-bg-white: var(--white); */
     --body-bg-black: #222;
+    --main-text-color: var(--white);
 
     --nav-bg: var(--kaki);
     --footer-bg: var(--kaki);
@@ -45,9 +46,15 @@ CSS Variables
     --card-bg: var(--kaki);
     --card-btn-text-color: var(--white);
     --card-btn-bg: var(--purple);
-    --card-btn-hover-bg: var(--maroon);
-    --card-btn-active-bg: var(--purple);
-    --card-a-text-color: var(--blue-links);
+    --card-btn-hover-bg: var(--blue-links);
+    --card-btn-active-text-color: var(--white);
+    --card-btn-active-bg: var(--blue-links);
+
+    --list-group-btn-bg: var(--purple);
+    --list-group-btn-text-color: var(--white);
+    --list-group-btn-hover-bg: var(--blue-links);
+    --list-group-btn-active-text-color: var(--white);
+    --list-group-btn-active-bg: var(--purple);
 
     --fave-btn-bg: var(--purple);
     --fave-btn-glow: var(--fave-glow);
@@ -68,11 +75,14 @@ CSS Variables
 
     --icon-btn-disabled-bg: var(--blue);
     --icon-btn-disabled-text-color: var(--black);
-    
-    --btn-disabled-p-text-color: var(--black);
+
+    --btn-disabled-p-text-color: var(--white);
 
     --modal-icon-tile-bg:var(--blue) ;
-    --modal-icon-tile-text-color: var(--black);
+    --modal-h5-text-color: var(--black);
+
+    --list-group-bg: var(--kaki);
+    --list-group-text-color: var(--black);
 
     --skip-to-main-content-link-bg: var(--white);
     --skip-to-main-content-link-text-color: var(--black);
@@ -114,6 +124,16 @@ p {
     margin: 2em 0; /* Spacing following paragraph at least 2 times the font size */
     letter-spacing: 0.12em; /* Letter spacing at least 0.12 times the font size */
     word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6,
+main p {
+    color: var(--main-text-color);
 }
 
 /* 
@@ -308,9 +328,6 @@ Icons
 .icons-wrapper {
     width: 225px;
     height: auto;
-    /* border: 1px solid #ddd; */
-    /* border-radius: 8px;  */
-    /* padding: 10px; */
 }
 
 .icon-tile {
@@ -321,7 +338,6 @@ Icons
     font-size: xx-large;
     color: var(--icon-tile-text-color);
     background-color: var(--icon-tile-bg);
-    border: 1px solid rgb(1, 0, 32);
     border-radius: 10px;
     padding: 12px;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for transform and shadow */
@@ -345,6 +361,7 @@ Icons
 .icon-tile p {
     margin-top: 12px;
     margin-bottom: 0;
+    /* color: var(--icon-tile-text-color); */
 }
 
 .icon-clicked {
@@ -389,13 +406,15 @@ Cards
     color: var(--card-text-color);
 }
 
+.card h1,
+.card p,
 .card a {
-    color: var(--card-a-text-color);
+    color: var(--card-text-color);
 }
 
 .card .btn {
-    background-color: var(--card-btn-bg);
     color: var(--card-btn-text-color);
+    background-color: var(--card-btn-bg);
     transition: background-color 0.2s ease-in-out-in-out;
 }
 
@@ -405,7 +424,35 @@ Cards
 }
 
 .card .btn:active {
+    color: var(--card-btn-active-text-color);
     background-color: var(--card-btn-active-bg);
+}
+
+/* 
+Notifications
+*/
+
+.list-group-item {
+    background-color: var(--list-group-bg) ;
+}
+
+.list-group-item p {
+    color: var(--list-group-text-color) ;
+}
+
+.list-group-item .btn {
+    color: var(--list-group-btn-text-color);
+    background-color: var(--list-group-btn-bg);
+}
+
+.list-group-item .btn:hover,
+.list-group-item .btn:focus {
+    background-color: var(--list-group-btn-hover-bg);
+}
+
+.list-group-item .btn:active {
+    color: var(--list-group-btn-active-text-color);
+    background-color: var(--list-group-btn-active-bg);
 }
 
 /* 
@@ -418,7 +465,10 @@ Modals
 
 .modal .icon-tile {
     background-color: var(--modal-icon-tile-bg);
-    color: var(--modal-icon-tile-text-color);
+}
+
+.modal h5 {
+    color: var(--modal-h5-text-color);
 }
 
 /*
