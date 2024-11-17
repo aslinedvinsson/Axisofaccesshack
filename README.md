@@ -117,10 +117,15 @@ For user stories and agile work process, please look at the [project's kanban bo
 We have consciously not used blinking or flashing content as it can cause migraines, dizziness, nausea, and seizures. This complies with WCAG  Seizures and Physical Reactions guidlines
 
 ### Colors
- -------- Something about good contrast for accessibility while ensuring the design remains soft enough to be safe for people with epilepsy.......
+We took the help of [Venngage](https://venngage.com/blog/accessible-colors/#examples) to find accessible colors.
+The choosen accessible color palette is dark to light
+
+![](docs/colors.png)
 
 ### Fonts
+-------- add fonts
 
+![](docs/font.png)
 
 ### Typography
 ------**Textspacing** Do we comply?????

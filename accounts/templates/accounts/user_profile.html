@@ -3,19 +3,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 data-bs-toggle="tooltip" title="This is your profile page">End-User Profile</h1>
 
 <div class="text-center mt-3">
-    <h2 data-bs-toggle="tooltip" title="Welcome, {{ user.first_name }} {{ user.last_name }}">
+    <h1 data-bs-toggle="tooltip" title="Welcome, {{ user.first_name }} {{ user.last_name }}">
         Welcome, {{ user.first_name }} {{ user.last_name }}
-    </h2>
+    </h1>
     <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" title="Log out of your account">Log Out</button>
+        <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
+            title="Log out of your account">Log Out</button>
     </form>
     <div class="text-center mt-3">
         {% if user_profile.caregiver %}
-        <p data-bs-toggle="tooltip" title="Your assigned caregiver's name">Your assigned caregiver is: {{ user_profile.caregiver.name }}</p>
+        <p data-bs-toggle="tooltip" title="Your assigned caregiver's name">Your assigned caregiver is: {{
+            user_profile.caregiver.name }}</p>
         {% else %}
         <p data-bs-toggle="tooltip" title="No caregiver has been assigned to your profile">No caregiver assigned.</p>
         {% endif %}
