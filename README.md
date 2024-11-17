@@ -1,6 +1,6 @@
 # ICONic needs
 
-------- Text marked in the begging with dash ------ needs to be checked, if it is correct or if there needs to be a screen shot added there.
+------- Text marked in the begging with dash ------ needs to be checked, if the information is correct or if there needs to be a screen shot added there.
 
 **Needs expressed to be heard**
 
@@ -9,7 +9,7 @@ Our website is designed to give individuals with intellectual disabilities an ea
 The user can quickly and easily communicate their needs to their caregiver. This tool helps both the user and the caregiver have a safer and more efficient daily routine, where the user feels heard and understood.
 
 
-[Link to live site]("link here")
+[Link to live site](https://iconicneeds-b9a45ca27cf6.herokuapp.com/)
 
 ## Features
 
@@ -75,8 +75,8 @@ Anonymous Usage: For individuals who do not want to share personal information, 
 The website is simple and clear, with large, icons representing different needs, such as "hungry," "tired," and "sad." Each icon has a short text to clarify its meaning. The user taps on the icons to express their needs. The design is clean, with large buttons and enough space to prevent mistakes. There is a confirmation sound when an icon is tapped. The colors are contrasting, but still soft and easy to read. Everything is designed to be easy to use with both touch screens and a mouse. The website is also keyboard accessible.
 
 ### Accessability testing
-**WAVE Web Accessibility Evaluation Tools**
-https://wave.webaim.org/
+**[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)**
+
 
 ------screenshot
 
@@ -84,8 +84,8 @@ https://wave.webaim.org/
 
 -------screenshot
 
-**Web Content Accessibility Guidelines (WCAG)**
-https://www.w3.org/TR/WCAG22/
+**[Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG22/)**
+
 We have reviewed parts of the guidelines and can conclude that much more work can be done on the website to make it even more accessible. Due to the limited development time, during a hackathon, we were only able to fulfill some of the requirements. For future improvements, the WCSG will be continuously followed.
 
 Examples of features that needs improvement to meet WCAG:
@@ -95,7 +95,11 @@ Examples of features that needs improvement to meet WCAG:
 - More examples can be found at [features for the future](#features-for-the-future).
 
 ## Design
----------
+The index page, or homepage, displays a set of icons meant to express emotions or activities. If a user does not have an account and is therefore not logged in, they can still click on the icons, triggering a sound signal. This allows the webpage to function in such a way that someone with an intellectual disability can press the icons, and if a caregiver is in the same room, they will hear a signal indicating that the user has expressed a need.
+
+There is a register page where both the user and caregiver can sign up. The user needs to register an account in order to be linked to their caregiver. Beyond this, the user's profile account has no additional features, apart from allowing the user to log out and return to the homepage.
+
+The caregiver's profile page includes functionality to add, delete, mark icons as favorites, and change the names and group affiliations of the icons. On the caregiver's profile page, the linked user is also displayed. When the linked user clicks on an icon, the caregiver receives a notification about which icon was clicked. The notification bell symbol on the caregiver's profile page also indicates if there are unread notifications by displaying a number corresponding to the count of unread notifications.
 
 ### User Stories
 ------ Here I think we only need to show a couple of examples of user stories and then place a link to the kanban board for more reading.
@@ -134,20 +138,59 @@ Word spacing to at least 0.16 times the font size.
 
 </details>
 
-### Custom Models
+### Custom Models and Database design ERD
 The **UserProfile model** manages users with two roles: CareGiver (CG) and EndUser (EU). It links to the User model via a one-to-one relationship and includes common fields like name, email, about, and created_at. The role field distinguishes between CareGivers and EndUsers, with a ForeignKey linking EndUsers to their CareGiver. The model allows CareGivers to manage multiple EndUsers while ensuring clear role-based associations.
+
+| Field Name    | Type           | Constraints                           | Description                                           |
+|---------------|----------------|---------------------------------------|-------------------------------------------------------|
+| id            | Primary Key    | Auto-increment                        | Unique identifier for each record                    |
+| user          | Foreign Key    | Related to AUTH_USER_MODEL            | Links to the user authentication model               |
+| name          | CharField      | Max length 100                        | Name of the user                                      |
+| email         | EmailField     | Unique                                | Email address (unique for each user)                 |
+| role          | CharField      | Choices: `CG` (Caregiver), `EU` (EndUser) | Specifies the role of the user (Caregiver or EndUser)|
+| about         | TextField      | Optional                              | Additional information about the user                |
+| created_at    | DateTimeField  | Auto-set on creation                  | Timestamp when the user profile was created          |
+| caregiver     | Foreign Key    | Nullable, Self-referencing            | References another `UserProfile` as a caregiver      |
+
+**Relationships**
+1. **user**: One-to-One relationship with the Django `AUTH_USER_MODEL`.
+2. **caregiver**: Self-referencing ForeignKey, where a Caregiver (`role=CG`) can have multiple EndUsers (`role=EU`).
 
 The **Group model** represents categories of icons (e.g., "Basic Needs", "Emotions") with a unique name and an optional description.
 
+| Field Name    | Type           | Constraints                           | Description                                           |
+|---------------|----------------|---------------------------------------|-------------------------------------------------------|
+| id            | Primary Key    | Auto-increment                        | Unique identifier for each group                     |
+| caregiver     | Foreign Key    | Related to `UserProfile` (`role=CG`)  | Links to the caregiver who owns the group            |
+| name          | CharField      | Max length 50, Unique                 | Unique name of the group, e.g., "Basic Needs"        |
+| description   | TextField      | Optional                              | Additional description about the group               |
+
+
 The **Icon model** represents icons used by EndUsers to communicate with CareGivers. Caregivers can create and manage icons, each associated with a name, image, and optional group. Icons can be marked as default or active, and are linked to a Group. Only Caregivers can own icons, and the model supports hiding/unhiding icons based on the is_active field.
+
+| Field Name    | Type           | Constraints                           | Description                                           |
+|---------------|----------------|---------------------------------------|-------------------------------------------------------|
+| id            | Primary Key    | Auto-increment                        | Unique identifier for each icon                      |
+| caregiver     | Foreign Key    | Related to `UserProfile` (`role=CG`)  | Links to the caregiver who owns the icon             |
+| name          | CharField      | Max length 100                        | Name of the icon, e.g., "Hungry", "Thirsty"          |
+| image         | CloudinaryField| Required                              | Stores the icon's image in Cloudinary                |
+| is_default    | BooleanField   | Default=False                         | Indicates if the icon is a system default            |
+| is_active     | BooleanField   | Default=True                          | Indicates if the icon is visible to the end user     |
+| is_favorite   | BooleanField   | Default=False                         | Marks if the icon is a favorite                      |
+| group         | Foreign Key    | Nullable, Related to `Group`          | Links the icon to a specific group                   |
+
 
 The **Notification model** represents a notification sent by a CareGiver to a user, linked to an icon. It includes a caregiver (who sends the notification), a user (who receives it), and an icon (representing the type of notification). The model also tracks when the notification was sent (notified_at) and whether it was successfully sent (is_sent).
 
----- more models?
-## Database Design
-### Entity Relationship Diagram
-
-----screenshot
+| Field Name    | Type           | Constraints                           | Description                                           |
+|---------------|----------------|---------------------------------------|-------------------------------------------------------|
+| id            | Primary Key    | Auto-increment                        | Unique identifier for each notification              |
+| caregiver     | Foreign Key    | Related to `UserProfile` (`role=CG`)  | The caregiver receiving the notification             |
+| user          | Foreign Key    | Related to `UserProfile` (`role=EU`)  | The user who triggered the notification              |
+| icon          | Foreign Key    | Nullable, Related to `Icon`           | The icon selected by the user                        |
+| notified_at   | DateTimeField  | Auto-set on creation                  | The time when the notification was created           |
+| is_sent       | BooleanField   | Default=False                         | Whether the notification has been sent               |
+| is_viewed     | BooleanField   | Default=False                         | Whether the notification has been viewed             |
 
 ## Security Features and Defensive Design
 
@@ -187,11 +230,10 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 
 ----screenshot
 
-
 ### Manual Testing
-------- Full manual testing can be seen in [TESTING.md](TESTING.md) file.
+[User Acceptance Testing and Functional Testing](manual_testing.md)
 
-
+------check so the information still is correct in the manual testing.
 ## Bugs/Issues
 ----
 ### Resolved Bugs/Issues
