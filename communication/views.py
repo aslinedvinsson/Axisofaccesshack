@@ -9,24 +9,37 @@ def index(request):
         user_role = request.user.userprofile.role
 
         if user_role == 'EU':  # EndUser role
-            groups = Group.objects.prefetch_related('icons').all()
-            for group in groups:
-                group.active_icons = group.icons.filter(is_active=True)  # Only active icons
-            icons = Icon.objects.filter(is_active=True).order_by('name')
-            favorites = Icon.objects.filter(
-                is_favorite=True, is_active=True, caregiver=request.user.userprofile
-            ).order_by('name')
-        elif user_role == 'CG':  # CareGiver role
-            # Caregivers should see favorited icons for themselves or their end users
+            # Fetch the caregiver assigned to this end user
+            caregiver = request.user.userprofile.caregiver
+
+            if caregiver:
+                # Retrieve icons favorited by the assigned caregiver
+                favorites = Icon.objects.filter(
+                    caregiver=caregiver,
+                    is_favorite=True,
+                    is_active=True
+                ).order_by('name')
+            else:
+                # If no caregiver is assigned, no favorites are shown
+                favorites = Icon.objects.none()
+
             groups = Group.objects.prefetch_related('icons').all()
             for group in groups:
                 group.active_icons = group.icons.filter(is_active=True)  # Only active icons
             icons = Icon.objects.filter(is_active=True).order_by('name')
 
-            # Include favorites for caregiver and their end users
+        elif user_role == 'CG':  # CareGiver role
+            groups = Group.objects.prefetch_related('icons').all()
+            for group in groups:
+                group.active_icons = group.icons.filter(is_active=True)  # Only active icons
+            icons = Icon.objects.filter(is_active=True).order_by('name')
+
+            # Include favorites selected by the caregiver
             favorites = Icon.objects.filter(
-                is_favorite=True, is_active=True,
-            ).filter(caregiver=request.user.userprofile).order_by('name')
+                is_favorite=True,
+                is_active=True,
+                caregiver=request.user.userprofile
+            ).order_by('name')
     else:
         # Unauthenticated users see default icons only
         icons = Icon.objects.filter(is_default=True, is_active=True).order_by('name')
