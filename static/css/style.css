@@ -83,7 +83,7 @@ CSS Variables
 
     --btn-disabled-p-text-color: var(--white);
 
-    --modal-icon-tile-bg:var(--blue) ;
+    --modal-icon-tile-bg: var(--blue);
     --modal-h5-text-color: var(--black);
 
     --list-group-bg: var(--kaki);
@@ -450,11 +450,11 @@ Notifications
 */
 
 .list-group-item {
-    background-color: var(--list-group-bg) ;
+    background-color: var(--list-group-bg);
 }
 
 .list-group-item p {
-    color: var(--list-group-text-color) ;
+    color: var(--list-group-text-color);
 }
 
 .list-group-item .btn {
@@ -544,6 +544,10 @@ footer p {
     background-color: var(--github-links-a-hover-bg);
 }
 
+/*
+Notification bell icon
+*/
+
 .notification-icon {
     position: relative;
 }
@@ -561,6 +565,14 @@ footer p {
     font-weight: bold;
     text-align: center;
     line-height: 15px;
+    display: none;
+}
+
+/*
+Sign in page
+*/
+
+#id_password_helptext {
     display: none;
 }
 
