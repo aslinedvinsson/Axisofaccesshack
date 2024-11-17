@@ -27,6 +27,7 @@ CSS Variables
     --white: whitesmoke;
     --blue: #5396d5;
     --blue-links: rgb(13, 110, 253);
+    --fave-glow: rgba(255, 221, 0, 0.863);
 
     /* --body-bg-white: var(--white); */
     --body-bg-black: #222;
@@ -48,25 +49,33 @@ CSS Variables
     --card-btn-active-bg: var(--purple);
     --card-a-text-color: var(--blue-links);
 
-    --fave-btn-glow: rgba(255, 221, 0, 0.863);
-    --fave-btn-bg: #162b7e;
+    --fave-btn-bg: var(--purple);
+    --fave-btn-glow: var(--fave-glow);
+    --fave-btn-text-color: var(--fave-glow);
 
-    --group-btn-bg: #ede7e0;
-    --group-btn-text-color: #000d3f;
-
-    --group-btn-hover-bg: #000c3d;
-    --group-btn-hover-text-color: #ede7e0;
+    --group-btn-bg: var(--salmon);
+    --group-btn-text-color: var(--black);
+    --group-btn-hover-bg: var(--kaki);
+    --group-btn-hover-text-color: var(--black);
+    --group-btn-active-bg: var(--salmon);
+    --group-btn-active-text-color: var(--black);
 
     --icon-tile-bg: var(--blue);
     --icon-tile-text-color: var(--white);
     --icon-tile-hover-bg: var(--blue-links);
     --icon-tile-hover-text-color: var(--white);
-
     --icon-clicked-bg: #e0f7fa;
+
+    --icon-btn-disabled-bg: var(--blue);
+    --icon-btn-disabled-text-color: var(--black);
+    
+    --btn-disabled-p-text-color: var(--black);
+
+    --modal-icon-tile-bg:var(--blue) ;
+    --modal-icon-tile-text-color: var(--black);
 
     --skip-to-main-content-link-bg: var(--white);
     --skip-to-main-content-link-text-color: var(--black);
-
     --focus-outline-color: #4a90e2;
 
     --github-links-a-border: #96d41b;
@@ -74,6 +83,8 @@ CSS Variables
     --github-links-a-bg: #0e1a01;
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
+
+    --modal-bg: var(--kaki);
 
     /* FONTS */
     --font-roboto: "Roboto", sans-serif;
@@ -205,19 +216,14 @@ button:focus-visible,
 /* STYLES FOR WHEN ICONS ARE DISABLED  */
 
 .icons-wrapper button[disabled] {
-    background-color: white;
-    color: #000;
+    background-color: var(--icon-btn-disabled-bg);
+    color: var(-icon-btn-disabled-text-color);
     opacity: 1;
+    cursor: not-allowed;
 }
 
 .icons-wrapper button[disabled] + img {
     opacity: 1;
-}
-
-.icons-wrapper {
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    padding: 10px; 
 }
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {
@@ -228,7 +234,7 @@ button:focus-visible,
 
 /* Ensure <p> inside disabled buttons has a visible color */
 .btn.disabled p, .btn:disabled p {
-    color: #000; 
+    color: var(--btn-disabled-p-text-color);
     opacity: 1; 
 }
 
@@ -244,17 +250,31 @@ Fave Button
 
 .fave-btn {
     background-color: var(--fave-btn-bg);
-    width: 50%;
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
+
+.fave-btn i {
+    font-size: 1.75rem;
+    color: var(--fave-btn-text-color);
+}
+
 
 .fave-btn:hover {
+    color: var(--fave-btn-glow); /* Stronger internal glow */
+    background-color: var(--fave-btn-bg);
     box-shadow: 0 6px 20px var(--fave-btn-glow);
+    transform: scale(1.20); /* Slight zoom on hover */
 }
 
-.fave-btn i:hover {
-    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-    color: var(--fave-btn-glow); /* Stronger internal glow */
-    transform: scale(1.85); /* Slight zoom on hover */
+.fave-btn:active,
+.fave-btn:focus:active {
+    background-color: var(--fave-btn-bg) !important;
+    box-shadow: 0 2px 10px var(--fave-btn-glow) !important;
+    transform: scale(1.10) !important;
+    border-color: var(--fave-btn-bg) !important;
 }
 
 /*  
@@ -262,13 +282,23 @@ Group Button
 */
 
 .group-btn {
-    background-color: var(--group-btn-bg);
     color: var(--group-btn-text-color);
+    background-color: var(--group-btn-bg);
+    border: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .group-btn:hover {
     color: var(--group-btn-hover-text-color);
     background-color: var(--group-btn-hover-bg);
+}
+
+.group-btn:active,
+.group-btn:focus:active {
+    color: var(--group-btn-active-text-color) !important;
+    background-color: var(--group-btn-active-bg) !important;
+    border-color: var(--group-btn-active-bg) !important;
+    box-shadow: none !important;
 }
 
 /* 
@@ -278,6 +308,9 @@ Icons
 .icons-wrapper {
     width: 225px;
     height: auto;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px;  */
+    /* padding: 10px; */
 }
 
 .icon-tile {
@@ -373,6 +406,19 @@ Cards
 
 .card .btn:active {
     background-color: var(--card-btn-active-bg);
+}
+
+/* 
+Modals
+*/
+
+.modal-content {
+    background-color: var(--modal-bg);
+}
+
+.modal .icon-tile {
+    background-color: var(--modal-icon-tile-bg);
+    color: var(--modal-icon-tile-text-color);
 }
 
 /*
