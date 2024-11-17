@@ -6,8 +6,17 @@
     <!-- Show a message for logged-out users -->
     {% if not user.is_authenticated %}
     <div class="alert alert-info text-center">
-        You are viewing default icons only. <a href="{% url 'account_login' %}">Log in</a> to access custom icons.
+        Please <a href="{% url 'account_login' %}">Log in</a> as either a Care Giver or End User to access the
+        dashboard.
     </div>
+    {% else %}
+    <!-- Show a message for logged-in caregivers -->
+    {% if user.userprofile.role == "CG" %}
+    <div class="alert alert-warning text-center">
+        You are currently logged in as a caregiver. You will be unable to interact with the icons below.
+        You can manage the icons displayed to the enduser in your <a href="{% url 'user_profile' %}">profile</a> page.
+    </div>
+    {% endif %}
     {% endif %}
 
     <!-- Favorites Button (only for logged-in users) -->
@@ -39,10 +48,11 @@
     <!-- Icons Section -->
     <div class="row flex-wrap justify-content-center ">
         {% for icon in icons %}
-
-        <div class="icons-wrapper col-6 col-sm-6 col-md-3 my-3" onclick="iconClicked(this)"
+        <div class="icons-wrapper col-6 col-sm-6 col-md-3 my-3"
+            {% if user.is_authenticated and user.userprofile.role == "EU" %} onclick="iconClicked(this)" {% endif %}
             data-icon-id="{{ icon.id }}">
-            <button class="icon-tile btn">
+            <button class="icon-tile btn" {% if user.is_authenticated and user.userprofile.role == "EU" %} type="button"
+                {% else %} disabled {% endif %}>
                 <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
                 <p class="mt-3">{{ icon.name }}</p>
             </button>
@@ -92,11 +102,11 @@
         console.log("Sending notification to URL:", url);
 
         fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
