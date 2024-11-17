@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseForbidden
+from django.utils.timezone import now
+from datetime import timedelta
 from .models import Icon, Notification
 from accounts.models import UserProfile
 
@@ -7,7 +9,6 @@ def notification_index(request):
     """
     Displays notifications for the logged-in caregiver.
     """
-    # Check if the logged-in user has a UserProfile and is a caregiver
     try:
         caregiver_profile = request.user.userprofile
         if caregiver_profile.role != 'CG':
@@ -15,13 +16,40 @@ def notification_index(request):
     except AttributeError:
         return JsonResponse({'error': 'User profile not found.'}, status=403)
 
-    # Get notifications for this caregiver
+    # Fetch notifications for this caregiver
     notifications = Notification.objects.filter(caregiver=caregiver_profile).order_by('-notified_at')
+    
+    # Add human-readable time to each notification
+    for notification in notifications:
+        notification.time_since = time_since(notification.notified_at)
+
     # Mark all notifications as viewed
     Notification.objects.filter(caregiver=caregiver_profile, is_viewed=False).update(is_viewed=True)
 
-    return render(request, 'notificationindex.html', {'notifications': notifications})
+    # Fetch distinct end-users directly from the caregiver's profile
+    assigned_endusers = caregiver_profile.end_users.values_list('name', flat=True).distinct()
 
+    return render(request, 'notificationindex.html', {
+        'notifications': notifications,
+        'assigned_endusers': assigned_endusers,
+    })
+
+
+def time_since(notification_time):
+    """
+    Returns a human-readable string for time differences.
+    """
+    diff = now() - notification_time
+    seconds = diff.total_seconds()
+    if seconds < 60:
+        return "less than a minute ago"
+    elif seconds < 3600:
+        return f"{int(seconds // 60)} minutes ago"
+    elif seconds < 86400:
+        return f"{int(seconds // 3600)} hours ago"
+    else:
+        days = int(seconds // 86400)
+        return f"{days} day{'s' if days > 1 else ''} ago"
 
 def send_notification(request, icon_id):
     """
