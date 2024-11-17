@@ -16,16 +16,11 @@ CSS Variables
     /* COLORS */
 
     /* Color Scheme #1 */
-    --purple: #570276;
-    /* with white text */
-    --maroon: #9c0643;
-    /* with white text */
-    --red: #c3170c;
-    /* with white text */
-    --salmon: #ce805d;
-    /* with black text */
-    --kaki: #d9c98e;
-    /* with black text */
+    --purple: #570276;  /* with white text */
+    --maroon: #9c0643; /* with white text */
+    --red: #c3170c; /* with white text */
+    --salmon: #ce805d; /* with black text */
+    --kaki: #d9c98e; /* with black text */
 
     /* General Colors */
     --black: #000;
@@ -46,6 +41,22 @@ CSS Variables
     --logo-iconic-text-color: var(--purple);
     --logo-needs-text-color: var(--purple);
     --nav-link-hover-text-color: var(--purple);
+
+    --footer-text-color: var(--black);
+
+    --landing-login-text-color: var(--white);
+    --landing-login-bg: var(--purple);
+    --landing-login-hover-text-color: var(--white);
+    --landing-login-hover-bg: var(--blue-links);
+    --landing-login-active-text-color: var(--white);
+    --landing-login-active-bg: var(--purple);
+
+    --landing-register-text-color: var(--black);
+    --landing-register-bg: var(--kaki);
+    --landing-register-hover-text-color: var(--black);
+    --landing-register-hover-bg: var(--salmon);
+    --landing-register-active-text-color: var(--white);
+    --landing-register-active-bg: var();
 
     --card-text-color: var(--black);
     --card-bg: var(--kaki);
@@ -97,6 +108,7 @@ CSS Variables
 
     --btn-disabled-p-text-color: var(--white);
 
+    --modal-bg: var(--kaki);
     --modal-icon-tile-bg:var(--blue) ;
     --modal-text-color: var(--black);
     --modal-save-btn-text-color: var(--white);
@@ -112,13 +124,13 @@ CSS Variables
     --skip-to-main-content-link-text-color: var(--black);
     --focus-outline-color: #4a90e2;
 
-    --github-links-a-border: #96d41b;
-    --github-links-a-text-color: #96d41b;
-    --github-links-a-bg: #0e1a01;
+    --github-links-a-bg: var(--purple);
+    --github-links-a-border: var(--salmon);
+    --github-links-a-text-color: var(--kaki);
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
 
-    --modal-bg: var(--kaki);
+   
 
     /* FONTS */
     --font-roboto: "Roboto", sans-serif;
@@ -185,6 +197,13 @@ main p {
 .home-btn:focus:active {
     color: var(--home-btn-active-text-color);
     background-color: var(--home-btn-active-bg);
+}
+
+/* TOOLTIP */
+
+.tooltip {
+    pointer-events: none; /* Prevent tooltips from capturing mouse events */
+    
 }
 
 /* 
@@ -288,7 +307,9 @@ button:focus-visible,
 
 }
 
-/* STYLES FOR LANDING PAGE/UNAUTHORISED IN USERS */
+/*
+STYLES FOR LANDING PAGE/UNAUTHORISED IN USERS 
+*/
 
 /* Background image for unauthenticated users */
 .unauthenticated-background {
@@ -318,7 +339,9 @@ button:focus-visible,
     color: white;
 }
 
-/* STYLES FOR WHEN ICONS ARE DISABLED  */
+/*
+STYLES FOR WHEN ICONS ARE DISABLED 
+*/
 
 .icons-wrapper button[disabled] {
     background-color: var(--icon-btn-disabled-bg);
@@ -346,11 +369,40 @@ fieldset:disabled .btn {
     opacity: 1;
 }
 
-/* TOOLTIP */
+.landing-login {
+    color: var(--landing-login-text-color);
+    background-color: var(--landing-login-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
 
-.tooltip {
-    pointer-events: none;
-    /* Prevent tooltips from capturing mouse events */
+.landing-login:hover,
+.landing-login:focus {
+    color: var(--landing-login-hover-text-color);
+    background-color: var(--landing-login-hover-bg);
+}
+
+.landing-login:active,
+.landing-login:focus:active {
+    color: var(--landing-login-active-text-color);
+    background-color: var(--landing-login-active-bg);
+}
+
+.landing-register {
+    color: var(--landing-register-text-color);
+    background-color: var(--landing-register-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.landing-register:hover,
+.landing-register:focus {
+    color: var(--landing-register-hover-text-color);
+    background-color: var(--landing-register-hover-bg);
+}
+
+.landing-register:active,
+.landing-register:focus:active {
+    color: var(--landing-register-active-text-color);
+    background-color: var(--landing-register-active-bg);
 }
 
 /*
@@ -431,8 +483,8 @@ Icons
     background-color: var(--icon-tile-bg);
     border-radius: 10px;
     padding: 12px;
-    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    /* Smooth transition for transform and shadow */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for transform and shadow */
+    
 }
 
 .icon-tile:hover,
@@ -447,14 +499,14 @@ Icons
     max-width: 100%;
     height: auto;
     transition: transform 0.2s ease-in-out;
-    border-radius: 10px;
-    /* Added smooth scaling for enlarged state */
+    border-radius: 10px; /* Added smooth scaling for enlarged state */
+    
 }
 
 .icon-tile p {
     margin-top: 12px;
-    margin-bottom: 0;
-    /* color: var(--icon-tile-text-color); */
+    margin-bottom: 0; /* color: var(--icon-tile-text-color); */
+    
 }
 
 .icon-clicked {
@@ -539,7 +591,6 @@ Caregiver Profile Page
 
 #caregiver-profile .manage-users-btn:active,
 #caregiver-profile .manage-users-btn:focus:active {
-    /* color: var(--manage-users-btn-active-text-color); */
     background-color: var(--manage-users-btn-active-bg);
 }
 
@@ -644,45 +695,31 @@ footer {
     padding: 16px;
     /* Center content vertically */
     text-align: center;
+    color: var(--footer-text-color);
 }
-
-
-footer p {
-    color: #000;
-}
-
 
 .github-links {
     display: flex;
-    flex-wrap: wrap;
-    /* Allow links to wrap if they don’t fit */
-    justify-content: center;
-    /* Center links horizontally */
-    gap: 8px;
-    /* Add space between links */
+    flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
+    justify-content: center; /* Center links horizontally */
+    gap: 8px; /* Add space between links */
 }
 
 
 .github-links a {
-    margin: 0;
-    /* Reset margins (gap handles spacing) */
-    padding: 8px 16px;
-    /* Add padding for a clickable area */
+    margin: 0; /* Reset margins (gap handles spacing) */
+    padding: 8px 16px; /* Add padding for a clickable area */
     text-decoration: none;
     opacity: 0.5;
-    display: inline-block;
-    /* Ensure links behave like blocks */
+    display: inline-block; /* Ensure links behave like blocks */
     border-radius: 4px;
-    background-color: var(--github-links-a-bg);
-    /* Add border for visibility */
+    background-color: var(--github-links-a-bg); /* Add border for visibility */
     border: 1px solid var(--github-links-a-border);
     color: var(--github-links-a-text-color);
 }
 
 .github-links a:hover {
     opacity: 1;
-    color: var(--github-links-a-hover-text-color);
-    background-color: var(--github-links-a-hover-bg);
 }
 
 /*
@@ -720,15 +757,12 @@ Sign in page
 /* Media query for small screens */
 @media screen and (min-width: 576px) {
     .github-links {
-        flex-direction: row;
-        /* Links stay in a row */
+        flex-direction: row; /* Links stay in a row */
     }
 
     .github-links a {
-        flex: 1 1 auto;
-        /* Links shrink or grow evenly */
-        text-align: center;
-        /* Center the text inside each link */
+        flex: 1 1 auto; /* Links shrink or grow evenly */
+        text-align: center;  /* Center the text inside each link */
     }
 
 }
