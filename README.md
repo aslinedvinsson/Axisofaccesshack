@@ -85,7 +85,10 @@ The website is simple and clear, with large, icons representing different needs,
 
 **Lihthouse**
 
--------add screenshot
+![Lighthouse Desktop](static/images/lighthouse_desktop.png)
+![Lighthouse Mbile](static/images/lighthouse_mobile.png)
+
+
 <details>
     <summary>Lighthoues</summary>
     <img src="docs/test/xxxx.png">
