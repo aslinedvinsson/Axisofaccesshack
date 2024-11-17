@@ -11,7 +11,12 @@
                 <div class="row">
                     {% for icon in group.active_icons %}
                     <div class="col-md-4 mb-3">
-                        <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)">
+                        <button class="icon-tile btn btn-light w-100"
+                            {% if user_role == "EU" %}
+                            onclick="iconClicked(this)"
+                            {% else %}
+                            disabled
+                            {% endif %}>
                             <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
                             <p class="mt-2">{{ icon.name }}</p>
                         </button>
@@ -36,7 +41,12 @@
                 <div class="row">
                     {% for icon in favorites %}
                     <div class="col-md-4 mb-3">
-                        <button class="icon-tile btn btn-light w-100" onclick="iconClicked(this)">
+                        <button class="icon-tile btn btn-light w-100"
+                            {% if user_role == "EU" %}
+                            onclick="iconClicked(this)"
+                            {% else %}
+                            disabled
+                            {% endif %}>
                             <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
                             <p class="mt-2">{{ icon.name }}</p>
                         </button>
