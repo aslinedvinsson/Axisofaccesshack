@@ -64,6 +64,7 @@ def user_profile(request):
         caregiver_icons = Icon.objects.filter(caregiver=user_profile)  # Get the caregiver's icons
         caregiver_groups = Group.objects.filter(caregiver=user_profile)  # Get the caregiver's groups
         assigned_end_users = user_profile.end_users.all()  # Get the end users assigned to this caregiver
+        unassigned_end_users = UserProfile.objects.filter(role='EU', caregiver__isnull=True)  # Unassigned users
 
         # Attach a form to each icon and group
         for icon in caregiver_icons:
@@ -82,6 +83,7 @@ def user_profile(request):
             'caregiver_icons': caregiver_icons,
             'caregiver_groups': caregiver_groups,
             'assigned_end_users': assigned_end_users,
+            'unassigned_end_users': unassigned_end_users,  # Pass unassigned users
             'icon_form': icon_form,  # For adding new icons
             'group_form': group_form,  # For adding new groups
         })
@@ -90,6 +92,46 @@ def user_profile(request):
         return render(request, 'accounts/user_profile.html', {
             'user_profile': user_profile,
         })
+
+
+@login_required
+def manage_end_users(request):
+    user_profile = request.user.userprofile
+
+    if user_profile.role == 'CG':
+        if request.method == 'POST':
+            # Get selected end users from the form
+            selected_end_user_ids = request.POST.getlist('end_users')
+
+            # Fetch all end users assigned to this caregiver
+            current_end_users = user_profile.end_users.all()
+
+            # Remove end users that were unselected
+            for end_user in current_end_users:
+                if str(end_user.id) not in selected_end_user_ids:
+                    end_user.caregiver = None
+                    end_user.save()
+
+            # Assign new end users
+            for end_user_id in selected_end_user_ids:
+                end_user = UserProfile.objects.get(id=end_user_id)
+                if end_user.caregiver != user_profile:
+                    end_user.caregiver = user_profile
+                    end_user.save()
+
+            return redirect('user_profile')
+
+        # For GET request, render the modal data
+        unassigned_end_users = UserProfile.objects.filter(role='EU', caregiver__isnull=True)
+        assigned_end_users = user_profile.end_users.all()
+        print("Unassigned End Users in View:", unassigned_end_users)
+
+        return render(request, 'accounts/caregiver_profile.html', {
+            'assigned_end_users': assigned_end_users,
+            'unassigned_end_users': unassigned_end_users,
+        })
+
+    return redirect('user_profile')
 
 
 @login_required

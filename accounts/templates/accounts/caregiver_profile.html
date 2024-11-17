@@ -8,24 +8,33 @@
 
     <!-- Caregiver Name Section -->
     <div class="text-center mt-3">
-        <h2 data-bs-toggle="tooltip" title="Welcome, {{ user.first_name }} {{ user.last_name }}">Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+        <h2 data-bs-toggle="tooltip" title="Welcome, {{ user.first_name }} {{ user.last_name }}">Welcome,
+            {{ user.first_name }} {{ user.last_name }}</h2>
         <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" title="Log out of your account">Log Out</button>
+            <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
+                title="Log out of your account">Log Out</button>
         </form>
     </div>
 
     {% if user_profile.role == 'CG' %}
+    <!-- Button to trigger modal -->
+    <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#manageEndUsersModal">
+        Manage End Users
+    </button>
+
     <!-- Assigned End Users Section -->
     <div class="mt-4">
         <h3 data-bs-toggle="tooltip" title="List of end users assigned to you">Assigned End Users</h3>
         <ul class="list-group">
             {% for end_user in assigned_end_users %}
-            <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="tooltip" title="Email: {{ end_user.email }}">
-                {{ end_user.name }} ({{ end_user.email }})
+            <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="tooltip"
+                title="Email: {{ end_user.email }}">
+                {{ end_user.name }}
             </li>
             {% empty %}
-            <li class="list-group-item" data-bs-toggle="tooltip" title="No users assigned to you">No end users assigned.</li>
+            <li class="list-group-item" data-bs-toggle="tooltip" title="No users assigned to you">No end users assigned.
+            </li>
             {% endfor %}
         </ul>
     </div>
@@ -35,27 +44,33 @@
     <!-- Icon Management Section -->
     <div class="mt-5">
         <h3 data-bs-toggle="tooltip" title="Manage your personal icons">Manage Your Icons</h3>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new icon" data-bs-target="#addIconModal">
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new icon"
+            data-bs-target="#addIconModal">
             <i class="fas fa-plus"></i>
         </button>
         <div class="row">
             {% for icon in caregiver_icons %}
             <div class="col-md-3 text-center mb-4">
-                <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-thumbnail" data-bs-toggle="tooltip" title="Icon image: {{ icon.name }}">
+                <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-thumbnail" data-bs-toggle="tooltip"
+                    title="Icon image: {{ icon.name }}">
                 <p class="mt-2" data-bs-toggle="tooltip" title="Icon name: {{ icon.name }}">{{ icon.name }}</p>
-                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" title="Edit the icon: {{ icon.name }}" data-bs-target="#editIconModal-{{ icon.id }}">Edit</button>
-                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" title="Delete the icon: {{ icon.name }}" data-bs-target="#deleteIconModal-{{ icon.id }}">Delete</button>
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" title="Edit the icon: {{ icon.name }}"
+                    data-bs-target="#editIconModal-{{ icon.id }}"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" title="Delete the icon: {{ icon.name }}"
+                    data-bs-target="#deleteIconModal-{{ icon.id }}"><i class="fas fa-trash"></i></button>
                 <form method="POST" action="{% url 'toggle_favorite' icon.id %}" class="d-inline">
                     {% csrf_token %}
                     <button type="submit"
                         class="btn btn-sm {% if icon.is_favorite %}btn-success{% else %}btn-outline-secondary{% endif %}"
-                        data-bs-toggle="tooltip" title="{% if icon.is_favorite %}Unfavorite this icon{% else %}Mark this icon as favorite{% endif %}">
+                        data-bs-toggle="tooltip"
+                        title="{% if icon.is_favorite %}Unfavorite this icon{% else %}Mark this icon as favorite{% endif %}">
                         {% if icon.is_favorite %}Unfavorite{% else %}Favorite{% endif %}
                     </button>
                 </form>
             </div>
             {% empty %}
-            <p data-bs-toggle="tooltip" title="No icons added yet. Start by creating one.">No icons available. Add one to get started.</p>
+            <p data-bs-toggle="tooltip" title="No icons added yet. Start by creating one.">No icons available. Add one
+                to get started.</p>
             {% endfor %}
         </div>
     </div>
@@ -63,21 +78,29 @@
     <!-- Groups Management Section -->
     <div class="mt-5">
         <h3 data-bs-toggle="tooltip" title="Manage your groups">Manage Groups</h3>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new group" data-bs-target="#addGroupModal">
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" title="Add a new group"
+            data-bs-target="#addGroupModal">
             <i class="fas fa-plus"></i>
         </button>
         <ul class="list-group">
             {% for group in caregiver_groups %}
-            <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="tooltip" title="Group: {{ group.name }}">
+            <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="tooltip"
+                title="Group: {{ group.name }}">
                 <span>{{ group.name }}</span>
-                <span class="badge bg-secondary" data-bs-toggle="tooltip" title="{{ group.icons.count }} icons in this group">{{ group.icons.count }} icons</span>
+                <span class="badge bg-secondary" data-bs-toggle="tooltip"
+                    title="{{ group.icons.count }} icons in this group">{{ group.icons.count }} icons</span>
                 <div>
-                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" title="Edit the group: {{ group.name }}" data-bs-target="#editGroupModal-{{ group.id }}">Edit</button>
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" title="Delete the group: {{ group.name }}" data-bs-target="#deleteGroupModal-{{ group.id }}">Delete</button>
+                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                        title="Edit the group: {{ group.name }}" data-bs-target="#editGroupModal-{{ group.id }}"><i
+                            class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                        title="Delete the group: {{ group.name }}" data-bs-target="#deleteGroupModal-{{ group.id }}"><i
+                            class="fas fa-trash"></i></button>
                 </div>
             </li>
             {% empty %}
-            <li class="list-group-item" data-bs-toggle="tooltip" title="No groups added yet. Start by creating one.">No groups available. Add one to get started.</li>
+            <li class="list-group-item" data-bs-toggle="tooltip" title="No groups added yet. Start by creating one.">No
+                groups available. Add one to get started.</li>
             {% endfor %}
         </ul>
     </div>
