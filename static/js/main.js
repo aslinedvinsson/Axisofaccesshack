@@ -67,7 +67,7 @@ function iconClicked(button) {
     }
 
     // Enlarge the clicked card and send a notification
-    const beep = new Audio("{% static 'bell.mp3' %}");
+    const beep = new Audio("/static/bell.mp3");
     beep.play();
 
     button.classList.add('enlarged');
