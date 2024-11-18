@@ -685,17 +685,8 @@ Footer
 */
 
 footer {
-    background-color: var(--footer-bg);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* Allow wrapping for responsiveness */
-    align-items: center;
-    /* Center content horizontally */
-    padding: 16px;
-    /* Center content vertically */
-    text-align: center;
     color: var(--footer-text-color);
+    background-color: var(--footer-bg);
 }
 
 .github-links {
@@ -703,6 +694,8 @@ footer {
     flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
     justify-content: center; /* Center links horizontally */
     gap: 8px; /* Add space between links */
+    max-width: 75%;
+    margin: 0 auto;
 }
 
 
@@ -764,7 +757,12 @@ Sign in page
         flex: 1 1 auto; /* Links shrink or grow evenly */
         text-align: center;  /* Center the text inside each link */
     }
+}
 
+@media screen and (max-width: 992px) {
+    .github-links :nth-child(4) {
+        order: 1;
+    }
 }
 
 @media (min-width: 992px) {
