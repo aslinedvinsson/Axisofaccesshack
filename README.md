@@ -83,7 +83,7 @@ The website is simple and clear, with large, icons representing different needs,
         <img src="docs/test/xxxx.png">
 </details>
 
-**Lihthouse**
+**Lighthouse**
 
 ![Lighthouse Desktop](static/images/lighthouse_desktop.png)
 ![Lighthouse Mbile](static/images/lighthouse_mobile.png)
@@ -239,7 +239,17 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### Lighthouse Score
 **Lighthouse**: Google Lighthouse is a web performance and SEO auditing tool that analyzes web pages, providing detailed reports and recommendations for improving page speed, accessibility, and user experience. [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
 
-----add screenshot
+#### SignIn page
+![](static/images/signInPage_desktop.png)
+![](static/images/signInPage_mobile.png)
+
+#### SignUp page
+![](static/images/signUp_desktop.png)
+![](static/images/signInPage_mobile.png)
+
+#### First page
+![](static/images/firstPage_desktop.png)
+![](static/images/firstPage_mobile.png)
 
 ![](docs/test/xxx.png)
 
@@ -300,9 +310,9 @@ The only errors came from Bootstrap's tooltip initializer and from ES6 syntax.
 ------check so the information still is correct in the manual testing.
 
 ## Bugs/Issues
----- any?
+- Paths in the `urls.py` files of the **Notification** and **Communication** apps had the same name `'index'`, causing conflicts in link resolution.
 ### Resolved Bugs/Issues
----- any?
+- The paths in the `urls.py` files were renamed to different names to avoid conflicts.
 ### Unresolved Bugs/Issues
 ----- any?
 ## Deployment
