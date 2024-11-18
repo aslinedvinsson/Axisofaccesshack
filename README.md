@@ -256,11 +256,15 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### HTML Validator
 **HTML Validation Service**: A tool to check the markup validity of Ib documents in HTML. [HTML Validation](https://validator.w3.org/)
 
-| Template tested | Test result |
-| :-------------: | :---------: |
-| Landing page    | Pass        |
-| Log in page     | Pass        |
-| Sign up page    | Pass        |
+| Template tested     | Test result |
+| :-----------------: | :---------: |
+| Landing page        | Pass        |
+| Log in page         | Pass        |
+| Sign up page        | Pass        |
+| User dashboard      | Pass        |
+| User profile        | Pass        |
+| Carer dashboard     | Pass        |
+| Carer notifications | Pass        |
 
 ### CSS Validator
 **CSS Validation Service**: A service to check the validity of Cascading Style Sheets (CSS). [CSS Validation](https://jigsaw.w3.org/css-validator/)
