@@ -6,8 +6,8 @@
     <!-- Unauthenticated Overlay -->
     {% if not user.is_authenticated %}
     <div class="unauthenticated-overlay d-flex flex-column justify-content-center align-items-center text-center">
-        <h2 class="text-white mb-3">Welcome to ICONic Needs!</h2>
-        <p class="text-white mb-4">
+        <h2 class="text-white mb-1">Welcome to ICONic Needs!</h2>
+        <p class="text-white mb-5 w-50">
             Discover a platform designed for easy communication. Log in or sign up to explore more.
         </p>
         <div>
@@ -29,10 +29,9 @@
 
     <!-- Favorites Button -->
     <div class="text-center mb-1 mt-4">
-        <button type="button" class="btn fave-btn" data-bs-toggle="modal" data-bs-target="#favoritesModal" 
-    aria-label="Add to Favorites" title="Add to Favorites">
-    <i class="fas fa-star"></i>
-</button>
+    <button type="button" class="btn fave-btn" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+        <i class="fas fa-star"></i> Add to Favorites
+    </button>
 </div>
 
 
@@ -61,7 +60,7 @@
             <button class="icon-tile btn" {% if user.is_authenticated and user.userprofile.role == "EU" %} type="button"
                 {% else %} disabled {% endif %}>
                 <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
-                <span class="mt-3 d-block">{{ icon.name }}</span>
+                <p class="mt-3">{{ icon.name }}</p>
             </button>
         </div>
         {% endfor %}
