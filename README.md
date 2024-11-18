@@ -315,9 +315,9 @@ The only errors came from Bootstrap's tooltip initializer and from ES6 syntax.
 
 ## Bugs/Issues
 - Paths in the `urls.py` files of the **Notification** and **Communication** apps had the same name `'index'`, causing conflicts in link resolution.
-- Currently only super user who has user Profile as care giver gets notificationn from end users.But a Care Giver whose profile is created from the website and has been assigned an end user doesn't get any notification. 
 ### Resolved Bugs/Issues
 - The paths in the `urls.py` files were renamed to different names to avoid conflicts.
+- Currently only super user who has user Profile as care giver gets notificationn from end users.But a Care Giver whose profile is created from the website and has been assigned an end user doesn't get any notification.  This issue is fixed.
 ### Unresolved Bugs/Issues
 ----- any?
 ## Deployment
