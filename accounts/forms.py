@@ -44,6 +44,13 @@ class IconForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'group': forms.Select(attrs={'class': 'form-select'}),
         }
+    
+    def __init__(self, *args, prefix=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if prefix:
+            # Update all field widget IDs to include the prefix
+            for field_name, field in self.fields.items():
+                field.widget.attrs['id'] = f"{prefix}_{field_name}"
 
 
 class GroupForm(forms.ModelForm):
@@ -54,3 +61,9 @@ class GroupForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
         }
+    
+    def __init__(self, *args, prefix=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if prefix:
+            for field_name, field in self.fields.items():
+                field.widget.attrs['id'] = f"{prefix}_{field_name}"
