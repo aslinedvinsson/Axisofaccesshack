@@ -79,7 +79,8 @@ def send_notification(request, icon_id):
     icon = get_object_or_404(Icon, id=icon_id, is_active=True)
 
     # Get the caregiver associated with the icon
-    caregiver = icon.caregiver
+    caregiver = user_profile.caregiver
+
     if not caregiver:
         return JsonResponse(
             {'error': 'This icon is not associated with a caregiver.'},
