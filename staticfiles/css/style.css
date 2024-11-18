@@ -14,48 +14,123 @@ CSS Variables
 
 :root {
     /* COLORS */
-    --white: whitesmoke;
+
+    /* Color Scheme #1 */
+    --purple: #570276;  /* with white text */
+    --maroon: #9c0643; /* with white text */
+    --red: #c3170c; /* with white text */
+    --salmon: #ce805d; /* with black text */
+    --kaki: #d9c98e; /* with black text */
+
+    /* General Colors */
     --black: #000;
+    --white: whitesmoke;
     --blue: #5396d5;
-    --orange: #e0724f;
-    --green: #00a993;
+    --blue-links: rgb(13, 110, 253);
+    --fave-glow: rgba(255, 221, 0, 0.863);
 
     /* --body-bg-white: var(--white); */
     --body-bg-black: #222;
+    --main-text-color: var(--white);
 
-    --fave-btn-glow: rgba(255, 221, 0, 0.863);
-    --fave-btn-bg: #162b7e;
+    --nav-bg: var(--kaki);
+    --footer-bg: var(--kaki);
 
-    --group-btn-bg: #ede7e0;
-    --group-btn-text-color: #000d3f;
+    --nav-link-text-color: var(--black);
+    --nav-logo-chat-bubble-color: var(--purple);
+    --logo-iconic-text-color: var(--purple);
+    --logo-needs-text-color: var(--purple);
+    --nav-link-hover-text-color: var(--purple);
 
-    --group-btn-hover-bg: #000c3d;
-    --group-btn-hover-text-color: #ede7e0;
+    --footer-text-color: var(--black);
 
-    --icon-title-bg: var(--blue);
-    --icon-title-text-color: var(--white);
+    --landing-login-text-color: var(--white);
+    --landing-login-bg: var(--purple);
+    --landing-login-hover-text-color: var(--white);
+    --landing-login-hover-bg: var(--blue-links);
+    --landing-login-active-text-color: var(--white);
+    --landing-login-active-bg: var(--purple);
 
-    --icon-title-hover-bg: #2372bc;
-    --icon-title-hover-text-color: var(--white);
+    --landing-register-text-color: var(--black);
+    --landing-register-bg: var(--kaki);
+    --landing-register-hover-text-color: var(--black);
+    --landing-register-hover-bg: var(--salmon);
+    --landing-register-active-text-color: var(--white);
+    --landing-register-active-bg: var();
 
+    --card-text-color: var(--black);
+    --card-bg: var(--kaki);
+    --card-btn-text-color: var(--white);
+    --card-btn-bg: var(--purple);
+    --card-btn-hover-bg: var(--blue-links);
+    --card-btn-active-text-color: var(--white);
+    --card-btn-active-bg: var(--blue-links);
+
+    --list-group-btn-bg: var(--purple);
+    --list-group-btn-text-color: var(--white);
+    --list-group-btn-hover-bg: var(--blue-links);
+    --list-group-btn-active-text-color: var(--white);
+    --list-group-btn-active-bg: var(--purple);
+
+    --manage-users-btn-text-color: var(--white);
+    --manage-users-btn-bg: var(--purple);
+    --manage-users-btn-hover-bg: var(--blue-links);
+    --manage-users-btn-active-bg: var(--purple);
+
+    --home-btn-text-color: var(--white);
+    --home-btn-bg: var(--purple);
+    --home-btn-hover-text-color: var(--white);
+    --home-btn-hover-bg: var(--blue-links);
+    --home-btn-active-text-color: var(--white);
+    --home-btn-active-bg: var(--purple);
+
+    --img-thumbnail-bg: var(--blue);
+
+    --fave-btn-bg: var(--purple);
+    --fave-btn-glow: var(--fave-glow);
+    --fave-btn-text-color: var(--fave-glow);
+
+    --group-btn-bg: var(--salmon);
+    --group-btn-text-color: var(--black);
+    --group-btn-hover-bg: var(--kaki);
+    --group-btn-hover-text-color: var(--black);
+    --group-btn-active-bg: var(--salmon);
+    --group-btn-active-text-color: var(--black);
+
+    --icon-tile-bg: var(--blue);
+    --icon-tile-text-color: var(--white);
+    --icon-tile-hover-bg: var(--blue-links);
+    --icon-tile-hover-text-color: var(--white);
     --icon-clicked-bg: #e0f7fa;
+
+    --icon-btn-disabled-bg: var(--blue);
+    --icon-btn-disabled-text-color: var(--black);
+
+    --btn-disabled-p-text-color: var(--white);
+
+    --modal-bg: var(--kaki);
+    --modal-icon-tile-bg:var(--blue) ;
+    --modal-text-color: var(--black);
+    --modal-save-btn-text-color: var(--white);
+    --modal-save-btn-bg: var(--purple);
+    --modal-save-btn-hover-bg: var(--blue-links);
+    --modal-save-btn-active-text-color: var(--white);
+    --modal-save-btn-active-bg: var(--purple);
+
+    --list-group-bg: var(--kaki);
+    --list-group-text-color: var(--black);
 
     --skip-to-main-content-link-bg: var(--white);
     --skip-to-main-content-link-text-color: var(--black);
-
     --focus-outline-color: #4a90e2;
 
-    --nav-link-text-color: #2c3e50;
-
-    --card-btn-hover: #de4f24;
-    
-    --footer-bg: var(--blue);
-
-    --github-links-a-border: #96d41b;
-    --github-links-a-text-color: #96d41b;
-    --github-links-a-bg: #0e1a01;
+    --github-links-a-bg: var(--purple);
+    --github-links-a-border: var(--salmon);
+    --github-links-a-text-color: var(--kaki);
     --github-links-a-hover-text-color: var(--white);
     --github-links-a-hover-bg: #4f6b16;
+
+   
 
     /* FONTS */
     --font-roboto: "Roboto", sans-serif;
@@ -75,16 +150,60 @@ body {
     background-color: var(--body-bg-black);
 
     /* --- WCAG Guidelines --- */
-    line-height: 1.5em; /* Line height at least 1.5 times the font size */
+    line-height: 1.5em;
+    /* Line height at least 1.5 times the font size */
 }
 
 p {
     font-size: 16px;
 
     /* --- WCAG Guidelines --- */
-    margin: 2em 0; /* Spacing following paragraph at least 2 times the font size */
-    letter-spacing: 0.12em; /* Letter spacing at least 0.12 times the font size */
-    word-spacing: 0.16em; /* Word spacing at least 0.16 times the font size */
+    margin: 2em 0;
+    /* Spacing following paragraph at least 2 times the font size */
+    letter-spacing: 0.12em;
+    /* Letter spacing at least 0.12 times the font size */
+    word-spacing: 0.16em;
+    /* Word spacing at least 0.16 times the font size */
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6,
+main p {
+    color: var(--main-text-color);
+}
+
+.home-btn {
+    color: var(--home-btn-text-color);
+    background-color: var(--home-btn-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.home-btn svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.home-btn:hover,
+.home-btn:focus {
+    color: var(--home-btn-hover-text-color);
+    background-color: var(--home-btn-hover-bg);
+}
+
+.home-btn:active,
+.home-btn:focus:active {
+    color: var(--home-btn-active-text-color);
+    background-color: var(--home-btn-active-bg);
+}
+
+/* TOOLTIP */
+
+.tooltip {
+    pointer-events: none; /* Prevent tooltips from capturing mouse events */
+    
 }
 
 /* 
@@ -92,22 +211,41 @@ Navbar
 */
 
 .navbar {
-    background-color: var(--orange);
+    background-color: var(--nav-bg);
 }
 
 .navbar-brand .logo-chat-bubble {
     width: 2rem;
     height: auto;
+    color: var(--nav-logo-chat-bubble-color);
 }
 
-.navbar-brand .logo-text,
+.navbar-brand span,
 .navbar .nav-link {
     font-size: 1.5rem;
     font-style: normal;
 }
 
-.navbar-brand .logo-wrapper .logo-text {
+.navbar-brand .logo-wrapper span {
     font-family: var(--font-oswald);
+}
+
+.navbar-brand .logo-wrapper .logo-iconic {
+    color: var(--logo-iconic-text-color);
+}
+
+.navbar-brand .logo-wrapper .logo-needs {
+    color: var(--logo-needs-text-color);
+}
+
+.navbar-brand .logo-wrapper .logo-iconic,
+.navbar-brand .logo-wrapper .logo-needs {
+    margin: 0 0.1rem;
+}
+
+.navbar .fa-bell,
+.navbar .fa-user-circle {
+    font-size: 2rem;
 }
 
 /* 
@@ -126,7 +264,7 @@ Accessibility for Navbar
     text-decoration: none;
     border: 2px solid #000;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .skip-to-main-content-link:focus {
@@ -156,20 +294,115 @@ button:focus-visible,
 
 /* Ensure sufficient color contrast */
 .navbar-nav .nav-link {
-    color: var(--white);
+    color: var(--nav-link-text-color);
     font-weight: 500;
+    transition: color 0.2s ease-in-out;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
     /* color: var(--white); */
     text-decoration: underline;
+    color: var(--nav-link-hover-text-color);
+
 }
 
-/* TOOLTIP */
+/*
+STYLES FOR LANDING PAGE/UNAUTHORISED IN USERS 
+*/
 
-.tooltip {
-    pointer-events: none; /* Prevent tooltips from capturing mouse events */
+/* Background image for unauthenticated users */
+.unauthenticated-background {
+    background-image: url("/static/icons-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Center text and buttons in overlay */
+.unauthenticated-overlay h2,
+.unauthenticated-overlay p {
+    z-index: 11;
+    margin-bottom: 1.5rem;
+}
+
+/* Overlay restricted to main content */
+.unauthenticated-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    color: white;
+}
+
+/*
+STYLES FOR WHEN ICONS ARE DISABLED 
+*/
+
+.icons-wrapper button[disabled] {
+    background-color: var(--icon-btn-disabled-bg);
+    color: var(--icon-btn-disabled-text-color);
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+.icons-wrapper button[disabled]+img {
+    opacity: 1;
+}
+
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+    color: inherit;
+    background-color: var(--bs-btn-bg, transparent);
+    opacity: 1;
+}
+
+/* Ensure <p> inside disabled buttons has a visible color */
+.btn.disabled p,
+.btn:disabled p {
+    color: var(--btn-disabled-p-text-color);
+    opacity: 1;
+}
+
+.landing-login {
+    color: var(--landing-login-text-color);
+    background-color: var(--landing-login-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.landing-login:hover,
+.landing-login:focus {
+    color: var(--landing-login-hover-text-color);
+    background-color: var(--landing-login-hover-bg);
+}
+
+.landing-login:active,
+.landing-login:focus:active {
+    color: var(--landing-login-active-text-color);
+    background-color: var(--landing-login-active-bg);
+}
+
+.landing-register {
+    color: var(--landing-register-text-color);
+    background-color: var(--landing-register-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.landing-register:hover,
+.landing-register:focus {
+    color: var(--landing-register-hover-text-color);
+    background-color: var(--landing-register-hover-bg);
+}
+
+.landing-register:active,
+.landing-register:focus:active {
+    color: var(--landing-register-active-text-color);
+    background-color: var(--landing-register-active-bg);
 }
 
 /*
@@ -178,17 +411,33 @@ Fave Button
 
 .fave-btn {
     background-color: var(--fave-btn-bg);
-    width: 50%;
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
+
+.fave-btn i {
+    font-size: 1.75rem;
+    color: var(--fave-btn-text-color);
+}
+
 
 .fave-btn:hover {
+    color: var(--fave-btn-glow);
+    /* Stronger internal glow */
+    background-color: var(--fave-btn-bg);
     box-shadow: 0 6px 20px var(--fave-btn-glow);
+    transform: scale(1.20);
+    /* Slight zoom on hover */
 }
 
-.fave-btn i:hover {
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    color: var(--fave-btn-glow); /* Stronger internal glow */
-    transform: scale(1.85); /* Slight zoom on hover */
+.fave-btn:active,
+.fave-btn:focus:active {
+    background-color: var(--fave-btn-bg) !important;
+    box-shadow: 0 2px 10px var(--fave-btn-glow) !important;
+    transform: scale(1.10) !important;
+    border-color: var(--fave-btn-bg) !important;
 }
 
 /*  
@@ -196,13 +445,23 @@ Group Button
 */
 
 .group-btn {
-    background-color: var(--group-btn-bg);
     color: var(--group-btn-text-color);
+    background-color: var(--group-btn-bg);
+    border: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .group-btn:hover {
     color: var(--group-btn-hover-text-color);
     background-color: var(--group-btn-hover-bg);
+}
+
+.group-btn:active,
+.group-btn:focus:active {
+    color: var(--group-btn-active-text-color) !important;
+    background-color: var(--group-btn-active-bg) !important;
+    border-color: var(--group-btn-active-bg) !important;
+    box-shadow: none !important;
 }
 
 /* 
@@ -220,32 +479,34 @@ Icons
     text-align: center;
     text-transform: uppercase;
     font-size: xx-large;
-    color: var(--icon-title-text-color);
-    background-color: var(--icon-title-bg);
-    border: 1px solid rgb(1, 0, 32);
+    color: var(--icon-tile-text-color);
+    background-color: var(--icon-tile-bg);
     border-radius: 10px;
     padding: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for transform and shadow */
+    
 }
 
 .icon-tile:hover,
 .icon-tile:focus {
     transform: scale(1.05);
-    transition: 0.3s;
-    background-color: var(--icon-title-hover-bg);
-    color: var(--icon-title-hover-text-color);
+    transition: 0.2s;
+    background-color: var(--icon-tile-hover-bg);
+    color: var(--icon-tile-hover-text-color);
 }
 
 .icon-tile img {
     max-width: 100%;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease-in-out;
     border-radius: 10px; /* Added smooth scaling for enlarged state */
+    
 }
 
 .icon-tile p {
     margin-top: 12px;
-    margin-bottom: 0;
+    margin-bottom: 0; /* color: var(--icon-tile-text-color); */
+    
 }
 
 .icon-clicked {
@@ -278,7 +539,7 @@ Icons
     font-weight: bold;
     margin-top: 20px;
     text-align: center;
-    color: var(--icon-title-text-color);
+    color: var(--icon-tile-text-color);
 }
 
 /* 
@@ -286,25 +547,137 @@ Cards
 */
 
 .card {
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: var(--card-bg);
+    color: var(--card-text-color);
 }
 
+.card h1,
+.card p,
 .card a {
-    color: var(--black);
+    color: var(--card-text-color);
 }
 
 .card .btn {
-    background-color: var(--orange);
+    color: var(--card-btn-text-color);
+    background-color: var(--card-btn-bg);
+    transition: background-color 0.2s ease-in-out;
 }
 
 .card .btn:hover,
 .card .btn:focus {
-    background-color: var(--card-btn-hover);
+    background-color: var(--card-btn-hover-bg);
 }
 
-.card .btn:active {
-    background-color: var(--orange);
+.card .btn:active,
+.card .btn:focus:active {
+    color: var(--card-btn-active-text-color);
+    background-color: var(--card-btn-active-bg);
+}
+
+/* 
+Caregiver Profile Page
+*/
+
+#caregiver-profile .manage-users-btn {
+    color: var(--manage-users-btn-text-color);
+    background-color: var(--manage-users-btn-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#caregiver-profile .manage-users-btn:hover,
+#caregiver-profile .manage-users-btn:focus {
+    background-color: var(--manage-users-btn-hover-bg);
+}
+
+#caregiver-profile .manage-users-btn:active,
+#caregiver-profile .manage-users-btn:focus:active {
+    background-color: var(--manage-users-btn-active-bg);
+}
+
+.img-thumbnail {
+    width: 55%;
+    height: auto;
+    background-color: var(--img-thumbnail-bg);
+    border: none;
+}
+
+#caregiver-profile p {
+    margin: 0.5rem 0;
+}
+
+/* 
+Caregiver Notifications Page
+*/
+
+.list-group-item {
+    background-color: var(--list-group-bg);
+    border: 1px solid black;
+}
+
+.list-group-item p {
+    color: var(--list-group-text-color);
+}
+
+.list-group-item .btn {
+    color: var(--list-group-btn-text-color);
+    background-color: var(--list-group-btn-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.list-group-item .btn:hover,
+.list-group-item .btn:focus {
+    background-color: var(--list-group-btn-hover-bg);
+}
+
+.list-group-item .btn:active,
+.list-group-item .btn:focus:active {
+    color: var(--list-group-btn-active-text-color);
+    background-color: var(--list-group-btn-active-bg);
+}
+
+/* 
+Modals
+*/
+
+.modal-content {
+    background-color: var(--modal-bg);
+}
+
+.modal .icon-tile {
+    background-color: var(--modal-icon-tile-bg);
+}
+
+.modal h5,
+.modal h6,
+.modal p,
+.modal label,
+.modal input {
+    color: var(--modal-text-color);
+}
+
+.modal .modal-header {
+    border-bottom: 1px solid black;
+}
+
+.modal .modal-footer {
+    border-top: 1px solid black;
+}
+
+.modal .modal-save-btn {
+    color: var(--modal-save-btn-text-color);
+    background-color: var(--modal-save-btn-bg);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.modal .modal-save-btn:hover,
+.modal .modal-save-btn:focus {
+    background-color: var(--modal-save-btn-hover-bg);
+}
+
+.modal .modal-save-btn:active,
+.modal .modal-save-btn:focus:active {
+    color: var(--modal-save-btn-active-text-color);
+    background-color: var(--modal-save-btn-active-bg);
 }
 
 /*
@@ -315,34 +688,27 @@ footer {
     background-color: var(--footer-bg);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Allow wrapping for responsiveness */
-    align-items: center; /* Center content horizontally */
-    padding: 16px; /* Center content vertically */
+    justify-content: center;
+    /* Allow wrapping for responsiveness */
+    align-items: center;
+    /* Center content horizontally */
+    padding: 16px;
+    /* Center content vertically */
     text-align: center;
+    color: var(--footer-text-color);
 }
-
-
-footer p {
-    color: #000;
-}
-
 
 .github-links {
     display: flex;
-    flex-wrap: wrap;
-    /* Allow links to wrap if they don’t fit */
-    justify-content: center;
-    /* Center links horizontally */
-    gap: 8px;
-    /* Add space between links */
+    flex-wrap: wrap; /* Allow links to wrap if they don’t fit */
+    justify-content: center; /* Center links horizontally */
+    gap: 8px; /* Add space between links */
 }
 
 
 .github-links a {
-    margin: 0;
-    /* Reset margins (gap handles spacing) */
-    padding: 8px 16px;
-    /* Add padding for a clickable area */
+    margin: 0; /* Reset margins (gap handles spacing) */
+    padding: 8px 16px; /* Add padding for a clickable area */
     text-decoration: none;
     opacity: 0.5;
     display: inline-block; /* Ensure links behave like blocks */
@@ -352,17 +718,22 @@ footer p {
     color: var(--github-links-a-text-color);
 }
 
-
 .github-links a:hover {
     opacity: 1;
-    color: var(--github-links-a-hover-text-color);
-    background-color: var(--github-links-a-hover-bg);
+}
+
+/*
+Notification bell icon
+*/
+
+.notification-icon {
+    position: relative;
 }
 
 .unread-indicator {
     position: absolute;
-    top: 67px;
-    left: 21px;
+    top: 0px;
+    left: 20px;
     width: 15px;
     height: 15px;
     background-color: red;
@@ -375,25 +746,30 @@ footer p {
     display: none;
 }
 
+/*
+Sign in page
+*/
+
+#id_password_helptext {
+    display: none;
+}
+
 /* Media query for small screens */
 @media screen and (min-width: 576px) {
     .github-links {
-        flex-direction: row;
-        /* Links stay in a row */
+        flex-direction: row; /* Links stay in a row */
     }
+
     .github-links a {
-        flex: 1 1 auto;
-        /* Links shrink or grow evenly */
-        text-align: center;
-        /* Center the text inside each link */
+        flex: 1 1 auto; /* Links shrink or grow evenly */
+        text-align: center;  /* Center the text inside each link */
     }
 
 }
 
 @media (min-width: 992px) {
     .unread-indicator {
-        top: 17px;
-        left: auto;
-        right: 57px;
+        top: 0px;
+        left: 25px;
     }
 }

@@ -88,14 +88,14 @@ def user_profile(request):
 
         # Attach a form to each icon and group
         for icon in caregiver_icons:
-            icon.form = IconForm(instance=icon)
+            icon.form = IconForm(instance=icon, prefix=f"icon_{index}")
 
         for group in caregiver_groups:
-            group.form = GroupForm(instance=group)
+            group.form = GroupForm(instance=group, prefix=f"group_{index}")
 
         # Instantiate forms for adding new icons/groups (empty forms)
-        icon_form = IconForm()
-        group_form = GroupForm()
+        icon_form = IconForm(prefix="new_icon")
+        group_form = GroupForm(prefix="new_group")
 
         # Render the caregiver profile template with the forms included
         return render(request, 'accounts/caregiver_profile.html', {
