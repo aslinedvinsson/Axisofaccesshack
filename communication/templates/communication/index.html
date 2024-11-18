@@ -61,7 +61,7 @@
             <button class="icon-tile btn" {% if user.is_authenticated and user.userprofile.role == "EU" %} type="button"
                 {% else %} disabled {% endif %}>
                 <img src="{{ icon.image.url }}" alt="{{ icon.name }}" class="img-fluid">
-                <p class="mt-3">{{ icon.name }}</p>
+                <span class="mt-3 d-block">{{ icon.name }}</span>
             </button>
         </div>
         {% endfor %}
