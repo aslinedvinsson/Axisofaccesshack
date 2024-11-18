@@ -240,16 +240,16 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 **Lighthouse**: Google Lighthouse is a web performance and SEO auditing tool that analyzes web pages, providing detailed reports and recommendations for improving page speed, accessibility, and user experience. [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
 
 #### SignIn page
-[](static/images/signInPage_desktop.png)
-[](static/images/signInPage_mobile.png)
+![](static/images/signInPage_desktop.png)
+![](static/images/signInPage_mobile.png)
 
 #### SignUp page
-[](static/images/signUp_desktop.png)
-[](static/images/signInPage_mobile.png)
+![](static/images/signUp_desktop.png)
+![](static/images/signInPage_mobile.png)
 
 #### First page
-[](static/images/firstPage_desktop.png)
-[](static/images/firstPage_mobile.png)
+![](static/images/firstPage_desktop.png)
+![](static/images/firstPage_mobile.png)
 
 ![](docs/test/xxx.png)
 
