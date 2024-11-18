@@ -77,7 +77,7 @@ The website is simple and clear, with large, icons representing different needs,
 ### Accessability testing
 **[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)**
 
-------add screenshot
+![WAVE](static/images/wave.png)
 <details>
     <summary>WAWE</summary>
         <img src="docs/test/xxxx.png">
