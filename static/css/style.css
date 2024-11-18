@@ -208,7 +208,7 @@ Accessibility for Navbar
     text-decoration: none;
     border: 2px solid #000;
     opacity: 0;
-    transition: opacity 0.2s ease-in-out-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .skip-to-main-content-link:focus {
@@ -240,7 +240,7 @@ button:focus-visible,
 .navbar-nav .nav-link {
     color: var(--nav-link-text-color);
     font-weight: 500;
-    transition: color 0.2s ease-in-out-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .navbar-nav .nav-link:hover,
@@ -285,7 +285,7 @@ button:focus-visible,
 
 .icons-wrapper button[disabled] {
     background-color: var(--icon-btn-disabled-bg);
-    color: var(-icon-btn-disabled-text-color);
+    color: var(--icon-btn-disabled-text-color);
     opacity: 1;
     cursor: not-allowed;
 }
@@ -471,7 +471,7 @@ Cards
 .card .btn {
     color: var(--card-btn-text-color);
     background-color: var(--card-btn-bg);
-    transition: background-color 0.2s ease-in-out-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .card .btn:hover,
@@ -491,7 +491,7 @@ Caregiver Profile Page
 #caregiver-profile .manage-users-btn {
     color: var(--manage-users-btn-text-color);
     background-color: var(--manage-users-btn-bg);
-    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 #caregiver-profile .manage-users-btn:hover,
@@ -520,7 +520,7 @@ Caregiver Notifications Page
 .list-group-item .btn {
     color: var(--list-group-btn-text-color);
     background-color: var(--list-group-btn-bg);
-    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .list-group-item .btn:hover,
@@ -564,7 +564,7 @@ Modals
 .modal .modal-save-btn {
     color: var(--modal-save-btn-text-color);
     background-color: var(--modal-save-btn-bg);
-    transition: background-color 0.2s ease-in-out-in-out, color 0.2s ease-in-out-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .modal .modal-save-btn:hover,
