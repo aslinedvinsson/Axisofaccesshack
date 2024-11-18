@@ -280,9 +280,9 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ------check so the information still is correct in the manual testing.
 
 ## Bugs/Issues
----- any?
+- Paths in the `urls.py` files of the **Notification** and **Communication** apps had the same name `'index'`, causing conflicts in link resolution.
 ### Resolved Bugs/Issues
----- any?
+- The paths in the `urls.py` files were renamed to different names to avoid conflicts.
 ### Unresolved Bugs/Issues
 ----- any?
 ## Deployment
