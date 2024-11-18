@@ -125,7 +125,20 @@ The choosen accessible color palette is dark to light
 ![](docs/colors.png)
 
 ### Fonts
--------- add fonts
+
+The fonts used in this project are defined in the `style.css` file, located in the `static/css` directory. Below are the details:
+
+#### Main Fonts
+- **Roboto**: Used as the default font for most of the site content.
+- **Oswald**: Applied to specific elements, such as the logo text in the navigation bar.
+
+#### Font Integration
+The fonts are imported from [Google Fonts](https://fonts.google.com) in the `base.html` file. The following imports are included:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
 
 ![](docs/font.png)
 
