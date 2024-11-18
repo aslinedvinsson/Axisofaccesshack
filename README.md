@@ -253,7 +253,7 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### CSS Validator
 **CSS Validation Service**: A service to check the validity of Cascading Style Sheets (CSS). [CSS Validation](https://jigsaw.w3.org/css-validator/)
 
---- add screenshot
+![CSS_validator](static/images/css_validator.png)
 
 ![](docs/test/xxx.png)
 
