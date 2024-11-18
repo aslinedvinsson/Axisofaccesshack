@@ -246,9 +246,9 @@ To enhance site security, Cross-Site Request Forgery (CSRF) tokens have been imp
 ### HTML Validator
 **HTML Validation Service**: A tool to check the markup validity of Ib documents in HTML. [HTML Validation](https://validator.w3.org/)
 
-----add screenshot
-
-![](docs/test/xxx.png)
+| Template tested                 | Test result |
+| :-----------------------------: | :---------: |
+| accounts - account_modals.html  | Pass        |
 
 ### CSS Validator
 **CSS Validation Service**: A service to check the validity of Cascading Style Sheets (CSS). [CSS Validation](https://jigsaw.w3.org/css-validator/)
@@ -291,10 +291,6 @@ The only errors came from Bootstrap's tooltip initializer and from ES6 syntax.
 | notifications/tests.py      | Pass        |
 | notifications/urls.py       | Pass        |
 | notifications/views.py      | Pass        |
-
-----add screenshot
-
-![](docs/test/xxx.png)
 
 ### Manual Testing
 [User Acceptance Testing and Functional Testing](manual_testing.md)
